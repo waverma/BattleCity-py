@@ -3,7 +3,5 @@ from window import Window
 
 
 if __name__ == "__main__":
-    TextureProvider.load()
-    TextureProvider.resize(1.9, "Tanks.png")
-    TextureProvider.resize(2, "Ground.png")
-    Window(1000, 1000).run()
+    TextureProvider.set_textures()
+    Window(32*26, 32*26).run()

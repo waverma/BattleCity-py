@@ -19,13 +19,12 @@ class UserInterface:
         self.elements = list()
         self.stage = InterfaceStage.MainMenu
 
-        self.game_field_element = GameFieldElement(Rect(100, 100, 800, 800), (100, 100))
-        self.post_game_menu = PostGameElement(Rect(100, 100, 800, 800), (100, 100))
-        self.main_menu = MainMenu(Rect(100, 100, 800, 800), (100, 100))
-        self.single_menu = SinglePlayMenu(Rect(100, 100, 800, 800), (100, 100))
-        self.network = NetworkMenu(Rect(100, 100, 800, 800), (100, 100))
-        self.connection_menu = ConnectionMenu(Rect(100, 100, 800, 800), (100, 100))
-        self.pause = PauseMenu(Rect(100, 100, 800, 800), (100, 100))
+        #Создание менюшек
+        self.game_field_element = GameFieldElement(Rect(0, 0, 32*26, 32*26), (0, 0))
+        self.post_game_menu = PostGameElement(Rect(0, 0, 32*26, 32*26), (0, 0))
+        self.main_menu = MainMenu(Rect(0, 0, 32*26, 32*26), (0, 0))
+        self.single_menu = SinglePlayMenu(Rect(0, 0, 32*26, 32*26), (0, 0))
+        self.pause = PauseMenu(Rect(0, 0, 32*26, 32*26), (0, 0))
 
     def update(self, e: UserEvent, game_state: InterfaceStage, output_buffer: BufferToGameLogic):
         output_buffer.interface_stage = game_state
@@ -45,12 +44,6 @@ class UserInterface:
 
         elif game_state == InterfaceStage.SinglePlayMenu:
             self.single_menu.update(e, output_buffer)
-
-        elif game_state == InterfaceStage.NetworkMenu:
-            self.network.update(e, output_buffer)
-
-        elif game_state == InterfaceStage.ConnectionMenu:
-            self.connection_menu.update(e, output_buffer)
 
     @staticmethod
     def render_per_element(buffer_to_render, new_buffer_to_draw, element):
@@ -77,14 +70,7 @@ class UserInterface:
         elif self.stage == InterfaceStage.SinglePlayMenu:
             UserInterface.render_per_element(buffer_to_render, new_buffer_to_draw, self.single_menu)
 
-        elif self.stage == InterfaceStage.NetworkMenu:
-            UserInterface.render_per_element(buffer_to_render, new_buffer_to_draw, self.network)
-
-        elif self.stage == InterfaceStage.ConnectionMenu:
-            UserInterface.render_per_element(buffer_to_render, new_buffer_to_draw, self.connection_menu)
-
         elif self.stage == InterfaceStage.Pause:
             UserInterface.render_per_element(buffer_to_render, new_buffer_to_draw, self.pause)
 
         buffer_to_draw.update(new_buffer_to_draw)
-

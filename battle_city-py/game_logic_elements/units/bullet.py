@@ -1,51 +1,23 @@
 from pygame.rect import Rect
 
-from graphic_elements.draw_information import DrawInformation
+from enums.unit_type import UnitType
 from enums.direction import Direction
 from game_logic_elements.units.unit import Unit
 
 
 class Bullet(Unit):
-    texture_name = "Bullet.png"
-
     def __init__(self, owner: Unit):
         super().__init__()
-        self.collision = Rect(-1, -1, 6, 6)
+        self.collision = Rect(-1, -1, 8, 8)
         self.max_speed = 6
         self.current_direction = Direction.Up
         self.owner = owner
+        self.type = UnitType.Bullet
 
-    def get_draw_info(self):
-        result = list()
-
-        if self.current_direction == Direction.Up:
-            result.append(DrawInformation(texture_name=Bullet.texture_name,
-                                          draw_rect=self.collision, texture_rotate=90 * 3))
-
-        if self.current_direction == Direction.Down:
-            result.append(DrawInformation(texture_name=Bullet.texture_name,
-                                          draw_rect=self.collision, texture_rotate=90))
-
-        if self.current_direction == Direction.Right:
-            result.append(DrawInformation(texture_name=Bullet.texture_name,
-                                          draw_rect=self.collision, texture_rotate=90 * 2))
-        else:
-            result.append(DrawInformation(texture_name=Bullet.texture_name, draw_rect=self.collision))
-
-        return result
-
-    def step(self, field):
+    def step(self, field: 'GameField'):
         super().step(field)
-        if self.velocity[0] > 0:
-            self.current_direction = Direction.Right
-        if self.velocity[0] < 0:
-            self.current_direction = Direction.Left
-        if self.velocity[1] > 0:
-            self.current_direction = Direction.Down
-        if self.velocity[1] < 0:
-            self.current_direction = Direction.Up
 
-    def move_step(self, field):
+    def move_step(self, field: 'GameField'):
         x_saved = self.collision.left
         y_saved = self.collision.top
 
@@ -59,5 +31,5 @@ class Bullet(Unit):
             ))
             field.explode(self, 34, self.collision, units)
 
-    def on_explosion(self, field, explosion_rect: Rect):
+    def on_explosion(self, field: 'GameField', explosion_rect: Rect):
         field.try_remove_unit(self)

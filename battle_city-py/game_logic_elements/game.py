@@ -6,7 +6,6 @@ from game_logic_elements.game_field import GameField
 
 class Game:
     def __init__(self):
-
         self.field = None
         self.set_new_field()
         self.stage = InterfaceStage.MainMenu
@@ -31,9 +30,6 @@ class Game:
         if buffer.interface_stage == InterfaceStage.MainMenu:
             if buffer.is_single_play_button_pressed:
                 self.stage = InterfaceStage.SinglePlayMenu
-            if buffer.is_network_button_pressed:
-                pass
-                # self.stage = InterfaceStage.NetworkMenu
 
         if buffer.interface_stage == InterfaceStage.SinglePlayMenu:
             if buffer.is_cancel_button_pressed:
@@ -42,30 +38,12 @@ class Game:
                 self.set_new_field()
                 self.stage = InterfaceStage.InGame
 
-        if buffer.interface_stage == InterfaceStage.NetworkMenu:
-            if buffer.is_cancel_button_pressed:
-                self.stage = InterfaceStage.MainMenu
-            if buffer.is_new_session_create_button_pressed:
-                pass
-                # self.set_new_field()
-                # self.stage = InterfaceStage.InGame
-            if buffer.is_connect_button_pressed:
-                self.stage = InterfaceStage.ConnectionMenu
-
         if buffer.interface_stage == InterfaceStage.PostGame:
             if buffer.restart_request:
                 self.set_new_field()
                 self.stage = InterfaceStage.InGame
             if buffer.is_to_main_menu_button_pressed:
                 self.stage = InterfaceStage.MainMenu
-
-        if buffer.interface_stage == InterfaceStage.ConnectionMenu:
-            if buffer.is_cancel_button_pressed:
-                self.stage = InterfaceStage.NetworkMenu
-            if buffer.is_connect_button_pressed:
-                self.stage = InterfaceStage.InGame
-                # self.set_new_field()
-                # self.stage = InterfaceStage.InGame
 
         if buffer.interface_stage == InterfaceStage.Pause:
             if buffer.is_to_main_menu_button_pressed:
@@ -98,9 +76,9 @@ class Game:
 
         for unit in self.field.units:
             if unit is not self.field.player:
-                buffer.units.append(unit.get_draw_info())
+                buffer.units.append(unit.get_render_info())
             else:
-                buffer.player = unit.get_draw_info()
+                buffer.player = unit.get_render_info()
 
         return buffer
 

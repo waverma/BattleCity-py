@@ -1,6 +1,7 @@
 from pygame.rect import Rect
 
 from enums.direction import Direction
+from enums.unit_type import UnitType
 
 
 class Unit:
@@ -8,10 +9,11 @@ class Unit:
         self.collision = Rect(-1, -1, -1, -1)
         self.max_speed = 0
         self.health_points = 1
-        self.color = (0, 0, 0)
-
+        self.current_direction = Direction.Null
         self.velocity = (0, 0)
         self.actions = list()
+
+        self.type = UnitType.Null
 
     def set_velocity(self, direction: Direction):
         if direction == Direction.Up:
@@ -31,7 +33,7 @@ class Unit:
         else:
             self.health_points -= 1
 
-    def step(self, field):
+    def step(self, field: 'GameField'):
         if self.velocity[0] != 0 or self.velocity[1] != 0:
             self.move_step(field)
 
@@ -39,7 +41,16 @@ class Unit:
             action()
         self.actions = list()
 
-    def move_step(self, field):
+        if self.velocity[0] > 0:
+            self.current_direction = Direction.Right
+        if self.velocity[0] < 0:
+            self.current_direction = Direction.Left
+        if self.velocity[1] > 0:
+            self.current_direction = Direction.Down
+        if self.velocity[1] < 0:
+            self.current_direction = Direction.Up
+
+    def move_step(self, field: 'GameField'):
         x_saved = self.collision.left
         y_saved = self.collision.top
 
@@ -47,7 +58,7 @@ class Unit:
         if not field.try_place_unit(self, x_saved + self.velocity[0], y_saved + self.velocity[1]):
             field.try_place_unit(self, x_saved, y_saved)
 
-    def on_explosion(self, field, explosion_rect: Rect):
+    def on_explosion(self, field: 'GameField', explosion_rect: Rect):
         pass
 
     def is_intersected_with_unit(self, other: 'Unit') -> bool:
@@ -56,17 +67,5 @@ class Unit:
     def is_intersected_with_rect(self, rect: Rect) -> bool:
         return self.collision.colliderect(rect)
 
-    def get_draw_info(self) -> list:
-        return list()
-        # (
-        # texture_name,
-        # rect,
-        # texture_rect,
-        # texture_rotate,
-        # fill_color,
-        # outline_color,
-        # outline_size,
-        # text,
-        # text_color,
-        # text_size
-        # )
+    def get_render_info(self) -> list:
+        return [(self.type, self.collision, self.current_direction)]

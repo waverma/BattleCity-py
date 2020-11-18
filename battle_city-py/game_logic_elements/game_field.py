@@ -1,6 +1,5 @@
 from pygame import Rect
 
-from enums.tank_texture_kind import TankTextureKind
 from game_logic_elements.units.breakable_wall import BreakableWall
 from game_logic_elements.units.bullet import Bullet
 from game_logic_elements.units.tank import Tank
@@ -11,17 +10,15 @@ from game_logic_elements.units.unit import Unit
 
 
 class GameField:
-    def __init__(self):
-        self.width = self.height = 26 * 20
+    player: Unit
 
-        self.player = Tank(TankTextureKind.Orange)
-        self.player.color = (0, 255, 255)
-        self.player.health_points = self.player.health_points = 1
+    def __init__(self):
+        self.width = self.height = 16*26
+
         self.units = list()
         self.spawners = list()
         self.units_buffer = list()
         self.ban_unit_list = list()
-        self.try_place_unit(self.player, 0, 0)
         self.set_game_field()
 
         self.game = None
@@ -41,7 +38,11 @@ class GameField:
         self.ban_unit_list = list()
 
     def set_game_field(self):
-        cell_len = 20
+        cell_len = 16
+
+        self.player = Tank()
+        self.player.health_points = self.player.health_points = 1
+        self.try_place_unit(self.player, 0, 0)
 
         # стены
         self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 9), cell_len * 2, cell_len * 2)
@@ -76,24 +77,25 @@ class GameField:
         # враги
         spawner = TankBotSpawner()
         self.spawners.append(spawner)
-        self.try_place_unit(spawner, cell_len * 24 + 2, 0)
+        self.try_place_unit(spawner, cell_len * 24, 0)
 
         spawner = TankBotSpawner()
-        self.try_place_unit(spawner, cell_len * 8 + 2, cell_len * 11)
+        self.try_place_unit(spawner, cell_len * 8, cell_len * 11)
         self.spawners.append(spawner)
 
         spawner = TankBotSpawner()
-        self.try_place_unit(spawner, cell_len * 12 + 2, cell_len * 18)
+        self.try_place_unit(spawner, cell_len * 12, cell_len * 18)
         self.spawners.append(spawner)
 
         self.units = self.units_buffer
         self.units_buffer = list()
 
     def try_place_unit(self, unit: Unit, x: int, y: int):
-        rect = Rect(x, y, unit.collision.width, unit.collision.height)
-        if not Rect(0, 0, self.width, self.height).collidepoint(x, y) \
-                or not Rect(0, 0, self.width, self.height).collidepoint(x + unit.collision.width - 1, y + unit.collision.height - 1) \
-                or len(self.get_intersected_units(rect)) > 0:
+        unit_rect = Rect(x, y, unit.collision.width, unit.collision.height)
+        map_rect = Rect(0, 0, self.width, self.height)
+        if not map_rect.collidepoint(x, y) \
+                or not map_rect.collidepoint(x + unit.collision.width - 1, y + unit.collision.height - 1) \
+                or len(self.get_intersected_units(unit_rect)) > 0:
             return False
 
         unit.collision.x = x

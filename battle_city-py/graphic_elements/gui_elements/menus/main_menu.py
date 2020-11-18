@@ -36,7 +36,6 @@ class MainMenu(UserElement):
 
         self.buttons.append(self.single_play_button)
         self.buttons.append(self.exit_button)
-        # self.buttons.append(self.exit_button)
 
     def update(self, e: UserEvent, output_buffer: BufferToGameLogic):
         for button in self.buttons:

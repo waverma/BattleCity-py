@@ -46,7 +46,6 @@ class Window:
             pygame.display.update()
 
     def get_event(self, events):
-        # user_event = events.copy()
         user_event = events
         if user_event.pressed_buttons is None:
             user_event.pressed_buttons = [0 for _ in range(513)]
@@ -79,7 +78,6 @@ class Window:
 
         user_event.absolute_mouse_location = self.mouse_pos
 
-        # events.update(user_event)
         self.events = user_event
 
     def draw(self, buffer: DrawingBuffer):
@@ -95,7 +93,8 @@ class Window:
                 outline_size,
                 text,
                 text_color,
-                text_size
+                text_size,
+                image_transform
             ) = draw_element.get_to_unpack()
 
             x = rect.x * transform[2] + transform[0]
@@ -116,9 +115,9 @@ class Window:
                 pygame.draw.rect(self.display, fillcolor, [x, y, width, height])
 
             if texture_name is not None:
-                texture = TextureProvider.textures[texture_name]
+                texture, texture_rect = TextureProvider.textures[texture_name[0]].get_texture(texture_name[1], image_transform)
                 if texture_rotate is not None:
-                    texture = pygame.transform.rotate(TextureProvider.textures[texture_name], texture_rotate)
+                    texture = pygame.transform.rotate(texture, texture_rotate)
                 if texture_rect is not None:
                     self.display.blit(texture, (x, y), texture_rect)
                 else:

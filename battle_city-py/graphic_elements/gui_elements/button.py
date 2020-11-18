@@ -19,7 +19,7 @@ class Button(UserElement):
         self.is_focused = False
         self.is_clicked = False
 
-    def add_action(self, action): ##
+    def add_action(self, action):
         self.actions.append(action)
 
     def update(self, e: UserEvent, output_buffer: BufferToGameLogic):

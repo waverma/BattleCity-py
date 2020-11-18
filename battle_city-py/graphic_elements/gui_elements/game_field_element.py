@@ -51,18 +51,20 @@ class GameFieldElement(UserElement):
         result.append(DrawInformation(transform=transform, draw_rect=self.collision, fill_color=(0, 0, 0)))
 
         for player_render_info_parts in buffer_to_render.player:
-            player_render_info_parts.transform = new_transform
-            result.append(player_render_info_parts)
+            draw_info = DrawInformation.get_info_by(*player_render_info_parts)
+            draw_info.transform = new_transform
+            result.append(draw_info)
 
         for unit_render_info in buffer_to_render.units:
             for unit_render_info_parts in unit_render_info:
-                unit_render_info_parts.transform = new_transform
-                result.append(unit_render_info_parts)
+                draw_info = DrawInformation.get_info_by(*unit_render_info_parts)
+                draw_info.transform = new_transform
+                result.append(draw_info)
 
         self.text.draw_info.text = f"HP: {str(buffer_to_render.health_points)})==( Reload: {buffer_to_render.cool_dawn}"
         self.text.draw_info.collision = Rect(
-            buffer_to_render.player[0].draw_rect.x + 30,
-            buffer_to_render.player[0].draw_rect.y - 10,
+            buffer_to_render.player[0][1].x + 30,
+            buffer_to_render.player[0][1].y - 10,
             20, 12
         )
         text_render_info = self.text.get_render_info(new_transform, buffer_to_render)

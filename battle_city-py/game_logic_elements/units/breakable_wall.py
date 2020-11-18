@@ -1,39 +1,37 @@
 from pygame.rect import Rect
 
-from graphic_elements.draw_information import DrawInformation
+from enums.unit_type import UnitType
 from game_logic_elements.units.unit import Unit
 
 
 class BreakableWall(Unit):
-    default_block_size = 20
-    texture_name = "Ground.png"
-    texture_rect = [0, 0, 16 * 2, 16 * 2]  # TODO Перенести подобное в сонстанты графического пакета
+    default_block_size = 16
 
-    def __init__(self, width=40, height=40):
+    def __init__(self, width=32, height=32):
         super().__init__()
+        self.type = UnitType.BrickWall
         self.health_points = 0
         self.collision = Rect(-1, -1, width, height)
-        self.color = (255, 0, 0)
 
-    def get_draw_info(self):
+    def get_render_info(self):
         result = list()
 
         for x in range(self.collision.width // BreakableWall.default_block_size):
             for y in range(self.collision.height // BreakableWall.default_block_size):
-                result.append(DrawInformation(
-                    texture_name=self.texture_name,
-                    texture_rect=self.texture_rect,
-                    draw_rect=Rect(
+                result.append((
+                    self.type,
+                    Rect(
                         self.collision.x + BreakableWall.default_block_size * x,
                         self.collision.y + BreakableWall.default_block_size * y,
                         BreakableWall.default_block_size,
                         BreakableWall.default_block_size
-                    )
+                    ),
+                    self.current_direction
                 ))
 
         return result
 
-    def on_explosion(self, field, explosion_rect: Rect):
+    def on_explosion(self, field: 'GameField', explosion_rect: Rect):
         if self.health_points == 0:
             field.try_remove_unit(self)
             for x in range(self.collision.width // self.default_block_size):

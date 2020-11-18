@@ -1,32 +1,31 @@
 from pygame.rect import Rect
 
-from graphic_elements.draw_information import DrawInformation
+from enums.unit_type import UnitType
 from game_logic_elements.units.unit import Unit
 
 
 class UnbreakableWall(Unit):
-    default_block_size = 20
-    texture_name = "Ground.png"
-    texture_rect = [0, 16 * 2, 16 * 2, 16 * 2]  # TODO Перенести в константы графики
+    default_block_size = 16
 
-    def __init__(self, width=40, height=40):
+    def __init__(self, width=32, height=32):
         super().__init__()
         self.collision = Rect(-1, -1, width, height)
+        self.type = UnitType.IronWall
 
-    def get_draw_info(self) -> list:
+    def get_render_info(self):
         result = list()
 
         for x in range(self.collision.width // UnbreakableWall.default_block_size):
             for y in range(self.collision.height // UnbreakableWall.default_block_size):
-                result.append(DrawInformation(
-                    texture_name=self.texture_name,
-                    draw_rect=Rect(
+                result.append((
+                    self.type,
+                    Rect(
                         self.collision.x + UnbreakableWall.default_block_size * x,
                         self.collision.y + UnbreakableWall.default_block_size * y,
                         UnbreakableWall.default_block_size,
                         UnbreakableWall.default_block_size
                     ),
-                    texture_rect=self.texture_rect
+                    self.current_direction
                 ))
 
         return result
