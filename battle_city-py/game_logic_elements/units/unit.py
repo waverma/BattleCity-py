@@ -1,7 +1,6 @@
-from pygame.rect import Rect
-
 from enums.direction import Direction
 from enums.unit_type import UnitType
+from pygame.rect import Rect
 
 
 class Unit:
@@ -9,13 +8,15 @@ class Unit:
         self.collision = Rect(-1, -1, -1, -1)
         self.max_speed = 0
         self.health_points = 1
-        self.current_direction = Direction.Null
+        self.current_direction = Direction.Up
         self.velocity = (0, 0)
         self.actions = list()
 
         self.type = UnitType.Null
 
     def set_velocity(self, direction: Direction):
+        if direction != Direction.Null:
+            self.current_direction = direction
         if direction == Direction.Up:
             self.velocity = (0, -self.max_speed)
         if direction == Direction.Right:
@@ -33,7 +34,7 @@ class Unit:
         else:
             self.health_points -= 1
 
-    def step(self, field: 'GameField'):
+    def step(self, field):
         if self.velocity[0] != 0 or self.velocity[1] != 0:
             self.move_step(field)
 
@@ -41,31 +42,28 @@ class Unit:
             action()
         self.actions = list()
 
-        if self.velocity[0] > 0:
-            self.current_direction = Direction.Right
-        if self.velocity[0] < 0:
-            self.current_direction = Direction.Left
-        if self.velocity[1] > 0:
-            self.current_direction = Direction.Down
-        if self.velocity[1] < 0:
-            self.current_direction = Direction.Up
-
-    def move_step(self, field: 'GameField'):
+    def move_step(self, field):
         x_saved = self.collision.left
         y_saved = self.collision.top
 
         field.try_remove_unit(self)
-        if not field.try_place_unit(self, x_saved + self.velocity[0], y_saved + self.velocity[1]):
+        if not field.try_place_unit(
+            self, x_saved + self.velocity[0], y_saved + self.velocity[1]
+        ):
             field.try_place_unit(self, x_saved, y_saved)
 
-    def on_explosion(self, field: 'GameField', explosion_rect: Rect):
+    def on_explosion(self, field, explosion_rect: Rect):
         pass
 
-    def is_intersected_with_unit(self, other: 'Unit') -> bool:
-        return self.collision.colliderect(other.collision)
+    def is_intersected_with_unit(self, other: "Unit") -> bool:
+        return self.is_intersected_with_rect(other.collision)
 
     def is_intersected_with_rect(self, rect: Rect) -> bool:
-        return self.collision.colliderect(rect)
+        return (
+            self.collision.colliderect(rect)
+            or self.collision.contains(rect)
+            or rect.contains(self.collision)
+        )
 
     def get_render_info(self) -> list:
         return [(self.type, self.collision, self.current_direction)]

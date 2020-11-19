@@ -1,7 +1,6 @@
 import copy
 
 import pygame
-
 from buffers.buffer_to_game_logic import BufferToGameLogic
 from buffers.buffer_to_render import BufferToRender
 from buffers.drawing_buffer import DrawingBuffer
@@ -35,9 +34,13 @@ class Window:
             self.display.fill((30, 213, 200))
 
             self.get_event(self.events)
-            self.user_interface.update(self.events, self.game.stage, self.buffer_to_game_logic)
+            self.user_interface.update(
+                self.events, self.game.stage, self.buffer_to_game_logic
+            )
             self.game.update(self.buffer_to_game_logic, self.buffer_to_render)
-            self.user_interface.render(self.buffer_to_render, self.buffer_to_draw)
+            self.user_interface.render(
+                self.buffer_to_render, self.buffer_to_draw
+            )
             self.draw(self.buffer_to_draw)
 
             if self.buffer_to_game_logic.is_exit_button_pressed:
@@ -51,7 +54,9 @@ class Window:
             user_event.pressed_buttons = [0 for _ in range(513)]
         user_event.was_left_mouse_click = user_event.is_left_mouse_click
         user_event.was_right_mouse_click = user_event.is_right_mouse_click
-        user_event.non_released_buttons = copy.deepcopy(user_event.pressed_buttons)
+        user_event.non_released_buttons = copy.deepcopy(
+            user_event.pressed_buttons
+        )
         user_event.events = pygame.event.get()
         for e in user_event.events:
             if e.type == pygame.QUIT:
@@ -94,7 +99,7 @@ class Window:
                 text,
                 text_color,
                 text_size,
-                image_transform
+                image_transform,
             ) = draw_element.get_to_unpack()
 
             x = rect.x * transform[2] + transform[0]
@@ -107,15 +112,19 @@ class Window:
                     x - outline_size,
                     y - outline_size,
                     width + outline_size * 2,
-                    height + outline_size * 2
+                    height + outline_size * 2,
                 ]
                 pygame.draw.rect(self.display, outline_color, outline_rect)
 
             if fillcolor is not None:
-                pygame.draw.rect(self.display, fillcolor, [x, y, width, height])
+                pygame.draw.rect(
+                    self.display, fillcolor, [x, y, width, height]
+                )
 
             if texture_name is not None:
-                texture, texture_rect = TextureProvider.textures[texture_name[0]].get_texture(texture_name[1], image_transform)
+                texture, texture_rect = TextureProvider.textures[
+                    texture_name[0]
+                ].get_texture(texture_name[1], image_transform)
                 if texture_rotate is not None:
                     texture = pygame.transform.rotate(texture, texture_rotate)
                 if texture_rect is not None:
@@ -123,4 +132,9 @@ class Window:
                 else:
                     self.display.blit(texture, (x, y))
             if text is not None:
-                self.display.blit(pygame.font.SysFont('arial', text_size).render(text, True, text_color), (x, y))
+                self.display.blit(
+                    pygame.font.SysFont("arial", text_size).render(
+                        text, True, text_color
+                    ),
+                    (x, y),
+                )

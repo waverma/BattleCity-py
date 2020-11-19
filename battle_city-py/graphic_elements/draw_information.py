@@ -1,26 +1,41 @@
-from pygame.rect import Rect
+from typing import Tuple
 
 from enums.direction import Direction
 from enums.tank_texture_kind import TankTextureKind
 from enums.unit_type import UnitType
 from graphic_elements.graphic_utils import GraphicUtils
+from pygame.rect import Rect
+
+
+def puck_info(
+    info: "DrawInformation",
+    direction: Direction,
+    name: Tuple,
+    kind: TankTextureKind,
+):
+    info.texture_name = GraphicUtils.get_extended_texture_name(
+        name, str(int(direction))
+    )
+    info.texture_rect = DrawInformation.get_tank_image_rect(kind, 0)[
+        int(direction)
+    ]
 
 
 class DrawInformation:
     def __init__(
-            self,
-            transform=(0, 0, 1, 1),
-            texture_name=None,
-            draw_rect=Rect(0, 0, 0, 0),
-            texture_rect=None,
-            texture_rotate=None,
-            fill_color=None,
-            outline_color=None,
-            outline_size=None,
-            text=None,
-            text_color=(0, 0, 0),
-            text_size=36,
-            image_transform=(1, 1)
+        self,
+        transform=(0, 0, 1, 1),
+        texture_name=None,
+        draw_rect=Rect(0, 0, 0, 0),
+        texture_rect=None,
+        texture_rotate=None,
+        fill_color=None,
+        outline_color=None,
+        outline_size=None,
+        text=None,
+        text_color=(0, 0, 0),
+        text_size=36,
+        image_transform=(1, 1),
     ):
         self.transform = transform
         self.texture_name = texture_name
@@ -48,24 +63,23 @@ class DrawInformation:
             self.text,
             self.text_color,
             self.text_size,
-            self.image_transform
+            self.image_transform,
         )
 
     @staticmethod
-    def get_info_by(unit_type: UnitType, collision: Rect, direction: Direction) -> 'DrawInformation':
+    def get_info_by(
+        unit_type: UnitType, collision: Rect, direction: Direction
+    ) -> "DrawInformation":
         info = DrawInformation(draw_rect=collision, image_transform=(2, 2))
 
-        if unit_type == UnitType.TankBot:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankRed, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Red, 0)[int(direction)]
-
-        if unit_type == UnitType.TankPlayer:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankRed, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Red, 0)[int(direction)]
-
-        if unit_type == UnitType.TankRival:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankRed, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Red, 0)[int(direction)]
+        if (
+            unit_type == UnitType.TankBot
+            or unit_type == UnitType.TankPlayer
+            or unit_type == UnitType.TankRival
+        ):
+            puck_info(
+                info, direction, GraphicUtils.TankRed, TankTextureKind.Red
+            )
 
         if unit_type == UnitType.BrickWall:
             info.texture_name = GraphicUtils.BrickWall
@@ -94,43 +108,84 @@ class DrawInformation:
             info.texture_name = GraphicUtils.Bullet
 
         if unit_type == UnitType.TankRed:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankRed, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Red, 0)[int(direction)]
+            puck_info(
+                info, direction, GraphicUtils.TankRed, TankTextureKind.Red
+            )
 
         if unit_type == UnitType.TankWhite:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankWhite, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.White, 0)[int(direction)]
+            puck_info(
+                info, direction, GraphicUtils.TankWhite, TankTextureKind.White
+            )
 
         if unit_type == UnitType.TankGreenOne:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankGreenOne, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.GreenOne, 0)[int(direction)]
+            puck_info(
+                info,
+                direction,
+                GraphicUtils.TankGreenOne,
+                TankTextureKind.GreenOne,
+            )
 
         if unit_type == UnitType.TankBrown:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankBrown, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Brown, 0)[int(direction)]
+            puck_info(
+                info, direction, GraphicUtils.TankBrown, TankTextureKind.Brown
+            )
 
         if unit_type == UnitType.TankGreenTwo:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankGreenTwo, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.GreenTwo, 0)[int(direction)]
+            puck_info(
+                info,
+                direction,
+                GraphicUtils.TankGreenTwo,
+                TankTextureKind.GreenTwo,
+            )
 
         if unit_type == UnitType.TankOrange:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankOrange, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Orange, 0)[int(direction)]
+            puck_info(
+                info,
+                direction,
+                GraphicUtils.TankOrange,
+                TankTextureKind.Orange,
+            )
 
         if unit_type == UnitType.TankGreenThree:
-            info.texture_name = GraphicUtils.get_extended_texture_name(GraphicUtils.TankGreenThree, str(int(direction)))
-            info.texture_rect = DrawInformation.get_tank_image_rect(TankTextureKind.Three, 0)[int(direction)]
+            puck_info(
+                info,
+                direction,
+                GraphicUtils.TankGreenThree,
+                TankTextureKind.Three,
+            )
 
         return info
 
     @staticmethod
-    def get_tank_image_rect(tank_color: TankTextureKind, animation_step: int) -> tuple:
-        tank_block = (32 * 4, 32)  # TODO Перенести в константы графики
+    def get_tank_image_rect(
+        tank_color: TankTextureKind, animation_step: int
+    ) -> tuple:
+        tank_block = (32 * 4, 32)
         tank = (32, 32)
 
         return (
-            [tank_color * tank_block[0], tank_block[1] * animation_step, tank[0], tank[1]],
-            [tank_color * tank_block[0] + tank[0] * 1, tank_block[1] * animation_step, tank[0], tank[1]],
-            [tank_color * tank_block[0] + tank[0] * 2, tank_block[1] * animation_step, tank[0], tank[1]],
-            [tank_color * tank_block[0] + tank[0] * 3, tank_block[1] * animation_step, tank[0], tank[1]]
+            [
+                tank_color * tank_block[0],
+                tank_block[1] * animation_step,
+                tank[0],
+                tank[1],
+            ],
+            [
+                tank_color * tank_block[0] + tank[0] * 1,
+                tank_block[1] * animation_step,
+                tank[0],
+                tank[1],
+            ],
+            [
+                tank_color * tank_block[0] + tank[0] * 2,
+                tank_block[1] * animation_step,
+                tank[0],
+                tank[1],
+            ],
+            [
+                tank_color * tank_block[0] + tank[0] * 3,
+                tank_block[1] * animation_step,
+                tank[0],
+                tank[1],
+            ],
         )

@@ -1,7 +1,6 @@
-from pygame.rect import Rect
-
 from enums.unit_type import UnitType
 from game_logic_elements.units.unit import Unit
+from pygame.rect import Rect
 
 
 class BreakableWall(Unit):
@@ -16,38 +15,45 @@ class BreakableWall(Unit):
     def get_render_info(self):
         result = list()
 
-        for x in range(self.collision.width // BreakableWall.default_block_size):
-            for y in range(self.collision.height // BreakableWall.default_block_size):
+        for x in range(
+            self.collision.width // self.default_block_size
+        ):
+            for y in range(
+                self.collision.height // self.default_block_size
+            ):
                 result.append((
-                    self.type,
-                    Rect(
-                        self.collision.x + BreakableWall.default_block_size * x,
-                        self.collision.y + BreakableWall.default_block_size * y,
-                        BreakableWall.default_block_size,
-                        BreakableWall.default_block_size
-                    ),
-                    self.current_direction
+                        self.type,
+                        Rect(
+                            self.collision.x + self.default_block_size * x,
+                            self.collision.y + self.default_block_size * y,
+                            self.default_block_size,
+                            self.default_block_size,
+                        ),
+                        self.current_direction
                 ))
 
         return result
 
-    def on_explosion(self, field: 'GameField', explosion_rect: Rect):
+    def on_explosion(self, field, explosion_rect: Rect):
         if self.health_points == 0:
             field.try_remove_unit(self)
             for x in range(self.collision.width // self.default_block_size):
-                for y in range(self.collision.height // self.default_block_size):
+                for y in range(
+                    self.collision.height // self.default_block_size
+                ):
                     if not explosion_rect.colliderect(
-                            self.collision.x + x * self.default_block_size,
-                            self.collision.y + y * self.default_block_size,
-                            self.default_block_size,
-                            self.default_block_size
+                        self.collision.x + x * self.default_block_size,
+                        self.collision.y + y * self.default_block_size,
+                        self.default_block_size,
+                        self.default_block_size
                     ):
                         field.try_place_unit(
                             BreakableWall(
                                 self.default_block_size,
-                                self.default_block_size
+                                self.default_block_size,
                             ),
                             self.collision.x + x * self.default_block_size,
-                            self.collision.y + y * self.default_block_size)
+                            self.collision.y + y * self.default_block_size
+                        )
         else:
             self.health_points -= 1

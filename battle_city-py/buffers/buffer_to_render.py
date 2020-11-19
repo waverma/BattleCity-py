@@ -9,15 +9,15 @@ class BufferToRender(Buffer):
 
         self.units = list()
         self.player = None
-        self.points = ''
-        self.cool_dawn = ''
-        self.health_points = ''
-        self.battle_result = ''
+        self.points = ""
+        self.cool_dawn = ""
+        self.health_points = ""
+        self.battle_result = ""
         self.field_size = (0, 0)
         self.chat_text = list()
         self.is_chat_on = False
 
-    def update(self, other: 'BufferToRender'):
+    def update(self, other: "BufferToRender"):
         if other.is_locked or self.is_locked:
             return
 

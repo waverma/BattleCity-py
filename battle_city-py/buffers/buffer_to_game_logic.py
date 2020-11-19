@@ -25,7 +25,7 @@ class BufferToGameLogic(Buffer):
         self.is_join_button_pressed = False
 
         # InGame
-        self.user_prepare_direction = Direction.Null
+        self.user_prepare_direction = Direction.Up
         self.shot_request = False
         self.chat_open_key_pressed = False
         self.chat_close_key_pressed = False
@@ -42,7 +42,7 @@ class BufferToGameLogic(Buffer):
         self.is_to_main_menu_button_pressed = False
         self.game_info = ""
 
-    def update(self, other: 'BufferToGameLogic'):
+    def update(self, other: "BufferToGameLogic"):
         if other.is_locked or self.is_locked:
             return
 
@@ -51,7 +51,9 @@ class BufferToGameLogic(Buffer):
 
         self.is_cancel_button_pressed = other.is_cancel_button_pressed
         # MainMenu
-        self.is_single_play_button_pressed = other.is_single_play_button_pressed
+        self.is_single_play_button_pressed = (
+            other.is_single_play_button_pressed
+        )
         self.is_network_button_pressed = other.is_network_button_pressed
         self.is_exit_button_pressed = other.is_exit_button_pressed
 
@@ -59,7 +61,9 @@ class BufferToGameLogic(Buffer):
         self.is_new_game_button_pressed = other.is_new_game_button_pressed
 
         # Сетевая игра
-        self.is_new_session_create_button_pressed = other.is_new_session_create_button_pressed
+        self.is_new_session_create_button_pressed = (
+            other.is_new_session_create_button_pressed
+        )
         self.is_connect_button_pressed = other.is_connect_button_pressed
 
         # Подключение
@@ -81,7 +85,9 @@ class BufferToGameLogic(Buffer):
 
         # PostGame
         self.restart_request = other.restart_request
-        self.is_to_main_menu_button_pressed = other.is_to_main_menu_button_pressed
+        self.is_to_main_menu_button_pressed = (
+            other.is_to_main_menu_button_pressed
+        )
         self.game_info = other.game_info
 
         other.unlock()
@@ -96,7 +102,9 @@ class BufferToGameLogic(Buffer):
 
         other.is_cancel_button_pressed = self.is_cancel_button_pressed
         # MainMenu
-        other.is_single_play_button_pressed = self.is_single_play_button_pressed
+        other.is_single_play_button_pressed = (
+            self.is_single_play_button_pressed
+        )
         other.is_network_button_pressed = self.is_network_button_pressed
         other.is_exit_button_pressed = self.is_exit_button_pressed
 
@@ -104,7 +112,9 @@ class BufferToGameLogic(Buffer):
         other.is_new_game_button_pressed = self.is_new_game_button_pressed
 
         # Сетевая игра
-        other.is_new_session_create_button_pressed = self.is_new_session_create_button_pressed
+        other.is_new_session_create_button_pressed = (
+            self.is_new_session_create_button_pressed
+        )
         other.is_connect_button_pressed = self.is_connect_button_pressed
 
         # Подключение
@@ -126,7 +136,9 @@ class BufferToGameLogic(Buffer):
 
         # PostGame
         other.restart_request = self.restart_request
-        other.is_to_main_menu_button_pressed = self.is_to_main_menu_button_pressed
+        other.is_to_main_menu_button_pressed = (
+            self.is_to_main_menu_button_pressed
+        )
         other.game_info = self.game_info
 
         self.unlock()

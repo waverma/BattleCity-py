@@ -1,7 +1,6 @@
-from pygame.rect import Rect
-
 from enums.unit_type import UnitType
 from game_logic_elements.units.unit import Unit
+from pygame.rect import Rect
 
 
 class UnbreakableWall(Unit):
@@ -15,17 +14,17 @@ class UnbreakableWall(Unit):
     def get_render_info(self):
         result = list()
 
-        for x in range(self.collision.width // UnbreakableWall.default_block_size):
-            for y in range(self.collision.height // UnbreakableWall.default_block_size):
+        for x in range(self.collision.width // self.default_block_size):
+            for y in range(self.collision.height // self.default_block_size):
                 result.append((
-                    self.type,
-                    Rect(
-                        self.collision.x + UnbreakableWall.default_block_size * x,
-                        self.collision.y + UnbreakableWall.default_block_size * y,
-                        UnbreakableWall.default_block_size,
-                        UnbreakableWall.default_block_size
-                    ),
-                    self.current_direction
-                ))
+                        self.type,
+                        Rect(
+                            self.collision.x + self.default_block_size * x,
+                            self.collision.y + self.default_block_size * y,
+                            self.default_block_size,
+                            self.default_block_size,
+                        ),
+                        self.current_direction
+                    ))
 
         return result

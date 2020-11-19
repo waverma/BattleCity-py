@@ -17,7 +17,7 @@ class UserEvent(Buffer):
         self.pressed_buttons = list()
         self.non_released_buttons = list()
 
-    def update(self, other: 'UserEvent'):
+    def update(self, other: "UserEvent"):
         if other.is_locked or self.is_locked:
             return
 

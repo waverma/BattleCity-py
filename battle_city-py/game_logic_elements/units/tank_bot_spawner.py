@@ -1,9 +1,8 @@
-from pygame.rect import Rect
-
-from enums.unit_type import UnitType
 from enums.direction import Direction
+from enums.unit_type import UnitType
 from game_logic_elements.units.tank_bot import TankBot
 from game_logic_elements.units.unit import Unit
+from pygame.rect import Rect
 
 
 class TankBotSpawner(Unit):
@@ -17,7 +16,7 @@ class TankBotSpawner(Unit):
         self.tank_to_go = 5
         self.type = UnitType.BotSpawner
 
-    def step(self, field: 'GameField'):
+    def step(self, field):
         super().step(field)
         if not self.is_tank_alive:
             if self.no_tank_tick_pointer != self.no_tank_tick_count:
@@ -26,7 +25,9 @@ class TankBotSpawner(Unit):
                 self.no_tank_tick_pointer = 0
                 self.current_tank = TankBot()
                 self.current_tank.set_velocity(Direction.Down)
-                if self.tank_to_go != 0 and field.try_place_unit(self.current_tank, self.collision.x, self.collision.y):
+                if self.tank_to_go != 0 and field.try_place_unit(
+                    self.current_tank, self.collision.x, self.collision.y
+                ):
                     self.tank_to_go -= 1
                 self.is_tank_alive = True
         else:

@@ -1,5 +1,3 @@
-from pygame import Rect
-
 from game_logic_elements.units.breakable_wall import BreakableWall
 from game_logic_elements.units.bullet import Bullet
 from game_logic_elements.units.tank import Tank
@@ -7,19 +5,19 @@ from game_logic_elements.units.tank_bot import TankBot
 from game_logic_elements.units.tank_bot_spawner import TankBotSpawner
 from game_logic_elements.units.unbreakable_wall import UnbreakableWall
 from game_logic_elements.units.unit import Unit
+from pygame import Rect
 
 
 class GameField:
     player: Unit
 
     def __init__(self):
-        self.width = self.height = 16*26
+        self.width = self.height = 16 * 26
 
         self.units = list()
         self.spawners = list()
         self.units_buffer = list()
         self.ban_unit_list = list()
-        self.set_game_field()
 
         self.game = None
 
@@ -45,34 +43,116 @@ class GameField:
         self.try_place_unit(self.player, 0, 0)
 
         # стены
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 9), cell_len * 2, cell_len * 2)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 9), cell_len * 6, cell_len * 2)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 9), cell_len * 18, cell_len * 2)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 9), cell_len * 22, cell_len * 2)
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 9),
+            cell_len * 2,
+            cell_len * 2,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 9),
+            cell_len * 6,
+            cell_len * 2,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 9),
+            cell_len * 18,
+            cell_len * 2,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 9),
+            cell_len * 22,
+            cell_len * 2,
+        )
 
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 7), cell_len * 10, cell_len * 2)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 7), cell_len * 14, cell_len * 2)
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 7),
+            cell_len * 10,
+            cell_len * 2,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 7),
+            cell_len * 14,
+            cell_len * 2,
+        )
 
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 7), cell_len * 2, cell_len * 17)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 7), cell_len * 6, cell_len * 17)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 7), cell_len * 18, cell_len * 17)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 7), cell_len * 22, cell_len * 17)
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 7),
+            cell_len * 2,
+            cell_len * 17,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 7),
+            cell_len * 6,
+            cell_len * 17,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 7),
+            cell_len * 18,
+            cell_len * 17,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 7),
+            cell_len * 22,
+            cell_len * 17,
+        )
 
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 6), cell_len * 10, cell_len * 15)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 6), cell_len * 14, cell_len * 15)
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 6),
+            cell_len * 10,
+            cell_len * 15,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 6),
+            cell_len * 14,
+            cell_len * 15,
+        )
 
-        self.try_place_unit(BreakableWall(cell_len * 4, cell_len * 2), cell_len * 4, cell_len * 13)
-        self.try_place_unit(BreakableWall(cell_len * 4, cell_len * 2), cell_len * 18, cell_len * 13)
+        self.try_place_unit(
+            BreakableWall(cell_len * 4, cell_len * 2),
+            cell_len * 4,
+            cell_len * 13,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 4, cell_len * 2),
+            cell_len * 18,
+            cell_len * 13,
+        )
 
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len), 0, cell_len * 13)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len), cell_len * 24, cell_len * 13)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 2), cell_len * 10, cell_len * 11)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 2), cell_len * 14, cell_len * 11)
-        self.try_place_unit(UnbreakableWall(cell_len * 2, cell_len * 2), cell_len * 12, cell_len * 6)
-        self.try_place_unit(BreakableWall(cell_len * 2, cell_len * 2), cell_len * 12, cell_len * 16)
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len), 0, cell_len * 13
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len), cell_len * 24, cell_len * 13
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 2),
+            cell_len * 10,
+            cell_len * 11,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 2),
+            cell_len * 14,
+            cell_len * 11,
+        )
+        self.try_place_unit(
+            UnbreakableWall(cell_len * 2, cell_len * 2),
+            cell_len * 12,
+            cell_len * 6,
+        )
+        self.try_place_unit(
+            BreakableWall(cell_len * 2, cell_len * 2),
+            cell_len * 12,
+            cell_len * 16,
+        )
 
-        self.try_place_unit(UnbreakableWall(cell_len * 2, cell_len), 0, cell_len * 14)
-        self.try_place_unit(UnbreakableWall(cell_len * 2, cell_len), cell_len * 24, cell_len * 14)
+        self.try_place_unit(
+            UnbreakableWall(cell_len * 2, cell_len), 0, cell_len * 14
+        )
+        self.try_place_unit(
+            UnbreakableWall(cell_len * 2, cell_len),
+            cell_len * 24,
+            cell_len * 14,
+        )
 
         # враги
         spawner = TankBotSpawner()
@@ -93,9 +173,13 @@ class GameField:
     def try_place_unit(self, unit: Unit, x: int, y: int):
         unit_rect = Rect(x, y, unit.collision.width, unit.collision.height)
         map_rect = Rect(0, 0, self.width, self.height)
-        if not map_rect.collidepoint(x, y) \
-                or not map_rect.collidepoint(x + unit.collision.width - 1, y + unit.collision.height - 1) \
-                or len(self.get_intersected_units(unit_rect)) > 0:
+        if (
+            not map_rect.collidepoint(x, y)
+            or not map_rect.collidepoint(
+                x + unit.collision.width - 1, y + unit.collision.height - 1
+            )
+            or len(self.get_intersected_units(unit_rect)) > 0
+        ):
             return False
 
         unit.collision.x = x
@@ -120,12 +204,18 @@ class GameField:
 
         return result
 
-    def explode(self, source_explosion: Bullet, radius: int, source_rect: Rect, collide_units: list = None):
+    def explode(
+        self,
+        source_explosion: Bullet,
+        radius: int,
+        source_rect: Rect,
+        collide_units: list = None,
+    ):
         explosion_rect = Rect(
             source_rect.x + source_rect.width / 2 - radius / 2,
             source_rect.y + source_rect.height / 2 - radius / 2,
             radius,
-            radius
+            radius,
         )
 
         if collide_units is None:
@@ -137,8 +227,10 @@ class GameField:
                     unit.on_explosion(self, explosion_rect)
                 else:
                     unit.on_shot(self, explosion_rect)
-                    if type(unit) is TankBot \
-                            and unit not in self.units_buffer \
-                            and source_explosion.owner is self.player \
-                            and self.game is not None:
+                    if (
+                        type(unit) is TankBot
+                        and unit not in self.units_buffer
+                        and source_explosion.owner is self.player
+                        and self.game is not None
+                    ):
                         self.game.points += 1

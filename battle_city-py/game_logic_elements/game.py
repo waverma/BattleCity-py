@@ -14,8 +14,15 @@ class Game:
     def is_game_completed(self):
         battle_result = True
         for spawner in self.field.spawners:
-            battle_result = battle_result and spawner.tank_to_go == 0 and not spawner.is_tank_alive
-        return self.field.player not in self.field.units or battle_result, self.field.player in self.field.units
+            battle_result = (
+                battle_result
+                and spawner.tank_to_go == 0
+                and not spawner.is_tank_alive
+            )
+        return (
+            self.field.player not in self.field.units or battle_result,
+            self.field.player in self.field.units,
+        )
 
     def update(self, buffer: BufferToGameLogic, output_buffer: BufferToRender):
 
@@ -56,7 +63,9 @@ class Game:
     def user_impact(self, buffer: BufferToGameLogic):
         self.field.player.set_velocity(buffer.user_prepare_direction)
         if buffer.shot_request:
-            self.field.player.actions.append(lambda: self.field.player.shot(self.field))
+            self.field.player.actions.append(
+                lambda: self.field.player.shot(self.field)
+            )
 
     def extract_to_render(self) -> BufferToRender:
         buffer = BufferToRender()
@@ -67,10 +76,12 @@ class Game:
         else:
             buffer.battle_result = "Поражение"
         buffer.health_points = self.field.player.health_points
-        buffer.cool_dawn = '{0} / {1}'.format(
+        buffer.cool_dawn = "{0} / {1}".format(
             str((self.field.player.shot_await_tick_count * 20) / 1000),
-            str(((self.field.player.shot_await_tick_count * 20) / 1000)
-                - ((self.field.player.shot_await_tick_pointer * 20) / 1000))[0:4]
+            str(
+                ((self.field.player.shot_await_tick_count * 20) / 1000)
+                - ((self.field.player.shot_await_tick_pointer * 20) / 1000)
+            )[0:4],
         )
         buffer.game_stage = self.stage
 
@@ -84,4 +95,5 @@ class Game:
 
     def set_new_field(self):
         self.field = GameField()
+        self.field.set_game_field()
         self.field.game = self

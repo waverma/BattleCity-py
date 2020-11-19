@@ -12,10 +12,15 @@ class TankBot(Tank):
             Direction.Down: Direction.Up,
             Direction.Up: Direction.Down,
             Direction.Right: Direction.Left,
-            Direction.Left: Direction.Right
+            Direction.Left: Direction.Right,
         }
 
-        self.directions = [Direction.Down, Direction.Up, Direction.Right, Direction.Left]
+        self.directions = [
+            Direction.Down,
+            Direction.Up,
+            Direction.Right,
+            Direction.Left,
+        ]
 
     def step(self, field):
         super().step(field)
@@ -26,6 +31,8 @@ class TankBot(Tank):
         y_saved = self.collision.top
 
         field.try_remove_unit(self)
-        if not field.try_place_unit(self, x_saved + self.velocity[0], y_saved + self.velocity[1]):
+        if not field.try_place_unit(
+            self, x_saved + self.velocity[0], y_saved + self.velocity[1]
+        ):
             field.try_place_unit(self, x_saved, y_saved)
             self.set_velocity(self.directions[random.randint(0, 3)])

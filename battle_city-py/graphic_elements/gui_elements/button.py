@@ -1,11 +1,10 @@
 from typing import Tuple
 
-from pygame.rect import Rect
-
 from buffers.buffer_to_game_logic import BufferToGameLogic
 from buffers.buffer_to_render import BufferToRender
 from buffers.user_event import UserEvent
 from graphic_elements.gui_elements.user_element import UserElement
+from pygame.rect import Rect
 
 
 class Button(UserElement):
@@ -25,10 +24,13 @@ class Button(UserElement):
     def update(self, e: UserEvent, output_buffer: BufferToGameLogic):
         self.is_clicked = False
         self.is_focused = Rect(
-                self.collision.x + self.absolute_position[0],
-                self.collision.y + self.absolute_position[1],
-                self.collision.width, self.collision.height
-        ).collidepoint(e.absolute_mouse_location[0], e.absolute_mouse_location[1])
+            self.collision.x + self.absolute_position[0],
+            self.collision.y + self.absolute_position[1],
+            self.collision.width,
+            self.collision.height,
+        ).collidepoint(
+            e.absolute_mouse_location[0], e.absolute_mouse_location[1]
+        )
 
         if self.is_focused:
             if e.is_left_mouse_click and not e.was_left_mouse_click:
@@ -36,7 +38,9 @@ class Button(UserElement):
                 for action in self.actions:
                     action()
 
-    def get_render_info(self, transform: Tuple, buffer_to_render: BufferToRender):
+    def get_render_info(
+        self, transform: Tuple, buffer_to_render: BufferToRender
+    ):
         result = list()
 
         self.draw_info.outline_color = None
