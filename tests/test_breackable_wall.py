@@ -19,7 +19,7 @@ class TestBreakableWall(TestCase):
         self.assertEqual(info[0][0], UnitType.BrickWall)
         self.assertEqual(info[0][1].w, wall.default_block_size)
         self.assertEqual(info[0][1].h, wall.default_block_size)
-        self.assertEqual(info[0][2], Direction.Null)
+        self.assertEqual(info[0][2], Direction.Up)
 
     def test_on_explosion(self):
         self.field = GameField()

@@ -1,12 +1,9 @@
 [tool.coverage.run]
 source = ["battle_city-py"]
 omit = [
-    "tests/*", "battle_city/enums/*",
-    "battle_city/graphic_elements/gui_elements/*",
-    "battle_city/graphic_elements/texture/*",
-    "battle_city/graphic_elements/graphic_utils",
-    "battle_city/graphic_elements/texture_provider",
-    "battle_city/graphic_elements/draw_information",
+    "battle_city/enums/*",
+    "battle_city/buffers/*",
+    "battle_city/graphic_elements/*",
     "*/__main__.py",
     "battle_city/window",
     ".venv/"

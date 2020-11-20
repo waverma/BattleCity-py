@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 from enums.direction import Direction
 from enums.unit_type import UnitType
 from game_logic_elements.units.unbreakable_wall import UnbreakableWall
@@ -18,4 +17,4 @@ class TestUnbreakableWall(TestCase):
         self.assertEqual(info[0][0], UnitType.IronWall)
         self.assertEqual(info[0][1].w, wall.default_block_size)
         self.assertEqual(info[0][1].h, wall.default_block_size)
-        self.assertEqual(info[0][2], Direction.Null)
+        self.assertEqual(info[0][2], Direction.Up)

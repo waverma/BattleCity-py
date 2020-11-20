@@ -15,16 +15,15 @@ def resource_path(relative):
 
 class TextureProvider:
     textures = dict()
-    texture_file = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "Textures"
-    )
+    texture_file: str
 
     tanks = "Tanks.png"
     ground = "Ground.png"
     bullet = "Bullet.png"
 
     @staticmethod
-    def set_textures():
+    def set_textures(directory: str):
+        TextureProvider.texture_file = os.path.join(directory, "textures")
         TextureProvider.add_texture(TextureProvider.ground)
         TextureProvider.textures[TextureProvider.ground].add_texture(
             GraphicUtils.BrickWall[1], [0, 0, 16, 16]
@@ -93,7 +92,10 @@ class TextureProvider:
 
     @staticmethod
     def add_texture(name: str):
-        TextureProvider.textures[name] = TextureImageInfo(name)
+        TextureProvider.textures[name] = TextureImageInfo(
+            name,
+            TextureProvider.texture_file
+        )
 
     @staticmethod
     def add_tank_kind(

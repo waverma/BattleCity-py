@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 from game_logic_elements.game_field import GameField
 from game_logic_elements.units.breakable_wall import BreakableWall
 from game_logic_elements.units.bullet import Bullet

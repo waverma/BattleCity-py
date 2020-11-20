@@ -5,15 +5,14 @@ import pygame
 
 
 class TextureImageInfo:
-    def __init__(self, file_name: str):
+    def __init__(self, file_name: str, directory: str):
         self.file_name = file_name
         self.images = dict()
         self.textures = dict()
 
         self.images[(1, 1)] = pygame.image.load(
             os.path.join(
-                os.path.dirname(os.path.abspath(__file__)),
-                "Textures",
+                directory,
                 file_name,
             )
         )
