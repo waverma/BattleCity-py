@@ -5,7 +5,7 @@ from game_logic_elements.units.tank_bot_spawner import TankBotSpawner
 from pygame import Rect
 
 
-class ClassTankBotSpawner(TestCase):
+class TestTankBotSpawner(TestCase):
     def test_step(self):
         field = GameField()
         field_rectangle = Rect(0, 0, field.width, field.height)
