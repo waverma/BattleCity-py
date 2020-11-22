@@ -1,7 +1,7 @@
 import os
 
 from graphic_elements.texture_provider import TextureProvider
-from window import Window
+from game_loop import GameLoop
 
 if __name__ == "__main__":
     TextureProvider.set_textures(
@@ -9,4 +9,4 @@ if __name__ == "__main__":
             os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir
         )
     )
-    Window(32 * 26, 32 * 26).run()
+    GameLoop(32 * 26, 32 * 26).run()

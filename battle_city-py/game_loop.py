@@ -11,7 +11,7 @@ from graphic_elements.gui_elements.user_interface import UserInterface
 from graphic_elements.texture_provider import TextureProvider
 
 
-class Window:
+class GameLoop:
     def __init__(self, width, height):
         # настройка PyGame
         pygame.init()
