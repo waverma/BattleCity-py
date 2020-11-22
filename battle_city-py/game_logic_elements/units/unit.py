@@ -1,6 +1,6 @@
 from enums.direction import Direction
 from enums.unit_type import UnitType
-from pygame.rect import Rect
+from rect import Rect
 
 
 class Unit:
@@ -43,8 +43,8 @@ class Unit:
         self.actions = list()
 
     def move_step(self, field):
-        x_saved = self.collision.left
-        y_saved = self.collision.top
+        x_saved = self.collision.x
+        y_saved = self.collision.y
 
         field.try_remove_unit(self)
         if not field.try_place_unit(
@@ -61,8 +61,6 @@ class Unit:
     def is_intersected_with_rect(self, rect: Rect) -> bool:
         return (
             self.collision.colliderect(rect)
-            or self.collision.contains(rect)
-            or rect.contains(self.collision)
         )
 
     def get_render_info(self) -> list:

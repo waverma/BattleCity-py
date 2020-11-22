@@ -27,8 +27,8 @@ class TankBot(Tank):
         self.shot(field)
 
     def move_step(self, field):
-        x_saved = self.collision.left
-        y_saved = self.collision.top
+        x_saved = self.collision.x
+        y_saved = self.collision.y
 
         field.try_remove_unit(self)
         if not field.try_place_unit(

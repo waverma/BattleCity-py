@@ -4,7 +4,7 @@ from enums.direction import Direction
 from enums.unit_type import UnitType
 from game_logic_elements.game_field import GameField
 from game_logic_elements.units.breakable_wall import BreakableWall
-from pygame import Rect
+from rect import Rect
 
 
 class TestBreakableWall(TestCase):

@@ -10,7 +10,7 @@ from graphic_elements.gui_elements.menus.post_game_element import (
     PostGameElement,
 )
 from graphic_elements.gui_elements.menus.single_play_menu import SinglePlayMenu
-from pygame.rect import Rect
+from rect import Rect
 
 
 def render_per_element(buffer_to_render, new_buffer_to_draw, element):

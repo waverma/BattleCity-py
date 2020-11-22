@@ -2,7 +2,7 @@ from unittest import TestCase
 from enums.direction import Direction
 from enums.unit_type import UnitType
 from game_logic_elements.units.unbreakable_wall import UnbreakableWall
-from pygame import Rect
+from rect import Rect
 
 
 class TestUnbreakableWall(TestCase):

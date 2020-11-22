@@ -2,7 +2,7 @@ from unittest import TestCase
 from enums.direction import Direction
 from game_logic_elements.game_field import GameField
 from game_logic_elements.units.tank import Tank
-from pygame import Rect
+from rect import Rect
 
 
 class TestTank(TestCase):

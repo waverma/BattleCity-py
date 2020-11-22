@@ -8,7 +8,7 @@ from enums.direction import Direction
 from graphic_elements.draw_information import DrawInformation
 from graphic_elements.gui_elements.text import Text
 from graphic_elements.gui_elements.user_element import UserElement
-from pygame.rect import Rect
+from rect import Rect
 
 
 class GameFieldElement(UserElement):

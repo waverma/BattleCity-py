@@ -3,7 +3,7 @@ from typing import Tuple
 from buffers.buffer_to_render import BufferToRender
 from graphic_elements.draw_information import DrawInformation
 from graphic_elements.gui_elements.user_element import UserElement
-from pygame.rect import Rect
+from rect import Rect
 
 
 class Text(UserElement):

@@ -7,7 +7,7 @@ from graphic_elements.draw_information import DrawInformation
 from graphic_elements.gui_elements.button import Button
 from graphic_elements.gui_elements.text import Text
 from graphic_elements.gui_elements.user_element import UserElement
-from pygame import Rect
+from rect import Rect
 
 
 class PostGameElement(UserElement):

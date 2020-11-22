@@ -4,7 +4,7 @@ from game_logic_elements.units.breakable_wall import BreakableWall
 from game_logic_elements.units.bullet import Bullet
 from game_logic_elements.units.tank import Tank
 from game_logic_elements.units.unit import Unit
-from pygame import Rect
+from rect import Rect
 
 
 def get_default_unit() -> Unit:

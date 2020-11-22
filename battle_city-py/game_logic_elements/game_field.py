@@ -5,7 +5,7 @@ from game_logic_elements.units.tank_bot import TankBot
 from game_logic_elements.units.tank_bot_spawner import TankBotSpawner
 from game_logic_elements.units.unbreakable_wall import UnbreakableWall
 from game_logic_elements.units.unit import Unit
-from pygame import Rect
+from rect import Rect
 
 
 class GameField:

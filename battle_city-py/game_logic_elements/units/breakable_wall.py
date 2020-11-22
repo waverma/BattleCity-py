@@ -1,6 +1,6 @@
 from enums.unit_type import UnitType
 from game_logic_elements.units.unit import Unit
-from pygame.rect import Rect
+from rect import Rect
 
 
 class BreakableWall(Unit):
@@ -42,10 +42,10 @@ class BreakableWall(Unit):
                     self.collision.height // self.default_block_size
                 ):
                     if not explosion_rect.colliderect(
-                        self.collision.x + x * self.default_block_size,
-                        self.collision.y + y * self.default_block_size,
-                        self.default_block_size,
-                        self.default_block_size
+                        Rect(self.collision.x + x * self.default_block_size,
+                             self.collision.y + y * self.default_block_size,
+                             self.default_block_size,
+                             self.default_block_size)
                     ):
                         field.try_place_unit(
                             BreakableWall(

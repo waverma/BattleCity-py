@@ -1,7 +1,7 @@
 from unittest import TestCase
 from enums.direction import Direction
 from game_logic_elements.units.unit import Unit
-from pygame import Rect
+from rect import Rect
 
 
 def get_unit():

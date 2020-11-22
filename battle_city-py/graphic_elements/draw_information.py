@@ -4,7 +4,7 @@ from enums.direction import Direction
 from enums.tank_texture_kind import TankTextureKind
 from enums.unit_type import UnitType
 from graphic_elements.graphic_utils import GraphicUtils
-from pygame.rect import Rect
+from rect import Rect
 
 
 def puck_info(

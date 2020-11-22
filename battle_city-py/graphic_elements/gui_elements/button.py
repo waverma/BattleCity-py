@@ -4,7 +4,7 @@ from buffers.buffer_to_game_logic import BufferToGameLogic
 from buffers.buffer_to_render import BufferToRender
 from buffers.user_event import UserEvent
 from graphic_elements.gui_elements.user_element import UserElement
-from pygame.rect import Rect
+from rect import Rect
 
 
 class Button(UserElement):

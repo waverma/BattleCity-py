@@ -1,7 +1,7 @@
 from enums.direction import Direction
 from enums.unit_type import UnitType
 from game_logic_elements.units.unit import Unit
-from pygame.rect import Rect
+from rect import Rect
 
 
 class Bullet(Unit):
