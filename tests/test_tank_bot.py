@@ -1,9 +1,9 @@
 from unittest import TestCase
-from enums.direction import Direction
-from game_logic_elements.game_field import GameField
-from rect import Rect
+from battle_city.enums.direction import Direction
+from battle_city.game_logic_elements.game_field import GameField
+from battle_city.rect import Rect
 
-from game_logic_elements.units.tank_bot import TankBot
+from battle_city.game_logic_elements.units.tank_bot import TankBot
 
 
 class TestTankBot(TestCase):

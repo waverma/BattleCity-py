@@ -7,7 +7,7 @@ with open("requirements.txt") as f:
     requirements = [x.strip() for x in f]
 
 setuptools.setup(
-    name="battle_city-py",
+    name="battle_city",
     version="1.0",
     author="Maxim Rusakov",
     description="just a Battle City game.",

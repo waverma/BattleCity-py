@@ -1,7 +1,7 @@
 from unittest import TestCase
-from enums.direction import Direction
-from game_logic_elements.units.unit import Unit
-from rect import Rect
+from battle_city.enums.direction import Direction
+from battle_city.game_logic_elements.units.unit import Unit
+from battle_city.rect import Rect
 
 
 def get_unit():

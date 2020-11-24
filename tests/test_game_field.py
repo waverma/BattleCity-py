@@ -1,10 +1,10 @@
 from unittest import TestCase
-from game_logic_elements.game_field import GameField
-from game_logic_elements.units.breakable_wall import BreakableWall
-from game_logic_elements.units.bullet import Bullet
-from game_logic_elements.units.tank import Tank
-from game_logic_elements.units.unit import Unit
-from rect import Rect
+from battle_city.game_logic_elements.game_field import GameField
+from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
+from battle_city.game_logic_elements.units.bullet import Bullet
+from battle_city.game_logic_elements.units.tank import Tank
+from battle_city.game_logic_elements.units.unit import Unit
+from battle_city.rect import Rect
 
 
 def get_default_unit() -> Unit:

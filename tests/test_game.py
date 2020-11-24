@@ -1,5 +1,5 @@
 from unittest import TestCase
-from game_logic_elements.game import Game
+from battle_city.game_logic_elements.game import Game
 
 
 class TestGame(TestCase):

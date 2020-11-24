@@ -1,20 +1,13 @@
 [tool.coverage.run]
-source = ["battle_city-py"]
+source = ["battle_city"]
 omit = [
-    "battle_city-py/enums/",
-    "battle_city-py/buffers/",
-    "battle_city-py/graphic_elements/",
+    "battle_city/enums/*",
+    "battle_city/buffers/*",
+    "battle_city/graphic_elements/*",
     "battle_city/__main__.py",
     "battle_city/game_loop.py",
     "setup.py"
 ]
-
-[tool.coverage.report]
-show_missing = true
-skip_covered = true
-skip_empty = true
-sort = "-Miss"
-fail_under = 75
 
 [tool.black]
 line-length=79

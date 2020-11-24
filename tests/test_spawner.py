@@ -1,7 +1,7 @@
 from unittest import TestCase
-from game_logic_elements.game_field import GameField
-from game_logic_elements.units.tank_bot_spawner import TankBotSpawner
-from rect import Rect
+from battle_city.game_logic_elements.game_field import GameField
+from battle_city.game_logic_elements.units.tank_bot_spawner import TankBotSpawner
+from battle_city.rect import Rect
 
 
 class TestTankBotSpawner(TestCase):

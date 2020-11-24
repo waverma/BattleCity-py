@@ -1,8 +1,8 @@
 from unittest import TestCase
-from enums.direction import Direction
-from enums.unit_type import UnitType
-from game_logic_elements.units.unbreakable_wall import UnbreakableWall
-from rect import Rect
+from battle_city.enums.direction import Direction
+from battle_city.enums.unit_type import UnitType
+from battle_city.game_logic_elements.units.unbreakable_wall import UnbreakableWall
+from battle_city.rect import Rect
 
 
 class TestUnbreakableWall(TestCase):
