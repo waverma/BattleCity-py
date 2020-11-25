@@ -9,7 +9,7 @@ from battle_city.rect import Rect
 class HealBot(TankBot):
     def __init__(self):
         super().__init__()
-        self.type = UnitType.TankRed
+        self.type = UnitType.TankGreenThree
         self.max_speed = HEAL_BOT_SPEED
         self.collision = Rect(-1, -1, HEAL_TANK_SIZE[0], HEAL_TANK_SIZE[1])
         self.shot_await_tick_count = HEAL_TANK_COOL_DOWN

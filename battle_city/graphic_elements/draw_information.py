@@ -87,6 +87,15 @@ class DrawInformation:
         if unit_type == UnitType.IronWall:
             info.texture_name = GraphicUtils.IRON_WALL
 
+        if unit_type == UnitType.Bush:
+            info.texture_name = GraphicUtils.GRASS_WALL
+
+        if unit_type == UnitType.Fire:
+            info.texture_name = GraphicUtils.GLASS_WALL_1
+
+        if unit_type == UnitType.Dirt:
+            info.texture_name = GraphicUtils.UNKNOWN_WALL
+
         if unit_type == UnitType.PlayerSpawner:
             info.texture_name = GraphicUtils.SPAWNER_1
 
@@ -151,7 +160,7 @@ class DrawInformation:
                 info,
                 direction,
                 GraphicUtils.TANK_GREEN_THREE,
-                TankTextureKind.Three,
+                TankTextureKind.GreenThree,
             )
 
         return info

@@ -26,7 +26,7 @@ class Tank(Unit):
 
         if self.shot_await_tick_pointer > 0:
             self.shot_await_tick_pointer += 1
-        if self.shot_await_tick_pointer == self.shot_await_tick_count:
+        if self.shot_await_tick_pointer >= self.shot_await_tick_count:
             self.shot_await_tick_pointer = 0
 
     def on_shot(self, field, rect: Rect):

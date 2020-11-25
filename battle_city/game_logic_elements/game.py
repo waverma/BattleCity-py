@@ -11,6 +11,8 @@ class Game:
         self.stage = InterfaceStage.MainMenu
         self.score = 0
 
+        self.god_mode = True
+
     def is_game_completed(self):
         battle_result = True
         for spawner in self.field.spawners:
@@ -20,7 +22,7 @@ class Game:
                 and not spawner.is_tank_alive
             )
         return (
-            self.field.player not in self.field.units or battle_result,
+            not self.god_mode and (self.field.player not in self.field.units or battle_result),
             self.field.player in self.field.units,
         )
 
@@ -95,5 +97,5 @@ class Game:
 
     def set_new_field(self):
         self.field = GameField()
-        self.field.set_game_field()
+        self.field.set_test_game_field()
         self.field.game = self
