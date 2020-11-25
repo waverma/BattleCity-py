@@ -3,17 +3,27 @@ from typing import Tuple
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.user_event import UserEvent
+from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.user_element import UserElement
 from battle_city.rect import Rect
 
 
 class Button(UserElement):
-    def __init__(self, rect: Rect, absolute_position: Tuple):
+    def __init__(
+            self,
+            rect: Rect,
+            absolute_position: Tuple,
+            text: str = "",
+            fill_color: Tuple = GraphicUtils.RED_GREEN_COLOR,
+            focused_outline_color: Tuple = GraphicUtils.RED_COLOR,
+            outline_size: int = 3
+    ):
         super().__init__(rect, absolute_position)
+        self.draw_info.text = text
+        self.draw_info.fill_color = fill_color
+        self.draw_info.outline_size = outline_size
+        self.focused_outline_color = focused_outline_color
         self.actions = list()
-        self.draw_info.fill_color = (0, 0, 0)
-        self.focused_outline_color = (0, 0, 0)
-        self.draw_info.outline_size = 0
 
         self.is_focused = False
         self.is_clicked = False

@@ -7,6 +7,7 @@ from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums.interface_stage import InterfaceStage
 from battle_city.game_logic_elements.game import Game
+from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.user_interface import UserInterface
 from battle_city.graphic_elements.texture_provider import TextureProvider
 
@@ -31,7 +32,7 @@ class GameLoop:
     def run(self):
         while not self.is_window_closed:
             pygame.time.delay(20)
-            self.display.fill((30, 213, 200))
+            self.display.fill(GraphicUtils.DEFAULT_DISPLAY_COLOR)
 
             self.get_event(self.events)
             self.user_interface.update(

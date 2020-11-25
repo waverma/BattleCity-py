@@ -17,78 +17,74 @@ class TextureProvider:
     textures = dict()
     texture_file: str
 
-    tanks = "Tanks.png"
-    ground = "Ground.png"
-    bullet = "Bullet.png"
-
     @staticmethod
     def set_textures(directory: str):
         TextureProvider.texture_file = os.path.join(directory, "textures")
-        TextureProvider.add_texture(TextureProvider.ground)
-        TextureProvider.textures[TextureProvider.ground].add_texture(
-            GraphicUtils.BrickWall[1], [0, 0, 16, 16]
+        TextureProvider.add_texture(GraphicUtils.GROUND)
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.BRICK_WALL[1], [0, 0, 16, 16]
         )
 
-        TextureProvider.textures[TextureProvider.ground].add_texture(
-            GraphicUtils.IronWall[1], [0, 16, 16, 16]
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.IRON_WALL[1], [0, 16, 16, 16]
         )
 
-        TextureProvider.textures[TextureProvider.ground].add_texture(
-            GraphicUtils.GlassWall_1[1], [0, 32, 16, 16]
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.GLASS_WALL_1[1], [0, 32, 16, 16]
         )
 
-        TextureProvider.textures[TextureProvider.ground].add_texture(
-            GraphicUtils.GlassWall_2[1], [0, 48, 16, 16]
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.GLASS_WALl_2[1], [0, 48, 16, 16]
         )
 
-        TextureProvider.textures[TextureProvider.ground].add_texture(
-            GraphicUtils.GrassWall[1], [16, 32, 16, 16]
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.GRASS_WALL[1], [16, 32, 16, 16]
         )
 
-        TextureProvider.textures[TextureProvider.ground].add_texture(
-            GraphicUtils.UnknownWall[1], [32, 32, 16, 16]
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.UNKNOWN_WALL[1], [32, 32, 16, 16]
         )
 
-        TextureProvider.textures[TextureProvider.ground].add_size((2, 2))
+        TextureProvider.textures[GraphicUtils.GROUND].add_size((2, 2))
 
-        TextureProvider.add_texture(TextureProvider.tanks)
+        TextureProvider.add_texture(GraphicUtils.TANKS)
         TextureProvider.add_tank_kind(
-            GraphicUtils.TankRed, TankTextureKind.Red, 0
-        )
-
-        TextureProvider.add_tank_kind(
-            GraphicUtils.TankWhite, TankTextureKind.White, 0
+            GraphicUtils.TANK_RED, TankTextureKind.Red, 0
         )
 
         TextureProvider.add_tank_kind(
-            GraphicUtils.TankGreenOne, TankTextureKind.GreenOne, 0
+            GraphicUtils.TANK_WHITE, TankTextureKind.White, 0
         )
 
         TextureProvider.add_tank_kind(
-            GraphicUtils.TankBrown, TankTextureKind.Brown, 0
+            GraphicUtils.TANK_GREEN_ONE, TankTextureKind.GreenOne, 0
         )
 
         TextureProvider.add_tank_kind(
-            GraphicUtils.TankGreenTwo, TankTextureKind.GreenTwo, 0
+            GraphicUtils.TANK_BROWN, TankTextureKind.Brown, 0
         )
 
         TextureProvider.add_tank_kind(
-            GraphicUtils.TankOrange, TankTextureKind.Orange, 0
+            GraphicUtils.TANK_GREEN_TWO, TankTextureKind.GreenTwo, 0
         )
 
         TextureProvider.add_tank_kind(
-            GraphicUtils.TankGreenThree, TankTextureKind.GreenThree, 0
+            GraphicUtils.TANK_ORANGE, TankTextureKind.Orange, 0
         )
 
-        TextureProvider.textures[TextureProvider.tanks].add_texture(
-            GraphicUtils.Spawner_1[1], [484, 288, 32, 32]
+        TextureProvider.add_tank_kind(
+            GraphicUtils.TANK_GREEN_THREE, TankTextureKind.GreenThree, 0
         )
 
-        TextureProvider.textures[TextureProvider.tanks].add_texture(
-            GraphicUtils.Spawner_2[1], [484 + 32, 288, 32, 32]
+        TextureProvider.textures[GraphicUtils.TANKS].add_texture(
+            GraphicUtils.SPAWNER_1[1], [484, 288, 32, 32]
         )
 
-        TextureProvider.add_texture(TextureProvider.bullet)
+        TextureProvider.textures[GraphicUtils.TANKS].add_texture(
+            GraphicUtils.SPAWNER_2[1], [484 + 32, 288, 32, 32]
+        )
+
+        TextureProvider.add_texture(GraphicUtils.BULLET)
 
     @staticmethod
     def add_texture(name: str):
@@ -104,7 +100,7 @@ class TextureProvider:
         for direction in range(4):
             TextureProvider.textures[texture_name[0]].add_texture(
                 texture_name[1]
-                + GraphicUtils.parse_separator
+                + GraphicUtils.PARSE_SEPARATOR
                 + str(direction),
                 TextureProvider.get_tank_image_rect(
                     tank_color, animation_step

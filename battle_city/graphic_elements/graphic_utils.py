@@ -1,41 +1,58 @@
 import os
 from typing import Tuple
 
+from battle_city.rect import Rect
+
 
 class GraphicUtils:
     texture_file = os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "Textures"
     )
 
-    parse_separator = "#=#=#=#=@@@@"
+    DEFAULT_WINDOW_SIZE = (32 * 26, 32 * 26)
+    DEFAULT_MENU_COLLISION = Rect(0, 0,
+                                  DEFAULT_WINDOW_SIZE[0],
+                                  DEFAULT_WINDOW_SIZE[1])
 
-    tanks = "Tanks.png"
-    ground = "Ground.png"
-    bullet = "Bullet.png"
+    WHITE_COLOR = (255, 255, 255)
+    RED_GREEN_COLOR = (255, 255, 0)
+    RED_BLUE_COLOR = (255, 0, 255)
+    RED_COLOR = (255, 0, 0)
+    GREEN_BLUE_COLOR = (0, 255, 255)
+    GREEN_COLOR = (0, 255, 0)
+    BLUE_COLOR = (0, 0, 255)
+    BLACK_COLOR = (0, 0, 0)
+    DEFAULT_DISPLAY_COLOR = (30, 213, 200)
 
-    BrickWall = (ground, "BrickWall")
-    IronWall = (ground, "IronWall")
-    GlassWall_1 = (ground, "GlassWall_1")
-    GlassWall_2 = (ground, "GlassWall_2")
-    GrassWall = (ground, "GrassWall")
-    UnknownWall = (ground, "UnknownWall")
+    PARSE_SEPARATOR = "#=#=#=#=@@@@"
 
-    TankRed = (tanks, "TankRed")
-    TankWhite = (tanks, "TankWhite")
-    TankGreenOne = (tanks, "TankGreenOne")
-    TankBrown = (tanks, "TankBrown")
-    TankGreenTwo = (tanks, "TankGreenTwo")
-    TankOrange = (tanks, "TankOrange")
-    TankGreenThree = (tanks, "TankGreenThree")
+    TANKS = "Tanks.png"
+    GROUND = "Ground.png"
+    BULLET = "Bullet.png"
 
-    Bullet = (bullet, "main")
+    BRICK_WALL = (GROUND, "BRICK_WALL")
+    IRON_WALL = (GROUND, "IRON_WALL")
+    GLASS_WALL_1 = (GROUND, "GLASS_WALL_1")
+    GLASS_WALl_2 = (GROUND, "GLASS_WALl_2")
+    GRASS_WALL = (GROUND, "GRASS_WALL")
+    UNKNOWN_WALL = (GROUND, "UNKNOWN_WALL")
 
-    Spawner_1 = (tanks, "Spawner_1")
-    Spawner_2 = (tanks, "Spawner_2")
+    TANK_RED = (TANKS, "TANK_RED")
+    TANK_WHITE = (TANKS, "TANK_WHITE")
+    TANK_GREEN_ONE = (TANKS, "TANK_GREEN_ONE")
+    TANK_BROWN = (TANKS, "TANK_BROWN")
+    TANK_GREEN_TWO = (TANKS, "TANK_GREEN_TWO")
+    TANK_ORANGE = (TANKS, "TANK_ORANGE")
+    TANK_GREEN_THREE = (TANKS, "TANK_GREEN_THREE")
+
+    BULLET_MAIN = (BULLET, "main")
+
+    SPAWNER_1 = (TANKS, "SPAWNER_1")
+    SPAWNER_2 = (TANKS, "SPAWNER_2")
 
     @staticmethod
     def get_extended_texture_name(texture_name: Tuple, extend: str) -> Tuple:
         return (
             texture_name[0],
-            texture_name[1] + GraphicUtils.parse_separator + extend,
+            texture_name[1] + GraphicUtils.PARSE_SEPARATOR + extend,
         )

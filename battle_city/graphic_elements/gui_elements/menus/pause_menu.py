@@ -5,6 +5,7 @@ from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.user_event import UserEvent
 from battle_city.graphic_elements.draw_information import DrawInformation
+from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.button import Button
 from battle_city.graphic_elements.gui_elements.user_element import UserElement
 from battle_city.rect import Rect
@@ -14,30 +15,24 @@ class PauseMenu(UserElement):
     def __init__(self, rect: Rect, absolute_position: Tuple):
         super().__init__(rect, absolute_position)
         self.buttons = list()
-        self.back_color = (255, 255, 255)
+        self.back_color = GraphicUtils.WHITE_COLOR
 
         self.continue_button = Button(
             Rect(100, 100, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "Продолжить"
         )
-        self.continue_button.draw_info.fill_color = (255, 255, 0)
-        self.continue_button.focused_outline_color = (255, 0, 0)
-        self.continue_button.draw_info.outline_size = 3
-        self.continue_button.draw_info.text = "Продолжить"
 
         self.exit_button = Button(
             Rect(100, 600, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "В главное меню"
         )
-        self.exit_button.draw_info.fill_color = (255, 255, 0)
-        self.exit_button.focused_outline_color = (255, 0, 0)
-        self.exit_button.draw_info.outline_size = 3
-        self.exit_button.draw_info.text = "В главное меню"
 
         self.buttons.append(self.continue_button)
         self.buttons.append(self.exit_button)
         self.text_size = 36
-        self.text_color = (255, 0, 255)
+        self.text_color = GraphicUtils.RED_BLUE_COLOR
 
     def update(self, e: UserEvent, output_buffer: BufferToGameLogic):
         for button in self.buttons:

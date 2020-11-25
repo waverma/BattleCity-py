@@ -1,10 +1,10 @@
 from typing import Tuple
 
-from buffers.buffer_to_game_logic import BufferToGameLogic
-from buffers.buffer_to_render import BufferToRender
-from buffers.user_event import UserEvent
-from graphic_elements.draw_information import DrawInformation
-from rect import Rect
+from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
+from battle_city.buffers.buffer_to_render import BufferToRender
+from battle_city.buffers.user_event import UserEvent
+from battle_city.graphic_elements.draw_information import DrawInformation
+from battle_city.rect import Rect
 
 
 class UserElement:

@@ -4,6 +4,7 @@ from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.user_event import UserEvent
 from battle_city.graphic_elements.draw_information import DrawInformation
+from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.button import Button
 from battle_city.graphic_elements.gui_elements.user_element import UserElement
 from battle_city.rect import Rect
@@ -13,25 +14,19 @@ class SinglePlayMenu(UserElement):
     def __init__(self, rect: Rect, absolute_position: Tuple):
         super().__init__(rect, absolute_position)
         self.buttons = list()
-        self.back_color = (255, 255, 255)
+        self.back_color = GraphicUtils.WHITE_COLOR
 
         self.new_game_button = Button(
             Rect(100, 100, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "Новая игра"
         )
-        self.new_game_button.draw_info.fill_color = (255, 255, 0)
-        self.new_game_button.focused_outline_color = (255, 0, 0)
-        self.new_game_button.draw_info.outline_size = 3
-        self.new_game_button.draw_info.text = "Новая игра"
 
         self.exit_button = Button(
             Rect(100, 300, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "Назад"
         )
-        self.exit_button.draw_info.fill_color = (255, 255, 0)
-        self.exit_button.focused_outline_color = (255, 0, 0)
-        self.exit_button.draw_info.outline_size = 3
-        self.exit_button.draw_info.text = "Назад"
 
         self.buttons.append(self.new_game_button)
         self.buttons.append(self.exit_button)

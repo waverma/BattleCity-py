@@ -78,23 +78,23 @@ class DrawInformation:
             or unit_type == UnitType.TankRival
         ):
             puck_info(
-                info, direction, GraphicUtils.TankRed, TankTextureKind.Red
+                info, direction, GraphicUtils.TANK_RED, TankTextureKind.Red
             )
 
         if unit_type == UnitType.BrickWall:
-            info.texture_name = GraphicUtils.BrickWall
+            info.texture_name = GraphicUtils.BRICK_WALL
 
         if unit_type == UnitType.IronWall:
-            info.texture_name = GraphicUtils.IronWall
+            info.texture_name = GraphicUtils.IRON_WALL
 
         if unit_type == UnitType.PlayerSpawner:
-            info.texture_name = GraphicUtils.Spawner_1
+            info.texture_name = GraphicUtils.SPAWNER_1
 
         if unit_type == UnitType.RivalSpawner:
-            info.texture_name = GraphicUtils.Spawner_2
+            info.texture_name = GraphicUtils.SPAWNER_2
 
         if unit_type == UnitType.BotSpawner:
-            info.texture_name = GraphicUtils.Spawner_2
+            info.texture_name = GraphicUtils.SPAWNER_2
 
         if unit_type == UnitType.Bullet:
             if direction == Direction.Up:
@@ -105,36 +105,36 @@ class DrawInformation:
                 info.texture_rotate = 90 * 2
             if direction == Direction.Left:
                 info.texture_rotate = 0
-            info.texture_name = GraphicUtils.Bullet
+            info.texture_name = GraphicUtils.BULLET_MAIN
 
         if unit_type == UnitType.TankRed:
             puck_info(
-                info, direction, GraphicUtils.TankRed, TankTextureKind.Red
+                info, direction, GraphicUtils.TANK_RED, TankTextureKind.Red
             )
 
         if unit_type == UnitType.TankWhite:
             puck_info(
-                info, direction, GraphicUtils.TankWhite, TankTextureKind.White
+                info, direction, GraphicUtils.TANK_WHITE, TankTextureKind.White
             )
 
         if unit_type == UnitType.TankGreenOne:
             puck_info(
                 info,
                 direction,
-                GraphicUtils.TankGreenOne,
+                GraphicUtils.TANK_GREEN_ONE,
                 TankTextureKind.GreenOne,
             )
 
         if unit_type == UnitType.TankBrown:
             puck_info(
-                info, direction, GraphicUtils.TankBrown, TankTextureKind.Brown
+                info, direction, GraphicUtils.TANK_BROWN, TankTextureKind.Brown
             )
 
         if unit_type == UnitType.TankGreenTwo:
             puck_info(
                 info,
                 direction,
-                GraphicUtils.TankGreenTwo,
+                GraphicUtils.TANK_GREEN_TWO,
                 TankTextureKind.GreenTwo,
             )
 
@@ -142,7 +142,7 @@ class DrawInformation:
             puck_info(
                 info,
                 direction,
-                GraphicUtils.TankOrange,
+                GraphicUtils.TANK_ORANGE,
                 TankTextureKind.Orange,
             )
 
@@ -150,7 +150,7 @@ class DrawInformation:
             puck_info(
                 info,
                 direction,
-                GraphicUtils.TankGreenThree,
+                GraphicUtils.TANK_GREEN_THREE,
                 TankTextureKind.Three,
             )
 

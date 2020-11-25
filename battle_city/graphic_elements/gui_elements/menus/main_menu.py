@@ -18,29 +18,20 @@ class MainMenu(UserElement):
         self.single_play_button = Button(
             Rect(100, 100, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "Одиночная игра"
         )
-        self.single_play_button.draw_info.fill_color = (255, 255, 0)
-        self.single_play_button.focused_outline_color = (255, 0, 0)
-        self.single_play_button.draw_info.outline_size = 3
-        self.single_play_button.draw_info.text = "Одиночная игра"
 
         self.network_button = Button(
             Rect(100, 300, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "Сетевая игра"
         )
-        self.network_button.draw_info.fill_color = (255, 255, 0)
-        self.network_button.focused_outline_color = (255, 0, 0)
-        self.network_button.draw_info.outline_size = 3
-        self.network_button.draw_info.text = "Сетевая игра"
 
         self.exit_button = Button(
             Rect(100, 600, 600, 100),
             (absolute_position[0], absolute_position[1]),
+            "Выход"
         )
-        self.exit_button.draw_info.fill_color = (255, 255, 0)
-        self.exit_button.focused_outline_color = (255, 0, 0)
-        self.exit_button.draw_info.outline_size = 3
-        self.exit_button.draw_info.text = "Выход"
 
         self.buttons.append(self.single_play_button)
         self.buttons.append(self.exit_button)

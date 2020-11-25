@@ -3,6 +3,7 @@ from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums.interface_stage import InterfaceStage
+from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.game_field_element import GameFieldElement
 from battle_city.graphic_elements.gui_elements.menus.main_menu import MainMenu
 from battle_city.graphic_elements.gui_elements.menus.pause_menu import PauseMenu
@@ -10,7 +11,6 @@ from battle_city.graphic_elements.gui_elements.menus.post_game_element import (
     PostGameElement,
 )
 from battle_city.graphic_elements.gui_elements.menus.single_play_menu import SinglePlayMenu
-from battle_city.rect import Rect
 
 
 def render_per_element(buffer_to_render, new_buffer_to_draw, element):
@@ -26,14 +26,15 @@ class UserInterface:
 
         # Создание менюшек
         self.game_field_element = GameFieldElement(
-            Rect(0, 0, 32 * 26, 32 * 26), (0, 0)
+            GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
         )
         self.post_game_menu = PostGameElement(
-            Rect(0, 0, 32 * 26, 32 * 26), (0, 0)
+            GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
         )
-        self.main_menu = MainMenu(Rect(0, 0, 32 * 26, 32 * 26), (0, 0))
-        self.single_menu = SinglePlayMenu(Rect(0, 0, 32 * 26, 32 * 26), (0, 0))
-        self.pause = PauseMenu(Rect(0, 0, 32 * 26, 32 * 26), (0, 0))
+        self.main_menu = MainMenu(GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0))
+        self.single_menu = SinglePlayMenu(GraphicUtils.DEFAULT_MENU_COLLISION,
+                                          (0, 0))
+        self.pause = PauseMenu(GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0))
 
     def update(
         self,
