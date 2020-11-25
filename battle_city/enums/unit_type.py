@@ -8,6 +8,9 @@ class UnitType(IntEnum):
     TankRival = 3
     BrickWall = 4
     IronWall = 5
+    Bush = 17
+    Fire = 18
+    Dirt = 19
     PlayerSpawner = 6
     RivalSpawner = 7
     BotSpawner = 8

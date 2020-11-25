@@ -1,5 +1,7 @@
 from battle_city.enums.direction import Direction
 from battle_city.enums.unit_type import UnitType
+from battle_city.game_logic_elements.game_constants import DEFAULT_BULLET_SIZE, \
+    DEFAULT_EXPLOSION_LENGTH, DEFAULT_BULLET_SPEED
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
 
@@ -7,11 +9,11 @@ from battle_city.rect import Rect
 class Bullet(Unit):
     def __init__(self, owner: Unit):
         super().__init__()
-        self.collision = Rect(-1, -1, 8, 8)
-        self.max_speed = 6
+        self.collision = Rect(-1, -1, DEFAULT_BULLET_SIZE[0], DEFAULT_BULLET_SIZE[1])
+        self.max_speed = DEFAULT_BULLET_SPEED
         self.current_direction = Direction.Up
         self.owner = owner
-        self.explosion_radius = 34
+        self.explosion_radius = DEFAULT_EXPLOSION_LENGTH
         self.type = UnitType.Bullet
 
     def move_step(self, field):

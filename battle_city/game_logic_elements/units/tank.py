@@ -2,6 +2,8 @@ from typing import Tuple
 
 from battle_city.enums.direction import Direction
 from battle_city.enums.unit_type import UnitType
+from battle_city.game_logic_elements.game_constants import DEFAULT_TANK_SIZE, \
+    DEFAULT_TANK_COOL_DOWN, DEFAULT_TANK_SPEED
 from battle_city.game_logic_elements.units.bullet import Bullet
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -10,13 +12,13 @@ from battle_city.rect import Rect
 class Tank(Unit):
     def __init__(self):
         super().__init__()
-        self.collision = Rect(-1, -1, 32, 32)
-        self.max_speed = 2
+        self.collision = Rect(-1, -1, DEFAULT_TANK_SIZE[0], DEFAULT_TANK_SIZE[1])
+        self.max_speed = DEFAULT_TANK_SPEED
         self.current_direction = Direction.Up
-        self.type = UnitType.TankRed
+        self.type = UnitType.TankGreenOne
         self.location_to_bullet = None
 
-        self.shot_await_tick_count = 50
+        self.shot_await_tick_count = DEFAULT_TANK_COOL_DOWN
         self.shot_await_tick_pointer = 0
 
     def step(self, field):
@@ -28,10 +30,9 @@ class Tank(Unit):
             self.shot_await_tick_pointer = 0
 
     def on_shot(self, field, rect: Rect):
-        if self.health_points == 0:
+        self.health_points -= 1
+        if self.health_points <= 0:
             field.try_remove_unit(self)
-        else:
-            self.health_points -= 1
 
     def get_spawn_location(
             self,

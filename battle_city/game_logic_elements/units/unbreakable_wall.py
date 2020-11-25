@@ -1,28 +1,29 @@
 from battle_city.enums.unit_type import UnitType
+from battle_city.game_logic_elements.game_constants import BIG_WALL_LENGTH, \
+    LITTLE_WALL_LENGTH, IRON_HEALTH_POINTS
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
 
 
 class UnbreakableWall(Unit):
-    default_block_size = 16
-
-    def __init__(self, width=32, height=32):
+    def __init__(self, width=BIG_WALL_LENGTH, height=BIG_WALL_LENGTH):
         super().__init__()
         self.collision = Rect(-1, -1, width, height)
         self.type = UnitType.IronWall
+        self.health_points = IRON_HEALTH_POINTS
 
     def get_render_info(self):
         result = list()
 
-        for x in range(self.collision.width // self.default_block_size):
-            for y in range(self.collision.height // self.default_block_size):
+        for x in range(self.collision.width // LITTLE_WALL_LENGTH):
+            for y in range(self.collision.height // LITTLE_WALL_LENGTH):
                 result.append((
                         self.type,
                         Rect(
-                            self.collision.x + self.default_block_size * x,
-                            self.collision.y + self.default_block_size * y,
-                            self.default_block_size,
-                            self.default_block_size,
+                            self.collision.x + LITTLE_WALL_LENGTH * x,
+                            self.collision.y + LITTLE_WALL_LENGTH * y,
+                            LITTLE_WALL_LENGTH,
+                            LITTLE_WALL_LENGTH,
                         ),
                         self.current_direction
                     ))

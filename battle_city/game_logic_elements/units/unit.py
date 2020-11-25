@@ -29,10 +29,9 @@ class Unit:
             self.velocity = (0, 0)
 
     def on_shot(self, field, rect: Rect):
-        if self.health_points == 0:
+        self.health_points -= 1
+        if self.health_points <= 0:
             self.on_explosion(field, rect)
-        else:
-            self.health_points -= 1
 
     def step(self, field):
         if self.velocity[0] != 0 or self.velocity[1] != 0:

@@ -9,7 +9,7 @@ class Game:
         self.field = None
         self.set_new_field()
         self.stage = InterfaceStage.MainMenu
-        self.points = 0
+        self.score = 0
 
     def is_game_completed(self):
         battle_result = True
@@ -70,7 +70,7 @@ class Game:
     def extract_to_render(self) -> BufferToRender:
         buffer = BufferToRender()
         buffer.field_size = self.field.width, self.field.height
-        buffer.points = str(self.points)
+        buffer.points = str(self.score)
         if self.is_game_completed()[1]:
             buffer.battle_result = "Победа"
         else:

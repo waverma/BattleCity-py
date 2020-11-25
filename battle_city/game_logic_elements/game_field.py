@@ -1,3 +1,6 @@
+from battle_city.game_logic_elements.game_constants import \
+    DEFAULT_GAME_FIELD_SIZE, LITTLE_WALL_LENGTH, PLAYER_TANK_HEALTH_POINTS, \
+    PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.bullet import Bullet
 from battle_city.game_logic_elements.units.tank import Tank
@@ -12,7 +15,7 @@ class GameField:
     player: Unit
 
     def __init__(self):
-        self.width = self.height = 16 * 26
+        self.width = self.height = DEFAULT_GAME_FIELD_SIZE[0]
 
         self.units = list()
         self.spawners = list()
@@ -36,135 +39,135 @@ class GameField:
         self.ban_unit_list = list()
 
     def set_game_field(self):
-        cell_len = 16
-
         self.player = Tank()
-        self.player.health_points = self.player.health_points = 1
+        self.player.health_points = PLAYER_TANK_HEALTH_POINTS
+        self.player.max_speed = PLAYER_TANK_SPEED
+        self.player.shot_await_tick_count = PLAYER_TANK_COOL_DOWN
         self.try_place_unit(self.player, 0, 0)
 
         # стены
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 9),
-            cell_len * 2,
-            cell_len * 2,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 9),
+            LITTLE_WALL_LENGTH * 2,
+            LITTLE_WALL_LENGTH * 2,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 9),
-            cell_len * 6,
-            cell_len * 2,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 9),
+            LITTLE_WALL_LENGTH * 6,
+            LITTLE_WALL_LENGTH * 2,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 9),
-            cell_len * 18,
-            cell_len * 2,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 9),
+            LITTLE_WALL_LENGTH * 18,
+            LITTLE_WALL_LENGTH * 2,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 9),
-            cell_len * 22,
-            cell_len * 2,
-        )
-
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 7),
-            cell_len * 10,
-            cell_len * 2,
-        )
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 7),
-            cell_len * 14,
-            cell_len * 2,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 9),
+            LITTLE_WALL_LENGTH * 22,
+            LITTLE_WALL_LENGTH * 2,
         )
 
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 7),
-            cell_len * 2,
-            cell_len * 17,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 7),
+            LITTLE_WALL_LENGTH * 10,
+            LITTLE_WALL_LENGTH * 2,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 7),
-            cell_len * 6,
-            cell_len * 17,
-        )
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 7),
-            cell_len * 18,
-            cell_len * 17,
-        )
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 7),
-            cell_len * 22,
-            cell_len * 17,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 7),
+            LITTLE_WALL_LENGTH * 14,
+            LITTLE_WALL_LENGTH * 2,
         )
 
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 6),
-            cell_len * 10,
-            cell_len * 15,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 7),
+            LITTLE_WALL_LENGTH * 2,
+            LITTLE_WALL_LENGTH * 17,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 6),
-            cell_len * 14,
-            cell_len * 15,
-        )
-
-        self.try_place_unit(
-            BreakableWall(cell_len * 4, cell_len * 2),
-            cell_len * 4,
-            cell_len * 13,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 7),
+            LITTLE_WALL_LENGTH * 6,
+            LITTLE_WALL_LENGTH * 17,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 4, cell_len * 2),
-            cell_len * 18,
-            cell_len * 13,
-        )
-
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len), 0, cell_len * 13
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 7),
+            LITTLE_WALL_LENGTH * 18,
+            LITTLE_WALL_LENGTH * 17,
         )
         self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len), cell_len * 24, cell_len * 13
-        )
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 2),
-            cell_len * 10,
-            cell_len * 11,
-        )
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 2),
-            cell_len * 14,
-            cell_len * 11,
-        )
-        self.try_place_unit(
-            UnbreakableWall(cell_len * 2, cell_len * 2),
-            cell_len * 12,
-            cell_len * 6,
-        )
-        self.try_place_unit(
-            BreakableWall(cell_len * 2, cell_len * 2),
-            cell_len * 12,
-            cell_len * 16,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 7),
+            LITTLE_WALL_LENGTH * 22,
+            LITTLE_WALL_LENGTH * 17,
         )
 
         self.try_place_unit(
-            UnbreakableWall(cell_len * 2, cell_len), 0, cell_len * 14
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 6),
+            LITTLE_WALL_LENGTH * 10,
+            LITTLE_WALL_LENGTH * 15,
         )
         self.try_place_unit(
-            UnbreakableWall(cell_len * 2, cell_len),
-            cell_len * 24,
-            cell_len * 14,
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 6),
+            LITTLE_WALL_LENGTH * 14,
+            LITTLE_WALL_LENGTH * 15,
+        )
+
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 4, LITTLE_WALL_LENGTH * 2),
+            LITTLE_WALL_LENGTH * 4,
+            LITTLE_WALL_LENGTH * 13,
+        )
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 4, LITTLE_WALL_LENGTH * 2),
+            LITTLE_WALL_LENGTH * 18,
+            LITTLE_WALL_LENGTH * 13,
+        )
+
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH), 0, LITTLE_WALL_LENGTH * 13
+        )
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH), LITTLE_WALL_LENGTH * 24, LITTLE_WALL_LENGTH * 13
+        )
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 2),
+            LITTLE_WALL_LENGTH * 10,
+            LITTLE_WALL_LENGTH * 11,
+        )
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 2),
+            LITTLE_WALL_LENGTH * 14,
+            LITTLE_WALL_LENGTH * 11,
+        )
+        self.try_place_unit(
+            UnbreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 2),
+            LITTLE_WALL_LENGTH * 12,
+            LITTLE_WALL_LENGTH * 6,
+        )
+        self.try_place_unit(
+            BreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 2),
+            LITTLE_WALL_LENGTH * 12,
+            LITTLE_WALL_LENGTH * 16,
+        )
+
+        self.try_place_unit(
+            UnbreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH), 0, LITTLE_WALL_LENGTH * 14
+        )
+        self.try_place_unit(
+            UnbreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH),
+            LITTLE_WALL_LENGTH * 24,
+            LITTLE_WALL_LENGTH * 14,
         )
 
         # враги
         spawner = TankBotSpawner()
         self.spawners.append(spawner)
-        self.try_place_unit(spawner, cell_len * 24, 0)
+        self.try_place_unit(spawner, LITTLE_WALL_LENGTH * 24, 0)
 
         spawner = TankBotSpawner()
-        self.try_place_unit(spawner, cell_len * 8, cell_len * 11)
+        self.try_place_unit(spawner, LITTLE_WALL_LENGTH * 8, LITTLE_WALL_LENGTH * 11)
         self.spawners.append(spawner)
 
         spawner = TankBotSpawner()
-        self.try_place_unit(spawner, cell_len * 12, cell_len * 18)
+        self.try_place_unit(spawner, LITTLE_WALL_LENGTH * 12, LITTLE_WALL_LENGTH * 18)
         self.spawners.append(spawner)
 
         self.units = self.units_buffer
@@ -212,8 +215,8 @@ class GameField:
         collide_units: list = None,
     ):
         explosion_rect = Rect(
-            source_rect.x + source_rect.width / 2 - radius / 2,
-            source_rect.y + source_rect.height / 2 - radius / 2,
+            int(source_rect.x + source_rect.width / 2 - radius / 2),
+            int(source_rect.y + source_rect.height / 2 - radius / 2),
             radius,
             radius,
         )
@@ -233,4 +236,4 @@ class GameField:
                         and source_explosion.owner is self.player
                         and self.game is not None
                     ):
-                        self.game.points += 1
+                        self.game.score += 1

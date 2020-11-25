@@ -1,5 +1,8 @@
 from battle_city.enums.direction import Direction
 from battle_city.enums.unit_type import UnitType
+from battle_city.game_logic_elements.game_constants import \
+    DEFAULT_TANK_SPAWNER_SIZE, DEFAULT_TANK_SPAWNER_COOL_DOWN, \
+    DEFAULT_TANK_SPAWNER_TANK_TO_GO
 from battle_city.game_logic_elements.units.tank_bot import TankBot
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -8,12 +11,12 @@ from battle_city.rect import Rect
 class TankBotSpawner(Unit):
     def __init__(self):
         super().__init__()
-        self.collision = Rect(-1, -1, 32, 32)
+        self.collision = Rect(-1, -1, DEFAULT_TANK_SPAWNER_SIZE[0], DEFAULT_TANK_SPAWNER_SIZE[1])
         self.is_tank_alive = False
         self.current_tank = None
-        self.no_tank_tick_count = 70
+        self.no_tank_tick_count = DEFAULT_TANK_SPAWNER_COOL_DOWN
         self.no_tank_tick_pointer = 0
-        self.tank_to_go = 5
+        self.tank_to_go = DEFAULT_TANK_SPAWNER_TANK_TO_GO
         self.type = UnitType.BotSpawner
 
     def step(self, field):
