@@ -11,6 +11,7 @@ class UnitType(IntEnum):
     Bush = 17
     Fire = 18
     Dirt = 19
+    Asphalt = 20
     PlayerSpawner = 6
     RivalSpawner = 7
     BotSpawner = 8

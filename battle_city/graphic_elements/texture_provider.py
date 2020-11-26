@@ -30,19 +30,24 @@ class TextureProvider:
         )
 
         TextureProvider.textures[GraphicUtils.GROUND].add_texture(
-            GraphicUtils.GLASS_WALL_1[1], [0, 32, 16, 16]
+            GraphicUtils.WATER_GROUND_1[1], [0, 32, 16, 16]
         )
 
         TextureProvider.textures[GraphicUtils.GROUND].add_texture(
-            GraphicUtils.GLASS_WALl_2[1], [0, 48, 16, 16]
+            GraphicUtils.WATER_GROUND_2[1], [0, 48, 16, 16]
         )
 
         TextureProvider.textures[GraphicUtils.GROUND].add_texture(
-            GraphicUtils.GRASS_WALL[1], [16, 32, 16, 16]
+            GraphicUtils.GRASS_GROUND[1], [16, 32, 16, 16]
         )
 
         TextureProvider.textures[GraphicUtils.GROUND].add_texture(
-            GraphicUtils.UNKNOWN_WALL[1], [32, 32, 16, 16]
+            GraphicUtils.SEND_GROUND[1], [32, 32, 16, 16]
+            # GraphicUtils.SEND_GROUND[1], [16, 48, 16, 16]
+        )
+
+        TextureProvider.textures[GraphicUtils.GROUND].add_texture(
+            GraphicUtils.ASS_FAULT[1], [32, 48, 16, 16]
         )
 
         TextureProvider.textures[GraphicUtils.GROUND].add_size((2, 2))

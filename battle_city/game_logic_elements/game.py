@@ -87,8 +87,13 @@ class Game:
         )
         buffer.game_stage = self.stage
 
+        a = list()
+        b = list()
+        c = list()
+
         for unit in self.field.units:
             if unit is not self.field.player:
+                # if unit is Tank
                 buffer.units.append(unit.get_render_info())
             else:
                 buffer.player = unit.get_render_info()

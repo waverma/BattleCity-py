@@ -2,6 +2,7 @@ from battle_city.game_logic_elements.game_constants import \
     DEFAULT_GAME_FIELD_SIZE, LITTLE_WALL_LENGTH, PLAYER_TANK_HEALTH_POINTS, \
     PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN
 from battle_city.game_logic_elements.units.armored_bot import ArmoredBot
+from battle_city.game_logic_elements.units.asphalt import Asphalt
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.bullet import Bullet
 from battle_city.game_logic_elements.units.bush import Bush
@@ -66,6 +67,18 @@ class GameField:
         self.try_place_unit(
             Bush(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 9),
             LITTLE_WALL_LENGTH * 6,
+            LITTLE_WALL_LENGTH * 2,
+        )
+
+        self.try_place_unit(
+            Asphalt(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH * 9),
+            LITTLE_WALL_LENGTH * 12,
+            LITTLE_WALL_LENGTH * 2,
+        )
+
+        self.try_place_unit(
+            TankBotSpawner(),
+            LITTLE_WALL_LENGTH * 12,
             LITTLE_WALL_LENGTH * 2,
         )
 

@@ -59,10 +59,7 @@ class GameFieldElement(UserElement):
             )
         )
 
-        for player_render_info_parts in buffer_to_render.player:
-            draw_info = DrawInformation.get_info_by(*player_render_info_parts)
-            draw_info.transform = new_transform
-            result.append(draw_info)
+        priority_lists = dict()
 
         for unit_render_info in buffer_to_render.units:
             for unit_render_info_parts in unit_render_info:
@@ -70,7 +67,20 @@ class GameFieldElement(UserElement):
                     *unit_render_info_parts
                 )
                 draw_info.transform = new_transform
-                result.append(draw_info)
+                if draw_info.render_priority not in priority_lists:
+                    priority_lists[draw_info.render_priority] = list()
+                priority_lists[draw_info.render_priority].append(draw_info)
+
+        for player_render_info_parts in buffer_to_render.player:
+            draw_info = DrawInformation.get_info_by(*player_render_info_parts)
+            draw_info.transform = new_transform
+            if draw_info.render_priority not in priority_lists:
+                priority_lists[draw_info.render_priority] = list()
+            priority_lists[draw_info.render_priority].append(draw_info)
+
+        for units_priority in sorted(priority_lists.keys()):
+            for unit in priority_lists[units_priority]:
+                result.append(unit)
 
         self.text.draw_info.text = "HP: {})==( Reload: {}".format(
             str(buffer_to_render.health_points),

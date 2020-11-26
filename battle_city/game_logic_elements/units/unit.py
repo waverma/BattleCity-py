@@ -45,11 +45,19 @@ class Unit:
         x_saved = self.collision.x
         y_saved = self.collision.y
 
+        current_x = x_saved + self.velocity[0]
+        current_y = y_saved + self.velocity[1]
+
         field.try_remove_unit(self)
-        if not field.try_place_unit(
-            self, x_saved + self.velocity[0], y_saved + self.velocity[1]
-        ):
-            field.try_place_unit(self, x_saved, y_saved)
+        while not field.try_place_unit(self, current_x, current_y):
+            if current_x > x_saved:
+                current_x -= 1
+            if current_x < x_saved:
+                current_x += 1
+            if current_y > y_saved:
+                current_y -= 1
+            if current_y < y_saved:
+                current_y += 1
 
     def on_explosion(self, field, explosion_rect: Rect):
         pass

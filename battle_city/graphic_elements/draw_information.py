@@ -36,6 +36,7 @@ class DrawInformation:
         text_color=(0, 0, 0),
         text_size=36,
         image_transform=(1, 1),
+        render_priority=0
     ):
         self.transform = transform
         self.texture_name = texture_name
@@ -49,6 +50,7 @@ class DrawInformation:
         self.text_size = text_size
         self.text_color = text_color
         self.image_transform = image_transform
+        self.render_priority = render_priority
 
     def get_to_unpack(self) -> tuple:
         return (
@@ -83,27 +85,39 @@ class DrawInformation:
 
         if unit_type == UnitType.BrickWall:
             info.texture_name = GraphicUtils.BRICK_WALL
+            info.render_priority = GraphicUtils.WALLS_PRIORITY
 
         if unit_type == UnitType.IronWall:
             info.texture_name = GraphicUtils.IRON_WALL
+            info.render_priority = GraphicUtils.WALLS_PRIORITY
 
         if unit_type == UnitType.Bush:
-            info.texture_name = GraphicUtils.GRASS_WALL
+            info.texture_name = GraphicUtils.GRASS_GROUND
+            info.render_priority = GraphicUtils.GRASS_PRIORITY
 
         if unit_type == UnitType.Fire:
-            info.texture_name = GraphicUtils.GLASS_WALL_1
+            info.texture_name = GraphicUtils.WATER_GROUND_1
+            info.render_priority = GraphicUtils.WALLS_PRIORITY
 
         if unit_type == UnitType.Dirt:
-            info.texture_name = GraphicUtils.UNKNOWN_WALL
+            info.texture_name = GraphicUtils.SEND_GROUND
+            info.render_priority = GraphicUtils.SEND_PRIORITY
+
+        if unit_type == UnitType.Asphalt:
+            info.texture_name = GraphicUtils.ASS_FAULT
+            info.render_priority = GraphicUtils.ASS_FAULT_PRIORITY
 
         if unit_type == UnitType.PlayerSpawner:
             info.texture_name = GraphicUtils.SPAWNER_1
+            info.render_priority = GraphicUtils.SPAWNER_PRIORITY
 
         if unit_type == UnitType.RivalSpawner:
             info.texture_name = GraphicUtils.SPAWNER_2
+            info.render_priority = GraphicUtils.SPAWNER_PRIORITY
 
         if unit_type == UnitType.BotSpawner:
             info.texture_name = GraphicUtils.SPAWNER_2
+            info.render_priority = GraphicUtils.SPAWNER_PRIORITY
 
         if unit_type == UnitType.Bullet:
             if direction == Direction.Up:
@@ -115,16 +129,19 @@ class DrawInformation:
             if direction == Direction.Left:
                 info.texture_rotate = 0
             info.texture_name = GraphicUtils.BULLET_MAIN
+            info.render_priority = GraphicUtils.BULLET_PRIORITY
 
         if unit_type == UnitType.TankRed:
             puck_info(
                 info, direction, GraphicUtils.TANK_RED, TankTextureKind.Red
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         if unit_type == UnitType.TankWhite:
             puck_info(
                 info, direction, GraphicUtils.TANK_WHITE, TankTextureKind.White
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         if unit_type == UnitType.TankGreenOne:
             puck_info(
@@ -133,11 +150,13 @@ class DrawInformation:
                 GraphicUtils.TANK_GREEN_ONE,
                 TankTextureKind.GreenOne,
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         if unit_type == UnitType.TankBrown:
             puck_info(
                 info, direction, GraphicUtils.TANK_BROWN, TankTextureKind.Brown
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         if unit_type == UnitType.TankGreenTwo:
             puck_info(
@@ -146,6 +165,7 @@ class DrawInformation:
                 GraphicUtils.TANK_GREEN_TWO,
                 TankTextureKind.GreenTwo,
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         if unit_type == UnitType.TankOrange:
             puck_info(
@@ -154,6 +174,7 @@ class DrawInformation:
                 GraphicUtils.TANK_ORANGE,
                 TankTextureKind.Orange,
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         if unit_type == UnitType.TankGreenThree:
             puck_info(
@@ -162,6 +183,7 @@ class DrawInformation:
                 GraphicUtils.TANK_GREEN_THREE,
                 TankTextureKind.GreenThree,
             )
+            info.render_priority = GraphicUtils.TANK_PRIORITY
 
         return info
 

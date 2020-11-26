@@ -32,10 +32,11 @@ class GraphicUtils:
 
     BRICK_WALL = (GROUND, "BRICK_WALL")
     IRON_WALL = (GROUND, "IRON_WALL")
-    GLASS_WALL_1 = (GROUND, "GLASS_WALL_1")
-    GLASS_WALl_2 = (GROUND, "GLASS_WALl_2")
-    GRASS_WALL = (GROUND, "GRASS_WALL")
-    UNKNOWN_WALL = (GROUND, "UNKNOWN_WALL")
+    WATER_GROUND_1 = (GROUND, "WATER_GROUND_1")
+    WATER_GROUND_2 = (GROUND, "WATER_GROUND_2")
+    GRASS_GROUND = (GROUND, "GRASS_GROUND")
+    SEND_GROUND = (GROUND, "SEND_GROUND")
+    ASS_FAULT = (GROUND, "ASS_FAULT")
 
     TANK_RED = (TANKS, "TANK_RED")
     TANK_WHITE = (TANKS, "TANK_WHITE")
@@ -49,6 +50,15 @@ class GraphicUtils:
 
     SPAWNER_1 = (TANKS, "SPAWNER_1")
     SPAWNER_2 = (TANKS, "SPAWNER_2")
+
+    TANK_PRIORITY = 2
+    BULLET_PRIORITY = 2
+    SPAWNER_PRIORITY = 1
+    WALLS_PRIORITY = 1
+    ASS_FAULT_PRIORITY = 0
+    SEND_PRIORITY = 0
+    GRASS_PRIORITY = 3
+    WATER_PRIORITY = 0
 
     @staticmethod
     def get_extended_texture_name(texture_name: Tuple, extend: str) -> Tuple:
