@@ -1,4 +1,5 @@
 from battle_city.enums.unit_type import UnitType
+from battle_city.enums.update_mode import UpdateMode
 from battle_city.game_logic_elements.game_constants import BUSH_HEALTH_POINTS, \
     BIG_WALL_LENGTH
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
@@ -11,6 +12,7 @@ class Bush(BreakableWall):
         super().__init__(width, height)
         self.type = UnitType.Bush
         self.health_points = BUSH_HEALTH_POINTS
+        self.update_mode = UpdateMode.NoneUpdate
 
     def on_explosion(self, field, explosion_rect: Rect):
         pass

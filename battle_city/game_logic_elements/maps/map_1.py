@@ -3,6 +3,7 @@ from battle_city.game_logic_elements.game_constants import \
     LITTLE_WALL_LENGTH
 from battle_city.game_logic_elements.game_field import GameField
 from battle_city.game_logic_elements.units.armored_bot import ArmoredBot
+from battle_city.game_logic_elements.units.asphalt import Asphalt
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.game_logic_elements.units.tank_bot import TankBot
@@ -14,6 +15,11 @@ from battle_city.game_logic_elements.units.unbreakable_wall import \
 
 def get_map() -> GameField:
     field = GameField()
+
+    field.try_place_unit(
+        Asphalt(LITTLE_WALL_LENGTH * 26, LITTLE_WALL_LENGTH * 26), 0, 0,
+    )
+
     field.player = Tank()
     field.player.health_points = PLAYER_TANK_HEALTH_POINTS
     field.player.max_speed = PLAYER_TANK_SPEED
@@ -129,8 +135,10 @@ def get_map() -> GameField:
         UnbreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH), 0,
         LITTLE_WALL_LENGTH * 14
     )
+
+    # асфальт
     field.try_place_unit(
-        UnbreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH),
+        Asphalt(0, 0),
         LITTLE_WALL_LENGTH * 24,
         LITTLE_WALL_LENGTH * 14,
     )
@@ -162,7 +170,13 @@ def get_map() -> GameField:
                          LITTLE_WALL_LENGTH * 18)
     field.spawners.append(spawner)
 
-    field.units = field.units_buffer
-    field.units_buffer = list()
+    # field.units = field.units_buffer
+    # field.units_buffer = list()
+
+    field.units_for_step = field.units_for_step_buffer
+    field.units_for_step_buffer = list()
+
+    field.units_for_intersect = field.units_for_intersect_buffer
+    field.units_for_intersect_buffer = list()
 
     return field

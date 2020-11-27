@@ -1,6 +1,7 @@
 from battle_city.enums.unit_type import UnitType
+from battle_city.enums.update_mode import UpdateMode
 from battle_city.game_logic_elements.game_constants import BIG_WALL_LENGTH, \
-    ASPHALT_HEALTH_POINTS
+    ASPHALT_HEALTH_POINTS, LITTLE_WALL_LENGTH
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -11,6 +12,9 @@ class Asphalt(BreakableWall):
         super().__init__(width, height)
         self.type = UnitType.Asphalt
         self.health_points = ASPHALT_HEALTH_POINTS
+        self.update_mode = UpdateMode.NoneUpdate
+
+        self.render_info = self.get_render_info_for_save()
 
     def on_explosion(self, field, explosion_rect: Rect):
         pass
@@ -20,3 +24,28 @@ class Asphalt(BreakableWall):
 
     def is_intersected_with_rect(self, rect: Unit) -> bool:
         return False
+
+    def get_render_info(self):
+        return self.render_info
+
+    def get_render_info_for_save(self):
+        result = list()
+
+        for x in range(
+            self.collision.width // LITTLE_WALL_LENGTH
+        ):
+            for y in range(
+                self.collision.height // LITTLE_WALL_LENGTH
+            ):
+                result.append((
+                        self.type,
+                        Rect(
+                            self.collision.x + LITTLE_WALL_LENGTH * x,
+                            self.collision.y + LITTLE_WALL_LENGTH * y,
+                            LITTLE_WALL_LENGTH,
+                            LITTLE_WALL_LENGTH,
+                        ),
+                        self.current_direction
+                ))
+
+        return result

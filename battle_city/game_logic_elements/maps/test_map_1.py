@@ -96,7 +96,7 @@ def get_map() -> GameField:
         LITTLE_WALL_LENGTH * 17,
     )
 
-    field.units = field.units_buffer
-    field.units_buffer = list()
+    # field.units = field.units_buffer
+    # field.units_buffer = list()
 
     return field

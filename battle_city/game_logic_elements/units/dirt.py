@@ -1,4 +1,5 @@
 from battle_city.enums.unit_type import UnitType
+from battle_city.enums.update_mode import UpdateMode
 from battle_city.game_logic_elements.game_constants import DIRT_HEALTH_POINTS, \
     DIRT_SLOW_DAWN_COEFFICIENT, BIG_WALL_LENGTH
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
@@ -11,7 +12,7 @@ class Dirt(BreakableWall):
         super().__init__(width, height)
         self.type = UnitType.Dirt
         self.health_points = DIRT_HEALTH_POINTS
-
+        self.update_mode = UpdateMode.StepOnly
         self.intersected_tanks = list()
 
     def step(self, field):

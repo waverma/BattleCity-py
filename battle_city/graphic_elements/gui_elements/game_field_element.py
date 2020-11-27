@@ -74,26 +74,27 @@ class GameFieldElement(UserElement):
                     *unit_render_info_parts
                 )
                 draw_info.transform = new_transform
-                if draw_info.render_priority not in priority_lists:
-                    priority_lists[draw_info.render_priority] = list()
-                priority_lists[draw_info.render_priority].append(draw_info)
+                # if draw_info.render_priority not in priority_lists:
+                #     priority_lists[draw_info.render_priority] = list()
+                # priority_lists[draw_info.render_priority].append(draw_info)
+                result.append(draw_info)
 
         for player_render_info_parts in buffer_to_render.player:
             draw_info = DrawInformation.get_info_by(*player_render_info_parts)
             draw_info.transform = new_transform
-            if draw_info.render_priority not in priority_lists:
-                priority_lists[draw_info.render_priority] = list()
-            priority_lists[draw_info.render_priority].append(draw_info)
+            # if draw_info.render_priority not in priority_lists:
+            #     priority_lists[draw_info.render_priority] = list()
+            # priority_lists[draw_info.render_priority].append(draw_info)
+            result.append(draw_info)
 
-        for units_priority in sorted(priority_lists.keys()):
-            for unit in priority_lists[units_priority]:
-                result.append(unit)
+        # for units_priority inы sorted(priority_lists.keys()):
+        #     for unit in priority_lists[units_priority]:
+        #         result.append(unit)
 
         self.text.draw_info.collision = Rect(
             buffer_to_render.player[0][1].x + 30,
             buffer_to_render.player[0][1].y - 10,
-            20,
-            12,
+            20, 12,
         )
         text_render_info = self.text.get_render_info(
             new_transform, buffer_to_render

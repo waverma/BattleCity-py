@@ -14,7 +14,7 @@ class DrawingBuffer(Buffer):
 
         self.lock()
         other.lock()
-        self.store = copy.deepcopy(other.store)
+        self.store = other.store  # НЕ ПОТОКОБЕЗОПАСНО!!!
 
         self.unlock()
         other.unlock()
@@ -26,7 +26,7 @@ class DrawingBuffer(Buffer):
         other = DrawingBuffer()
 
         self.lock()
-        other.store = copy.deepcopy(self.store)
+        other.store = self.store  # НЕ ПОТОКОБЕЗОПАСНО!!!
 
         self.unlock()
 

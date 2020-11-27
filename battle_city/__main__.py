@@ -4,7 +4,6 @@ from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.texture_provider import TextureProvider
 from battle_city.game_loop import GameLoop
 
-
 # TODO убрать -py из названия пакетов [сделано]
 # TODO 1) четыре типа врагов(
 #  бронированный(2 хп/ это текущий),

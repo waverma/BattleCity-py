@@ -25,7 +25,7 @@ class BufferToRender(Buffer):
         self.lock()
         other.lock()
 
-        self.units = list(other.units)
+        self.units = other.units  # НЕ ПОТОКОБЕЗОПАСНО!!!
         self.points = other.points
         self.cool_dawn = other.cool_dawn
         self.health_points = other.health_points
@@ -47,7 +47,7 @@ class BufferToRender(Buffer):
         other = BufferToRender()
         self.lock()
 
-        other.units = list(self.units)
+        other.units = self.units  # НЕ ПОТОКОБЕЗОПАСНО!!!
         other.points = self.points
         other.cool_dawn = self.cool_dawn
         other.health_points = self.health_points

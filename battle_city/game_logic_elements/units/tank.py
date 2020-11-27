@@ -44,23 +44,23 @@ class Tank(Unit):
 
         if direction == Direction.Right:
             return (
-                self.collision.x + self.collision.width + self.max_speed,
+                self.collision.x + self.collision.width + self.max_speed / 2,
                 self.collision.y + self.collision.height / 2 + spawn_shift[1],
             )
         elif direction == Direction.Left:
             return (
-                self.collision.x - collision.width - self.max_speed,
+                self.collision.x - collision.width - self.max_speed / 2,
                 self.collision.y + self.collision.height / 2 + spawn_shift[1],
             )
         elif direction == Direction.Up:
             return (
                 self.collision.x + self.collision.width / 2 + spawn_shift[0],
-                self.collision.y - collision.height - self.max_speed,
+                self.collision.y - collision.height - self.max_speed / 2,
             )
         elif direction == Direction.Down:
             return (
                 self.collision.x + self.collision.width / 2 + spawn_shift[0],
-                self.collision.y + self.collision.height + self.max_speed,
+                self.collision.y + self.collision.height + self.max_speed / 2,
             )
 
         return -1, -1

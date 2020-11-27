@@ -1,5 +1,6 @@
 from battle_city.enums.direction import Direction
 from battle_city.enums.unit_type import UnitType
+from battle_city.enums.update_mode import UpdateMode
 from battle_city.rect import Rect
 
 
@@ -13,6 +14,7 @@ class Unit:
         self.actions = list()
 
         self.type = UnitType.Null
+        self.update_mode = UpdateMode.StepIntersect
 
     def set_velocity(self, direction: Direction):
         if direction != Direction.Null:

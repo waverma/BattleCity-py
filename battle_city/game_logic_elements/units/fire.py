@@ -1,4 +1,5 @@
 from battle_city.enums.unit_type import UnitType
+from battle_city.enums.update_mode import UpdateMode
 from battle_city.game_logic_elements.game_constants import FIRE_HEALTH_POINTS, \
     FIRE_DAMAGE_COOL_DOWN, BIG_WALL_LENGTH
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
@@ -15,6 +16,8 @@ class Fire(BreakableWall):
 
         self.damage_cool_down = FIRE_DAMAGE_COOL_DOWN
         self.damage_cool_down_pointer = 0
+
+        self.update_mode = UpdateMode.StepOnly
 
     def step(self, field):
         super().step(field)

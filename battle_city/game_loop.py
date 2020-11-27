@@ -1,4 +1,5 @@
 import copy
+import time
 
 import pygame
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
@@ -31,6 +32,7 @@ class GameLoop:
 
     def run(self):
         while not self.is_window_closed:
+            start_time = time.time()
             pygame.time.delay(20)
             self.display.fill(GraphicUtils.DEFAULT_DISPLAY_COLOR)
 
@@ -48,6 +50,8 @@ class GameLoop:
                 quit()
 
             pygame.display.update()
+
+            pygame.display.set_caption(str(1.0 / (time.time() - start_time)))
 
     def get_event(self, events):
         user_event = events
