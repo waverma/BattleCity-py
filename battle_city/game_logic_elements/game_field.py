@@ -76,8 +76,13 @@ class GameField:
             LITTLE_WALL_LENGTH * 2,
         )
 
+        spawner = TankBotSpawner(tank_to_go=5)
+        spawner.tanks_to_go.append(TankBot())
+        spawner.tanks_to_go.append(ArmoredBot())
+        spawner.tanks_to_go.append(HealBot())
+        spawner.tanks_to_go.append(RapidFireBot())
         self.try_place_unit(
-            TankBotSpawner(),
+            spawner,
             LITTLE_WALL_LENGTH * 10,
             LITTLE_WALL_LENGTH * 2,
         )

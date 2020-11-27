@@ -1,17 +1,21 @@
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums.interface_stage import InterfaceStage
-from battle_city.game_logic_elements.game_field import GameField
+from battle_city.game_logic_elements.maps import test_map_1, map_1
 
 
 class Game:
     def __init__(self):
         self.field = None
-        self.set_new_field()
         self.stage = InterfaceStage.MainMenu
         self.score = 0
 
-        self.god_mode = True
+        self.maps = list()
+        self.current_map = 1
+
+        self.god_mode = False
+        self.set_maps()
+        # self.set_new_field()
 
     def is_game_completed(self):
         battle_result = True
@@ -71,52 +75,51 @@ class Game:
 
     def extract_to_render(self) -> BufferToRender:
         buffer = BufferToRender()
-        buffer.field_size = self.field.width, self.field.height
         buffer.points = str(self.score)
         buffer.speed = "0"
-        if (self.field.player.velocity[0] != 0
-                or self.field.player.velocity[1] != 0):
-            buffer.speed = str(abs(self.field.player.velocity[0])
-                               + abs(self.field.player.velocity[1]))
-        # if self.is_game_completed()[1]:
-        #     buffer.battle_result = "Победа"
-        # else:
-        #     buffer.battle_result = "Поражение"
 
-        buffer.battle_result = (self.is_game_completed()[0],
-                                self.is_game_completed()[1])
+        if self.field is not None:
+            buffer.field_size = self.field.width, self.field.height
+            if (self.field.player.velocity[0] != 0
+                    or self.field.player.velocity[1] != 0):
+                buffer.speed = str(abs(self.field.player.velocity[0])
+                                   + abs(self.field.player.velocity[1]))
+            buffer.battle_result = (self.is_game_completed()[0],
+                                    self.is_game_completed()[1])
 
-        buffer.health_points = self.field.player.health_points
-        # buffer.cool_dawn = "{0} / {1}".format(
-        #     str((self.field.player.shot_await_tick_count * 20) / 1000),
-        #     str(
-        #         ((self.field.player.shot_await_tick_count * 20) / 1000)
-        #         - ((self.field.player.shot_await_tick_pointer * 20) / 1000)
-        #     )[0:4],
-        # )
-        buffer.cool_dawn = (
-            str((self.field.player.shot_await_tick_count * 20) / 1000),
-            str(
-                round(
-                    ((self.field.player.shot_await_tick_count * 20) / 1000)
-                    - ((self.field.player.shot_await_tick_pointer * 20)
-                       / 1000),
-                    4
+            buffer.health_points = self.field.player.health_points
+            buffer.cool_dawn = (
+                str((self.field.player.shot_await_tick_count * 20) / 1000),
+                str(
+                    round(
+                        ((self.field.player.shot_await_tick_count * 20) / 1000)
+                        - ((self.field.player.shot_await_tick_pointer * 20)
+                           / 1000),
+                        4
+                    )
                 )
             )
-        )
-        buffer.game_stage = self.stage
 
-        for unit in self.field.units:
-            if unit is not self.field.player:
-                buffer.units.append(unit.get_render_info())
-            else:
-                buffer.player = unit.get_render_info()
+            for unit in self.field.units:
+                if unit is not self.field.player:
+                    buffer.units.append(unit.get_render_info())
+                else:
+                    buffer.player = unit.get_render_info()
+
+        buffer.game_stage = self.stage
 
         return buffer
 
+    def set_maps(self):
+        self.maps = list()
+        self.current_map = 1
+        self.maps.append(test_map_1.get_map())
+        self.maps.append(map_1.get_map())
+        # self.maps.append()
+        # self.maps.append()
+
     def set_new_field(self):
-        self.field = GameField()
-        self.field.set_test_game_field()
+        self.field = self.maps[self.current_map]
+        self.current_map += 1
         self.score = 0
         self.field.game = self
