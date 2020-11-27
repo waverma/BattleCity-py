@@ -73,27 +73,42 @@ class Game:
         buffer = BufferToRender()
         buffer.field_size = self.field.width, self.field.height
         buffer.points = str(self.score)
-        if self.is_game_completed()[1]:
-            buffer.battle_result = "Победа"
-        else:
-            buffer.battle_result = "Поражение"
+        buffer.speed = "0"
+        if (self.field.player.velocity[0] != 0
+                or self.field.player.velocity[1] != 0):
+            buffer.speed = str(abs(self.field.player.velocity[0])
+                               + abs(self.field.player.velocity[1]))
+        # if self.is_game_completed()[1]:
+        #     buffer.battle_result = "Победа"
+        # else:
+        #     buffer.battle_result = "Поражение"
+
+        buffer.battle_result = (self.is_game_completed()[0],
+                                self.is_game_completed()[1])
+
         buffer.health_points = self.field.player.health_points
-        buffer.cool_dawn = "{0} / {1}".format(
+        # buffer.cool_dawn = "{0} / {1}".format(
+        #     str((self.field.player.shot_await_tick_count * 20) / 1000),
+        #     str(
+        #         ((self.field.player.shot_await_tick_count * 20) / 1000)
+        #         - ((self.field.player.shot_await_tick_pointer * 20) / 1000)
+        #     )[0:4],
+        # )
+        buffer.cool_dawn = (
             str((self.field.player.shot_await_tick_count * 20) / 1000),
             str(
-                ((self.field.player.shot_await_tick_count * 20) / 1000)
-                - ((self.field.player.shot_await_tick_pointer * 20) / 1000)
-            )[0:4],
+                round(
+                    ((self.field.player.shot_await_tick_count * 20) / 1000)
+                    - ((self.field.player.shot_await_tick_pointer * 20)
+                       / 1000),
+                    4
+                )
+            )
         )
         buffer.game_stage = self.stage
 
-        a = list()
-        b = list()
-        c = list()
-
         for unit in self.field.units:
             if unit is not self.field.player:
-                # if unit is Tank
                 buffer.units.append(unit.get_render_info())
             else:
                 buffer.player = unit.get_render_info()
@@ -103,4 +118,5 @@ class Game:
     def set_new_field(self):
         self.field = GameField()
         self.field.set_test_game_field()
+        self.score = 0
         self.field.game = self

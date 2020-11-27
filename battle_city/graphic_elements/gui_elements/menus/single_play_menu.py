@@ -17,13 +17,13 @@ class SinglePlayMenu(UserElement):
         self.back_color = GraphicUtils.WHITE_COLOR
 
         self.new_game_button = Button(
-            Rect(100, 100, 600, 100),
+            Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Новая игра"
         )
 
         self.exit_button = Button(
-            Rect(100, 300, 600, 100),
+            Rect(100, 300, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Назад"
         )

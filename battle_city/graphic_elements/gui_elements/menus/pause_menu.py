@@ -18,13 +18,13 @@ class PauseMenu(UserElement):
         self.back_color = GraphicUtils.WHITE_COLOR
 
         self.continue_button = Button(
-            Rect(100, 100, 600, 100),
+            Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Продолжить"
         )
 
         self.exit_button = Button(
-            Rect(100, 600, 600, 100),
+            Rect(100, 600, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "В главное меню"
         )

@@ -26,7 +26,7 @@ class UserInterface:
 
         # Создание менюшек
         self.game_field_element = GameFieldElement(
-            GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
+            GraphicUtils.DEFAULT_GAME_FIELD_ELEMENT_COLLISION, (0, 0)
         )
         self.post_game_menu = PostGameElement(
             GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)

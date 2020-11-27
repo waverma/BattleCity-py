@@ -17,15 +17,17 @@ class Dirt(BreakableWall):
     def step(self, field):
         for tank in self.intersected_tanks:
             tank[0].max_speed = tank[1]
+            tank[0].set_velocity(tank[0].current_direction)
         self.intersected_tanks = list()
 
         for unit in field.get_intersected_units(self.collision):
-            if type(unit) is Tank:
+            if issubclass(type(unit), Tank):
                 self.intersected_tanks.append((unit, unit.max_speed))
                 unit.max_speed = int(unit.max_speed
                                      / DIRT_SLOW_DAWN_COEFFICIENT)
                 if unit.max_speed == 0:
                     unit.max_speed = 1
+                unit.set_velocity(unit.current_direction)
 
     def is_intersected_with_unit(self, other: Unit) -> bool:
         return False

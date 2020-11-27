@@ -12,6 +12,7 @@ class BufferToRender(Buffer):
         self.points = ""
         self.cool_dawn = ""
         self.health_points = ""
+        self.speed = ""
         self.battle_result = ""
         self.field_size = (0, 0)
         self.chat_text = list()
@@ -34,6 +35,7 @@ class BufferToRender(Buffer):
         self.chat_text = list(other.chat_text)
         self.is_chat_on = other.is_chat_on
         self.battle_result = other.battle_result
+        self.speed = other.speed
 
         other.unlock()
         self.unlock()
@@ -55,6 +57,7 @@ class BufferToRender(Buffer):
         other.chat_text = list(self.chat_text)
         other.is_chat_on = self.is_chat_on
         other.battle_result = self.battle_result
+        other.speed = self.speed
 
         self.unlock()
 

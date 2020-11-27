@@ -6,6 +6,8 @@ from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums.direction import Direction
 from battle_city.graphic_elements.draw_information import DrawInformation
+from battle_city.graphic_elements.gui_elements.inside_game_board import \
+    InsideGameBoard
 from battle_city.graphic_elements.gui_elements.text import Text
 from battle_city.graphic_elements.gui_elements.user_element import UserElement
 from battle_city.rect import Rect
@@ -19,6 +21,11 @@ class GameFieldElement(UserElement):
         )
         self.text.draw_info.text_size = 17
         self.text.draw_info.text_color = (0, 255, 0)
+
+        self.inside_game_board = InsideGameBoard(
+            Rect(self.collision.w, 0, 150, self.collision.h),
+            (self.collision.w, 0)
+        )
 
     def update(self, e: UserEvent, output_buffer: BufferToGameLogic):
         output_buffer.user_prepare_direction = Direction.Null
@@ -82,10 +89,6 @@ class GameFieldElement(UserElement):
             for unit in priority_lists[units_priority]:
                 result.append(unit)
 
-        self.text.draw_info.text = "HP: {})==( Reload: {}".format(
-            str(buffer_to_render.health_points),
-            buffer_to_render.cool_dawn
-        )
         self.text.draw_info.collision = Rect(
             buffer_to_render.player[0][1].x + 30,
             buffer_to_render.player[0][1].y - 10,
@@ -98,5 +101,13 @@ class GameFieldElement(UserElement):
 
         for text_render_info_parts in text_render_info:
             result.append(text_render_info_parts)
+
+        for render_elements in self.inside_game_board.get_render_info(
+                (transform[0] + self.collision.w,
+                 transform[1],
+                 transform[2], transform[3]),
+                buffer_to_render
+        ):
+            result.append(render_elements)
 
         return result

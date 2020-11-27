@@ -16,19 +16,19 @@ class NetworkMenu(UserElement):
         self.back_color = (255, 255, 255)
 
         self.single_play_button = Button(
-            Rect(100, 100, 600, 100),
+            Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Создать новую сессию"
         )
 
         self.network_button = Button(
-            Rect(100, 300, 600, 100),
+            Rect(100, 300, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Присоединиться"
         )
 
         self.exit_button = Button(
-            Rect(100, 600, 600, 100),
+            Rect(100, 600, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Назад"
         )

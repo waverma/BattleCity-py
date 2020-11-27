@@ -17,13 +17,13 @@ class ConnectionMenu(UserElement):
         self.back_color = GraphicUtils.WHITE_COLOR
 
         self.join_button = Button(
-            Rect(100, 300, 600, 100),  # TODO добавить изменение в Rect
+            Rect(100, 300, 750, 100),  # TODO добавить изменение в Rect
             (absolute_position[0], absolute_position[1]),
             "Присоединиться"
         )
 
         self.exit_button = Button(
-            Rect(100, 600, 600, 100),
+            Rect(100, 600, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Назад"
         )

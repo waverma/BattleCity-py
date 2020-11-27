@@ -9,10 +9,17 @@ class GraphicUtils:
         os.path.dirname(os.path.abspath(__file__)), "Textures"
     )
 
-    DEFAULT_WINDOW_SIZE = (32 * 26, 32 * 26)
+    DEFAULT_CLIENT_SIZE = (32 * 26 + 150, 32 * 26)
+    DEFAULT_GAME_FIELD_ELEMENT_SIZE = (32 * 26, 32 * 26)
+    DEFAULT_WINDOW_SIZE = (32 * 26 + 150, 32 * 26)
     DEFAULT_MENU_COLLISION = Rect(0, 0,
                                   DEFAULT_WINDOW_SIZE[0],
                                   DEFAULT_WINDOW_SIZE[1])
+    DEFAULT_GAME_FIELD_ELEMENT_COLLISION = Rect(
+        0, 0,
+        DEFAULT_GAME_FIELD_ELEMENT_SIZE[0],
+        DEFAULT_GAME_FIELD_ELEMENT_SIZE[1]
+    )
 
     WHITE_COLOR = (255, 255, 255)
     RED_GREEN_COLOR = (255, 255, 0)

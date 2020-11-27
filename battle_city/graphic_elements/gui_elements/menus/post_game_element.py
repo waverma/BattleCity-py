@@ -22,13 +22,13 @@ class PostGameElement(UserElement):
         )
 
         self.restart_button = Button(
-            Rect(100, 100, 600, 100),
+            Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "Перезапустить"
         )
 
         self.exit_button = Button(
-            Rect(100, 600, 600, 100),
+            Rect(100, 600, 750, 100),
             (absolute_position[0], absolute_position[1]),
             "В главное меню"
         )

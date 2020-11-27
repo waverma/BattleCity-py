@@ -78,7 +78,7 @@ class GameField:
 
         self.try_place_unit(
             TankBotSpawner(),
-            LITTLE_WALL_LENGTH * 12,
+            LITTLE_WALL_LENGTH * 10,
             LITTLE_WALL_LENGTH * 2,
         )
 
