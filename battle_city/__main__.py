@@ -41,16 +41,16 @@ from battle_city.game_loop import GameLoop
 #  увилечение урона,
 #  неуязвимость
 #  )
-#  TODO                                  БАГ С ПЕСКОМ И ВОДОЙ!!!!!!!!!!!!!!
 #
 # TODO убрать магические числа из логики в,
 #  например, класс с константами игрового мира [сделано]
 # TODO убрать константы графики в graphic_utils [сделано]
 # TODO вынести игровые назписи дальше в рендер.
+# TODO ИСПРАВИТЬ БАГ С ПОЛУЧЕННЫМИ ОЧКАМИ
 # TODO в файле томл удалить coverage report [сделано]
 
 if __name__ == "__main__":
-    gl = GameLoop(
+    game_loop = GameLoop(
         GraphicUtils.DEFAULT_CLIENT_SIZE[0],
         GraphicUtils.DEFAULT_CLIENT_SIZE[1]
     )
@@ -61,4 +61,4 @@ if __name__ == "__main__":
         )
     )
 
-    gl.run()
+    game_loop.run()

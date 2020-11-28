@@ -11,3 +11,4 @@ class InterfaceStage(Enum):
     ConnectionMenu = 6
     Chat = 7
     ConnectingWaiting = 8
+    PostGameAfterWin = 9

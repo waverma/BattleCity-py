@@ -116,6 +116,10 @@ class DrawInformation:
             info.render_priority = GraphicUtils.SPAWNER_PRIORITY
 
         elif unit_type == UnitType.BotSpawner:
+            info.texture_name = GraphicUtils.SPAWNER_1
+            info.render_priority = GraphicUtils.SPAWNER_PRIORITY
+
+        elif unit_type == UnitType.EmptyBotSpawner:
             info.texture_name = GraphicUtils.SPAWNER_2
             info.render_priority = GraphicUtils.SPAWNER_PRIORITY
 

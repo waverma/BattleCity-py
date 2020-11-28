@@ -42,15 +42,25 @@ class TankBotSpawner(Unit):
             Direction.Left,
         ]
 
+    def is_completed(self) -> bool:
+        return (self.tank_to_go <= 0
+                or len(self.tanks_to_go) <= 0
+                or (self.next_tank_pointer is not None and self.next_tank_pointer >= len(self.tanks_to_go))) \
+               and self.is_tank_alive
+
     def get_next_tank(self) -> TankBot:
         if self.next_tank_pointer is None:
             if len(self.tanks_to_go) > 1:
                 tank_number = random.randint(0, len(self.tanks_to_go) - 1)
             else:
                 tank_number = 0
+            if tank_number >= len(self.tanks_to_go):
+                return None
             tank = self.tanks_to_go[tank_number]
             self.tanks_to_go.remove(tank)
         else:
+            if self.next_tank_pointer >= len(self.tanks_to_go):
+                return None
             tank = self.tanks_to_go[self.next_tank_pointer]
             self.next_tank_pointer += 1
 
@@ -59,6 +69,9 @@ class TankBotSpawner(Unit):
         else:
             tank.set_velocity(self.priority_direction)
 
+        if self.is_completed:
+            self.type = UnitType.BotSpawner
+
         return tank
 
     def step(self, field):
@@ -66,14 +79,16 @@ class TankBotSpawner(Unit):
         if not self.is_tank_alive:
             if self.no_tank_tick_pointer != self.no_tank_tick_count:
                 self.no_tank_tick_pointer += 1
-            elif len(self.tanks_to_go) > 0:
+            else:
                 self.no_tank_tick_pointer = 0
                 self.current_tank = self.get_next_tank()
-                if field.try_place_unit(
+                if self.current_tank is None:
+                    self.type = UnitType.EmptyBotSpawner
+                elif field.try_place_unit(
                     self.current_tank, self.collision.x, self.collision.y
                 ):
                     self.tank_to_go -= 1
-                self.is_tank_alive = True
+                    self.is_tank_alive = True
         else:
             if self.current_tank not in field.units:
                 self.is_tank_alive = False

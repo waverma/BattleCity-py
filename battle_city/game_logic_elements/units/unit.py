@@ -10,6 +10,7 @@ class Unit:
         self.max_speed = 0
         self.health_points = 1
         self.current_direction = Direction.Up
+        self.current_move_direction = Direction.Up
         self.velocity = (0, 0)
         self.actions = list()
 
@@ -17,6 +18,7 @@ class Unit:
         self.update_mode = UpdateMode.StepIntersect
 
     def set_velocity(self, direction: Direction):
+        self.current_move_direction = direction
         if direction != Direction.Null:
             self.current_direction = direction
         if direction == Direction.Up:

@@ -15,6 +15,7 @@ class UnitType(IntEnum):
     PlayerSpawner = 6
     RivalSpawner = 7
     BotSpawner = 8
+    EmptyBotSpawner = 21
     Bullet = 9
 
     TankRed = 10

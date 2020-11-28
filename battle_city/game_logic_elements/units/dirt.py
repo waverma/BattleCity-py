@@ -1,3 +1,4 @@
+from battle_city.enums.direction import Direction
 from battle_city.enums.unit_type import UnitType
 from battle_city.enums.update_mode import UpdateMode
 from battle_city.game_logic_elements.game_constants import DIRT_HEALTH_POINTS, \
@@ -18,7 +19,7 @@ class Dirt(BreakableWall):
     def step(self, field):
         for tank in self.intersected_tanks:
             tank[0].max_speed = tank[1]
-            tank[0].set_velocity(tank[0].current_direction)
+            tank[0].set_velocity(tank[0].current_move_direction)
         self.intersected_tanks = list()
 
         for unit in field.get_intersected_units(self.collision):
@@ -28,7 +29,7 @@ class Dirt(BreakableWall):
                                      / DIRT_SLOW_DAWN_COEFFICIENT)
                 if unit.max_speed == 0:
                     unit.max_speed = 1
-                unit.set_velocity(unit.current_direction)
+                unit.set_velocity(unit.current_move_direction)
 
     def is_intersected_with_unit(self, other: Unit) -> bool:
         return False

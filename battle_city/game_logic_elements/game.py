@@ -1,6 +1,7 @@
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums.interface_stage import InterfaceStage
+from battle_city.enums.unit_type import UnitType
 from battle_city.game_logic_elements.maps import test_map_1, map_1, map_2, \
     map_3, map_4
 
@@ -16,16 +17,11 @@ class Game:
 
         self.god_mode = False
         self.set_maps()
-        # self.set_new_field()
 
     def is_game_completed(self):
         battle_result = True
         for spawner in self.field.spawners:
-            battle_result = (
-                battle_result
-                and spawner.tank_to_go == 0
-                and not spawner.is_tank_alive
-            )
+            battle_result = battle_result and spawner.type == UnitType.EmptyBotSpawner
         return (
             not self.god_mode and (self.field.player not in self.field.units or battle_result),
             self.field.player in self.field.units,
@@ -37,7 +33,10 @@ class Game:
             self.user_impact(buffer)
             self.field.update()
             if self.is_game_completed()[0]:
-                self.stage = InterfaceStage.PostGame
+                if self.is_game_completed()[1] and len(self.maps) > self.current_map:
+                    self.stage = InterfaceStage.PostGameAfterWin
+                else:
+                    self.stage = InterfaceStage.PostGame
             if buffer.is_pause_request:
                 self.stage = InterfaceStage.Pause
 
@@ -49,12 +48,20 @@ class Game:
             if buffer.is_cancel_button_pressed:
                 self.stage = InterfaceStage.MainMenu
             if buffer.is_new_game_button_pressed:
-                self.set_new_field()
+                self.try_set_new_field()
                 self.stage = InterfaceStage.InGame
 
         if buffer.interface_stage == InterfaceStage.PostGame:
             if buffer.restart_request:
-                self.set_new_field()
+                self.set_maps()
+                self.try_set_new_field()
+                self.stage = InterfaceStage.InGame
+            if buffer.is_to_main_menu_button_pressed:
+                self.stage = InterfaceStage.MainMenu
+
+        if buffer.interface_stage == InterfaceStage.PostGameAfterWin:
+            if buffer.next_request:
+                self.try_set_new_field()
                 self.stage = InterfaceStage.InGame
             if buffer.is_to_main_menu_button_pressed:
                 self.stage = InterfaceStage.MainMenu
@@ -121,8 +128,13 @@ class Game:
         self.maps.append(map_3.get_map())
         self.maps.append(map_4.get_map())
 
-    def set_new_field(self):
+    def try_set_new_field(self) -> bool:
+        if self.current_map >= len(self.maps):
+            return False
+
         self.field = self.maps[self.current_map]
         self.current_map += 1
         self.score = 0
         self.field.game = self
+
+        return True

@@ -24,7 +24,7 @@ class Fire(BreakableWall):
 
         if self.damage_cool_down_pointer >= self.damage_cool_down:
             for unit in field.get_intersected_units(self.collision):
-                if type(unit) is Tank:
+                if issubclass(type(unit), Tank):
                     unit.on_shot(field, self.collision)
             self.damage_cool_down_pointer = 0
         else:

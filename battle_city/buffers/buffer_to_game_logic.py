@@ -39,6 +39,7 @@ class BufferToGameLogic(Buffer):
 
         # PostGame
         self.restart_request = False
+        self.next_request = False
         self.is_to_main_menu_button_pressed = False
         self.game_info = ""
 
@@ -85,6 +86,7 @@ class BufferToGameLogic(Buffer):
 
         # PostGame
         self.restart_request = other.restart_request
+        self.next_request = other.next_request
         self.is_to_main_menu_button_pressed = (
             other.is_to_main_menu_button_pressed
         )
@@ -136,6 +138,7 @@ class BufferToGameLogic(Buffer):
 
         # PostGame
         other.restart_request = self.restart_request
+        other.next_request = self.next_request
         other.is_to_main_menu_button_pressed = (
             self.is_to_main_menu_button_pressed
         )

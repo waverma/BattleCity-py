@@ -7,6 +7,8 @@ from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.game_field_element import GameFieldElement
 from battle_city.graphic_elements.gui_elements.menus.main_menu import MainMenu
 from battle_city.graphic_elements.gui_elements.menus.pause_menu import PauseMenu
+from battle_city.graphic_elements.gui_elements.menus.post_game_after_win_menu import \
+    PostGameAfterWinMenu
 from battle_city.graphic_elements.gui_elements.menus.post_game_element import (
     PostGameElement,
 )
@@ -29,6 +31,9 @@ class UserInterface:
             GraphicUtils.DEFAULT_GAME_FIELD_ELEMENT_COLLISION, (0, 0)
         )
         self.post_game_menu = PostGameElement(
+            GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
+        )
+        self.post_game_after_win_menu = PostGameAfterWinMenu(
             GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
         )
         self.main_menu = MainMenu(GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0))
@@ -57,6 +62,9 @@ class UserInterface:
         elif game_state == InterfaceStage.PostGame:
             self.post_game_menu.update(e, output_buffer)
 
+        elif game_state == InterfaceStage.PostGameAfterWin:
+            self.post_game_after_win_menu.update(e, output_buffer)
+
         elif game_state == InterfaceStage.SinglePlayMenu:
             self.single_menu.update(e, output_buffer)
 
@@ -83,6 +91,11 @@ class UserInterface:
         elif self.stage == InterfaceStage.PostGame:
             render_per_element(
                 buffer_to_render, new_buffer_to_draw, self.post_game_menu
+            )
+
+        elif self.stage == InterfaceStage.PostGameAfterWin:
+            render_per_element(
+                buffer_to_render, new_buffer_to_draw, self.post_game_after_win_menu
             )
 
         elif self.stage == InterfaceStage.SinglePlayMenu:
