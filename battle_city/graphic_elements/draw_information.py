@@ -96,8 +96,8 @@ class DrawInformation:
             info.render_priority = GraphicUtils.GRASS_PRIORITY
 
         elif unit_type == UnitType.Fire:
-            info.texture_name = GraphicUtils.WATER_GROUND_1
-            info.render_priority = GraphicUtils.WALLS_PRIORITY
+            info.texture_name = GraphicUtils.WATER_GROUND_2
+            info.render_priority = GraphicUtils.ASS_FAULT_PRIORITY
 
         elif unit_type == UnitType.Dirt:
             info.texture_name = GraphicUtils.SEND_GROUND

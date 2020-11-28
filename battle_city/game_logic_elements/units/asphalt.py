@@ -26,7 +26,7 @@ class Asphalt(BreakableWall):
         return False
 
     def get_render_info(self):
-        return self.render_info
+        return self.get_render_info_for_save()
 
     def get_render_info_for_save(self):
         result = list()

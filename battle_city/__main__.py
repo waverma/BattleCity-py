@@ -30,7 +30,7 @@ from battle_city.game_loop import GameLoop
 #  лимит у спавнера(
 #   например, каждый спавнер должен обязательно заспавнить разные типы танков
 #   )
-#  )
+#  ) [сделано]
 #
 # TODO 4) внутриигровая табличка с показателями(
 #  бонусы, очки, жизнь, скорость
@@ -41,6 +41,7 @@ from battle_city.game_loop import GameLoop
 #  увилечение урона,
 #  неуязвимость
 #  )
+#  TODO                                  БАГ С ПЕСКОМ И ВОДОЙ!!!!!!!!!!!!!!
 #
 # TODO убрать магические числа из логики в,
 #  например, класс с константами игрового мира [сделано]
@@ -49,12 +50,15 @@ from battle_city.game_loop import GameLoop
 # TODO в файле томл удалить coverage report [сделано]
 
 if __name__ == "__main__":
+    gl = GameLoop(
+        GraphicUtils.DEFAULT_CLIENT_SIZE[0],
+        GraphicUtils.DEFAULT_CLIENT_SIZE[1]
+    )
+
     TextureProvider.set_textures(
         os.path.normpath(
             os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir
         )
     )
-    GameLoop(
-        GraphicUtils.DEFAULT_CLIENT_SIZE[0],
-        GraphicUtils.DEFAULT_CLIENT_SIZE[1]
-    ).run()
+
+    gl.run()

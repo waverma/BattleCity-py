@@ -3,6 +3,7 @@ from typing import Tuple
 import pygame
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
+from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums.direction import Direction
 from battle_city.graphic_elements.draw_information import DrawInformation
@@ -48,8 +49,8 @@ class GameFieldElement(UserElement):
             )
 
     def get_render_info(
-        self, transform: Tuple, buffer_to_render: BufferToRender
-    ) -> list:
+        self, transform: Tuple, buffer_to_render: BufferToRender, buffer_to_draw: DrawingBuffer=None
+    ):
         new_transform = (
             transform[0] + self.collision.x,
             transform[1] + self.collision.y,
@@ -57,8 +58,8 @@ class GameFieldElement(UserElement):
             self.collision.height / buffer_to_render.field_size[1],
         )
 
-        result = list()
-        result.append(
+        result = buffer_to_draw
+        result.add(
             DrawInformation(
                 transform=transform,
                 draw_rect=self.collision,
@@ -67,6 +68,7 @@ class GameFieldElement(UserElement):
         )
 
         priority_lists = dict()
+        # buffer_to_render.units.append(buffer_to_render.player)
 
         for unit_render_info in buffer_to_render.units:
             for unit_render_info_parts in unit_render_info:
@@ -74,22 +76,22 @@ class GameFieldElement(UserElement):
                     *unit_render_info_parts
                 )
                 draw_info.transform = new_transform
-                # if draw_info.render_priority not in priority_lists:
-                #     priority_lists[draw_info.render_priority] = list()
-                # priority_lists[draw_info.render_priority].append(draw_info)
-                result.append(draw_info)
+                if draw_info.render_priority not in priority_lists:
+                    priority_lists[draw_info.render_priority] = list()
+                priority_lists[draw_info.render_priority].append(draw_info)
+                # result.add(draw_info)
 
         for player_render_info_parts in buffer_to_render.player:
             draw_info = DrawInformation.get_info_by(*player_render_info_parts)
             draw_info.transform = new_transform
-            # if draw_info.render_priority not in priority_lists:
-            #     priority_lists[draw_info.render_priority] = list()
-            # priority_lists[draw_info.render_priority].append(draw_info)
-            result.append(draw_info)
+            if draw_info.render_priority not in priority_lists:
+                priority_lists[draw_info.render_priority] = list()
+            priority_lists[draw_info.render_priority].append(draw_info)
+            # result.add(draw_info)
 
-        # for units_priority inы sorted(priority_lists.keys()):
-        #     for unit in priority_lists[units_priority]:
-        #         result.append(unit)
+        for units_priority in sorted(priority_lists.keys()):
+            for unit in priority_lists[units_priority]:
+                result.add(unit)
 
         self.text.draw_info.collision = Rect(
             buffer_to_render.player[0][1].x + 30,
@@ -101,7 +103,7 @@ class GameFieldElement(UserElement):
         )
 
         for text_render_info_parts in text_render_info:
-            result.append(text_render_info_parts)
+            result.add(text_render_info_parts)
 
         for render_elements in self.inside_game_board.get_render_info(
                 (transform[0] + self.collision.w,
@@ -109,6 +111,7 @@ class GameFieldElement(UserElement):
                  transform[2], transform[3]),
                 buffer_to_render
         ):
-            result.append(render_elements)
+            result.add(render_elements)
 
-        return result
+        # return result, buffer_to_render.units
+        # return result

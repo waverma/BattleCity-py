@@ -15,7 +15,7 @@ class TextureImageInfo:
                 directory,
                 file_name,
             )
-        )
+        ).convert_alpha()
         self.textures["main"] = [
             self.images[(1, 1)].get_rect().x,
             self.images[(1, 1)].get_rect().y,
@@ -46,4 +46,4 @@ class TextureImageInfo:
                 int(self.images[(1, 1)].get_rect().width * factor[0]),
                 int(self.images[(1, 1)].get_rect().height * factor[1]),
             ),
-        )
+        ).convert_alpha()

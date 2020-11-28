@@ -1,7 +1,8 @@
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums.interface_stage import InterfaceStage
-from battle_city.game_logic_elements.maps import test_map_1, map_1
+from battle_city.game_logic_elements.maps import test_map_1, map_1, map_2, \
+    map_3, map_4
 
 
 class Game:
@@ -64,7 +65,8 @@ class Game:
             if buffer.is_return_button_pressed:
                 self.stage = InterfaceStage.InGame
 
-        output_buffer.update(self.extract_to_render())
+        # output_buffer.update(self.extract_to_render())
+        self.extract_to_render(output_buffer)
 
     def user_impact(self, buffer: BufferToGameLogic):
         self.field.player.set_velocity(buffer.user_prepare_direction)
@@ -73,8 +75,8 @@ class Game:
                 lambda: self.field.player.shot(self.field)
             )
 
-    def extract_to_render(self) -> BufferToRender:
-        buffer = BufferToRender()
+    def extract_to_render(self, output_buffer) -> BufferToRender:
+        buffer = output_buffer
         buffer.points = str(self.score)
         buffer.speed = "0"
 
@@ -115,8 +117,9 @@ class Game:
         self.current_map = 1
         self.maps.append(test_map_1.get_map())
         self.maps.append(map_1.get_map())
-        # self.maps.append()
-        # self.maps.append()
+        self.maps.append(map_2.get_map())
+        self.maps.append(map_3.get_map())
+        self.maps.append(map_4.get_map())
 
     def set_new_field(self):
         self.field = self.maps[self.current_map]

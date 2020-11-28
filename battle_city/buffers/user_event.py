@@ -31,8 +31,8 @@ class UserEvent(Buffer):
         self.was_left_mouse_click = other.was_left_mouse_click
         self.focus_element = other.focus_element
 
-        self.pressed_buttons = copy.deepcopy(other.pressed_buttons)
-        self.non_released_buttons = copy.deepcopy(other.non_released_buttons)
+        self.pressed_buttons = other.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
+        self.non_released_buttons = other.non_released_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
 
         self.events = other.events
 
@@ -53,8 +53,8 @@ class UserEvent(Buffer):
         other.focus_element = self.focus_element
         other.events = self.events
 
-        other.pressed_buttons = copy.deepcopy(self.pressed_buttons)
-        other.non_released_buttons = copy.deepcopy(self.non_released_buttons)
+        other.pressed_buttons = self.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
+        other.non_released_buttons = self.non_released_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
 
         self.unlock()
         return other

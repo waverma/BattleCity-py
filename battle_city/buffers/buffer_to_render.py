@@ -32,7 +32,7 @@ class BufferToRender(Buffer):
         self.game_stage = other.game_stage
         self.field_size = other.field_size
         self.player = other.player
-        self.chat_text = list(other.chat_text)
+        self.chat_text = other.chat_text  # НЕ ПОТОКОБЕЗОПАСНО!!!
         self.is_chat_on = other.is_chat_on
         self.battle_result = other.battle_result
         self.speed = other.speed
@@ -54,7 +54,7 @@ class BufferToRender(Buffer):
         other.game_stage = self.game_stage
         other.field_size = self.field_size
         other.player = self.player
-        other.chat_text = list(self.chat_text)
+        other.chat_text = self.chat_text  # НЕ ПОТОКОБЕЗОПАСНО!!!
         other.is_chat_on = self.is_chat_on
         other.battle_result = self.battle_result
         other.speed = self.speed

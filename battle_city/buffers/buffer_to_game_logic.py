@@ -76,7 +76,7 @@ class BufferToGameLogic(Buffer):
         self.chat_open_key_pressed = other.chat_open_key_pressed
         self.chat_close_key_pressed = other.chat_close_key_pressed
         self.is_pause_request = other.is_pause_request
-        self.chat_text = list(other.chat_text)
+        self.chat_text = other.chat_text  # НЕ ПОТОКОБЕЗОПАСНО!!!
         self.is_chat_open = other.is_chat_open
 
         # Pause
@@ -128,7 +128,7 @@ class BufferToGameLogic(Buffer):
         other.chat_close_key_pressed = self.chat_close_key_pressed
         other.is_pause_request = self.is_pause_request
         other.is_chat_open = self.is_chat_open
-        other.chat_text = list(self.chat_text)
+        other.chat_text = self.chat_text  # НЕ ПОТОКОБЕЗОПАСНО!!!
 
         # Pause
         other.is_disconnect_button_pressed = self.is_disconnect_button_pressed

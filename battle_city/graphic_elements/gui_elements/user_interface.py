@@ -63,7 +63,8 @@ class UserInterface:
     def render(
         self, buffer_to_render: BufferToRender, buffer_to_draw: DrawingBuffer
     ):
-        new_buffer_to_draw = DrawingBuffer()
+        # new_buffer_to_draw = DrawingBuffer()
+        new_buffer_to_draw = buffer_to_draw
 
         self.stage = buffer_to_render.game_stage
 
@@ -74,10 +75,10 @@ class UserInterface:
 
         elif self.stage == InterfaceStage.InGame:
             render_info = self.game_field_element.get_render_info(
-                (0, 0, 1, 1), buffer_to_render
+                (0, 0, 1, 1), buffer_to_render, new_buffer_to_draw
             )
-            for render_info_parts in render_info:
-                new_buffer_to_draw.add(render_info_parts)
+            # for render_info_parts in render_info:
+            #     new_buffer_to_draw.add(render_info_parts)
 
         elif self.stage == InterfaceStage.PostGame:
             render_per_element(
@@ -94,4 +95,4 @@ class UserInterface:
                 buffer_to_render, new_buffer_to_draw, self.pause
             )
 
-        buffer_to_draw.update(new_buffer_to_draw)
+        # buffer_to_draw.update(new_buffer_to_draw)
