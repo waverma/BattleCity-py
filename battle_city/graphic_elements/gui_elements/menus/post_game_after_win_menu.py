@@ -72,10 +72,23 @@ class PostGameAfterWinMenu(UserElement):
             for button_info_parts in button_info:
                 result.append(button_info_parts)
 
-        self.text.draw_info.text = "{}! Очки: {}".format(
-            buffer_to_render.battle_result,
-            buffer_to_render.points
+        if buffer_to_render.battle_result[1]:
+            end_battle_message = "Победа!"
+        else:
+            end_battle_message = "Поражение"
+
+        kills = "Обычные: {}\nБроникованные: {}\nВосстанавливающиеся{}\nСкорострельные{}".format(
+            buffer_to_render.points[1],
+            buffer_to_render.points[2],
+            buffer_to_render.points[3],
+            buffer_to_render.points[4],
         )
+
+        self.text.draw_info.text = "{} Очки: {}".format(
+            end_battle_message,
+            kills
+        )
+        self.text.draw_info.text_size = 15
         text_render_info = self.text.get_render_info(
             new_transform, buffer_to_render
         )

@@ -1,20 +1,9 @@
+from battle_city.enums.unit_type import UnitType
 from battle_city.enums.update_mode import UpdateMode
 from battle_city.game_logic_elements.game_constants import \
-    DEFAULT_GAME_FIELD_SIZE, LITTLE_WALL_LENGTH, PLAYER_TANK_HEALTH_POINTS, \
-    PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN
-from battle_city.game_logic_elements.units.armored_bot import ArmoredBot
-from battle_city.game_logic_elements.units.asphalt import Asphalt
-from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
+    DEFAULT_GAME_FIELD_SIZE
 from battle_city.game_logic_elements.units.bullet import Bullet
-from battle_city.game_logic_elements.units.bush import Bush
-from battle_city.game_logic_elements.units.dirt import Dirt
-from battle_city.game_logic_elements.units.fire import Fire
-from battle_city.game_logic_elements.units.heal_bot import HealBot
-from battle_city.game_logic_elements.units.rapid_fire_bot import RapidFireBot
-from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.game_logic_elements.units.tank_bot import TankBot
-from battle_city.game_logic_elements.units.tank_bot_spawner import TankBotSpawner
-from battle_city.game_logic_elements.units.unbreakable_wall import UnbreakableWall
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
 
@@ -32,7 +21,6 @@ class GameField:
         self.units_for_intersect_buffer = list()
 
         self.units = list()
-        # self.units_buffer = list()
         self.ban_unit_list = list()
 
         self.game = None
@@ -40,19 +28,16 @@ class GameField:
     def update(self):
         self.units_for_step_buffer = list(self.units_for_step)
         self.units_for_intersect_buffer = list(self.units_for_intersect)
-        # self.units_buffer = list(self.units)
 
         for unit in self.units_for_step:
             if unit not in self.ban_unit_list:
                 unit.step(self)
 
-        # self.units = self.units_buffer
         self.units_for_step = self.units_for_step_buffer
         self.units_for_intersect = self.units_for_intersect_buffer
 
         self.units_for_step_buffer = list()
         self.units_for_intersect_buffer = list()
-        # self.units_buffer = list()
 
         for unit in self.ban_unit_list:
             if unit in self.units:
@@ -133,16 +118,45 @@ class GameField:
         if collide_units is None:
             for unit in self.get_intersected_units(explosion_rect):
                 unit.on_explosion(self, explosion_rect)
+                self.try_set_score(unit, source_explosion.owner)
         else:
             for unit in self.get_intersected_units(explosion_rect):
                 if unit not in collide_units:
                     unit.on_explosion(self, explosion_rect)
                 else:
                     unit.on_shot(self, explosion_rect)
-                    if (
-                        type(unit) is TankBot
-                        and unit not in self.units
-                        and source_explosion.owner is self.player
-                        and self.game is not None
-                    ):
-                        self.game.score += 1
+                self.try_set_score(unit, source_explosion.owner)
+
+    def try_set_score(self, unit: Unit, owner: Unit):
+        if (
+                unit.type == UnitType.TankWhite
+                and unit not in self.units
+                and owner is self.player
+                and self.game is not None
+        ):
+            self.game.tank_bot_kills += 1
+            self.game.kills += 1
+        elif (
+                unit.type == UnitType.TankRed
+                and unit not in self.units
+                and owner is self.player
+                and self.game is not None
+        ):
+            self.game.armored_bot_kills += 1
+            self.game.kills += 1
+        elif (
+                unit.type == UnitType.TankOrange
+                and unit not in self.units
+                and owner is self.player
+                and self.game is not None
+        ):
+            self.game.rapid_fire_kills += 1
+            self.game.kills += 1
+        elif (
+                unit.type == UnitType.TankGreenThree
+                and unit not in self.units
+                and owner is self.player
+                and self.game is not None
+        ):
+            self.game.heal_bot_kills += 1
+            self.game.kills += 1

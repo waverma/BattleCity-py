@@ -2,6 +2,9 @@ from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums.interface_stage import InterfaceStage
 from battle_city.enums.unit_type import UnitType
+from battle_city.game_logic_elements.game_constants import HEAL_CHEAT, \
+    BIG_SPEED, BIG_FIRE_RATE, GOD_MOD, HEAL_VALUE, SPEED_VALUE, GOD_HP, \
+    GOD_SPEED, GOD_COOL_DOWN, COOL_DOWN_VALUE
 from battle_city.game_logic_elements.maps import test_map_1, map_1, map_2, \
     map_3, map_4
 
@@ -10,7 +13,14 @@ class Game:
     def __init__(self):
         self.field = None
         self.stage = InterfaceStage.MainMenu
-        self.score = 0
+
+        self.kills = 0
+        self.tank_bot_kills = 0
+        self.heal_bot_kills = 0
+        self.armored_bot_kills = 0
+        self.rapid_fire_kills = 0
+
+        self.is_cheat_used = False
 
         self.maps = list()
         self.current_map = 1
@@ -76,6 +86,27 @@ class Game:
         self.extract_to_render(output_buffer)
 
     def user_impact(self, buffer: BufferToGameLogic):
+        if not self.is_cheat_used and buffer.cheat_text[-len(HEAL_CHEAT):] == HEAL_CHEAT:
+            self.field.player.health_points += HEAL_VALUE
+            self.is_cheat_used = True
+        elif not self.is_cheat_used and buffer.cheat_text[-len(BIG_SPEED):] == BIG_SPEED:
+            self.field.player.max_speed = SPEED_VALUE
+            self.is_cheat_used = True
+        elif not self.is_cheat_used and buffer.cheat_text[-len(GOD_MOD):] == GOD_MOD:
+            self.field.player.health_points = GOD_HP
+            self.field.player.max_speed = GOD_SPEED
+            self.field.player.shot_await_tick_count = GOD_COOL_DOWN
+            self.is_cheat_used = True
+        elif not self.is_cheat_used and buffer.cheat_text[-len(BIG_FIRE_RATE):] == BIG_FIRE_RATE:
+            self.field.player.shot_await_tick_count = COOL_DOWN_VALUE
+            self.is_cheat_used = True
+
+        if (buffer.cheat_text[-len(HEAL_CHEAT):] != HEAL_CHEAT
+                and buffer.cheat_text[-len(BIG_SPEED):] != BIG_SPEED
+                and buffer.cheat_text[-len(GOD_MOD):] != GOD_MOD
+                and buffer.cheat_text[-len(BIG_FIRE_RATE):] != BIG_FIRE_RATE):
+            self.is_cheat_used = False
+
         self.field.player.set_velocity(buffer.user_prepare_direction)
         if buffer.shot_request:
             self.field.player.actions.append(
@@ -84,7 +115,13 @@ class Game:
 
     def extract_to_render(self, output_buffer) -> BufferToRender:
         buffer = output_buffer
-        buffer.points = str(self.score)
+        buffer.points = (
+            self.kills,
+            self.tank_bot_kills,
+            self.armored_bot_kills,
+            self.heal_bot_kills,
+            self.rapid_fire_kills
+        )
         buffer.speed = "0"
 
         if self.field is not None:
@@ -134,7 +171,7 @@ class Game:
 
         self.field = self.maps[self.current_map]
         self.current_map += 1
-        self.score = 0
+        self.kills = 0
         self.field.game = self
 
         return True

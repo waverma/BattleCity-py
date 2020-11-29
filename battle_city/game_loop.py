@@ -53,7 +53,6 @@ class GameLoop:
                 self.buffer_to_render, self.buffer_to_draw
             )
             self.draw(self.buffer_to_draw)
-            print(str(self.buffer_to_game_logic.interface_stage))
 
             if self.buffer_to_game_logic.is_exit_button_pressed:
                 quit()
@@ -77,6 +76,7 @@ class GameLoop:
             if e.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
                 user_event.pressed_buttons = keys  # НЕ ПОТОКОБЕЗОПАСНО!!!
+                user_event.entered_keys.append(e.unicode)
 
             if e.type == pygame.KEYUP:
                 keys = pygame.key.get_pressed()

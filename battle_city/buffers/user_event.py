@@ -14,6 +14,8 @@ class UserEvent(Buffer):
         self.focus_element = None
         self.events = None
 
+        self.entered_keys = list()
+
         self.pressed_buttons = list()
         self.non_released_buttons = list()
 
@@ -30,6 +32,7 @@ class UserEvent(Buffer):
         self.was_right_mouse_click = other.was_right_mouse_click
         self.was_left_mouse_click = other.was_left_mouse_click
         self.focus_element = other.focus_element
+        self.entered_keys = other.entered_keys
 
         self.pressed_buttons = other.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
         self.non_released_buttons = other.non_released_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
@@ -52,6 +55,7 @@ class UserEvent(Buffer):
         other.was_left_mouse_click = self.was_left_mouse_click
         other.focus_element = self.focus_element
         other.events = self.events
+        other.entered_keys = self.entered_keys
 
         other.pressed_buttons = self.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
         other.non_released_buttons = self.non_released_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!

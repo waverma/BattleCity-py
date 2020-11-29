@@ -33,7 +33,7 @@ class InsideGameBoard(UserElement):
         result = list()
 
         self.hp = "HP: " + str(buffer_to_render.health_points)
-        self.kills = "Kills: " + str(buffer_to_render.points)
+        self.kills = "Kills: " + str(buffer_to_render.points[0])
         self.speed = "Speed: " + str(buffer_to_render.speed)
         self.cool_dawn = "CD: {} | {}".format(buffer_to_render.cool_dawn[0],
                                               buffer_to_render.cool_dawn[1])

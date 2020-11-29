@@ -91,3 +91,4 @@ class Tank(Unit):
                 self.shot_await_tick_pointer = 0
             for unit in units:
                 unit.on_shot(field, explosion_rect)
+                field.try_set_score(unit, self)

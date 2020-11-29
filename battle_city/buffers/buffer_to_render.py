@@ -11,7 +11,7 @@ class BufferToRender(Buffer):
         self.player = None
         self.points = ""
         self.cool_dawn = ""
-        self.health_points = ""
+        self.health_points = (0, 0, 0, 0, 0)
         self.speed = ""
         self.battle_result = ""
         self.field_size = (0, 0)
