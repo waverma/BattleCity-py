@@ -18,6 +18,12 @@ class UnitType(IntEnum):
     EmptyBotSpawner = 21
     Bullet = 9
 
+    HealBonus = 22
+    SpeedUpBonus = 23
+    CoolDownBonus = 24
+    DamageBonus = 25
+    BonusSpawner = 26
+
     TankRed = 10
     TankWhite = 11
     TankGreenOne = 12

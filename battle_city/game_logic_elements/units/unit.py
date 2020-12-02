@@ -10,7 +10,7 @@ class Unit:
         self.max_speed = 0
         self.health_points = 1
         self.current_direction = Direction.Up
-        self.current_move_direction = Direction.Up
+        self.current_move_direction = Direction.Null
         self.velocity = (0, 0)
         self.actions = list()
 

@@ -58,6 +58,15 @@ class GraphicUtils:
     SPAWNER_1 = (TANKS, "SPAWNER_1")
     SPAWNER_2 = (TANKS, "SPAWNER_2")
 
+    BONUS_1 = (TANKS, "BONUS_1")
+    BONUS_2 = (TANKS, "BONUS_2")
+    BONUS_3 = (TANKS, "BONUS_3")
+    BONUS_4 = (TANKS, "BONUS_4")
+    BONUS_5 = (TANKS, "BONUS_5")
+    BONUS_6 = (TANKS, "BONUS_6")
+    BONUS_7 = (TANKS, "BONUS_7")
+    BONUS_8 = (TANKS, "BONUS_8")
+
     TANK_PRIORITY = 2
     BULLET_PRIORITY = 2
     SPAWNER_PRIORITY = 1

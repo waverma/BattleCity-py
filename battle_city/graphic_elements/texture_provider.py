@@ -89,6 +89,22 @@ class TextureProvider:
             GraphicUtils.SPAWNER_2[1], [484 + 32, 288, 32, 32]
         )
 
+        bonus_names = [
+            GraphicUtils.BONUS_1[1],
+            GraphicUtils.BONUS_2[1],
+            GraphicUtils.BONUS_3[1],
+            GraphicUtils.BONUS_4[1],
+            GraphicUtils.BONUS_5[1],
+            GraphicUtils.BONUS_6[1],
+            GraphicUtils.BONUS_7[1],
+            GraphicUtils.BONUS_8[1],
+        ]
+        
+        for i in range(8):
+            TextureProvider.textures[GraphicUtils.TANKS].add_texture(
+                bonus_names[i], [960, 33 + i * 32, 32, 32]
+            )
+
         TextureProvider.add_texture(GraphicUtils.BULLET)
 
     @staticmethod

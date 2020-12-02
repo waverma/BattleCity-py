@@ -3,6 +3,7 @@ from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH, \
 from battle_city.game_logic_elements.game_field import GameField
 from battle_city.game_logic_elements.units.armored_bot import ArmoredBot
 from battle_city.game_logic_elements.units.asphalt import Asphalt
+from battle_city.game_logic_elements.units.bonus_box import BonusBox
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.bush import Bush
 from battle_city.game_logic_elements.units.dirt import Dirt
@@ -15,6 +16,7 @@ from battle_city.game_logic_elements.units.tank_bot_spawner import \
     TankBotSpawner
 from battle_city.game_logic_elements.units.unbreakable_wall import \
     UnbreakableWall
+from battle_city.game_logic_elements.upgrades.unit_upgrade import UnitUpgrade
 
 
 def get_map() -> GameField:
@@ -90,10 +92,18 @@ def get_map() -> GameField:
         LITTLE_WALL_LENGTH * 17,
     )
 
+    # field.try_place_unit(
+    #     TankBot(),
+    #     LITTLE_WALL_LENGTH * 8,
+    #     LITTLE_WALL_LENGTH * 17,
+    # )
+
+    bb = BonusBox()
+    bb.next_bonuses = UnitUpgrade
     field.try_place_unit(
-        TankBot(),
-        LITTLE_WALL_LENGTH * 8,
-        LITTLE_WALL_LENGTH * 17,
+        bb,
+        LITTLE_WALL_LENGTH * 9,
+        LITTLE_WALL_LENGTH * 18,
     )
 
     field.units_for_step = field.units_for_step_buffer

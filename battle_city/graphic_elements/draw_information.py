@@ -123,6 +123,14 @@ class DrawInformation:
             info.texture_name = GraphicUtils.SPAWNER_2
             info.render_priority = GraphicUtils.SPAWNER_PRIORITY
 
+        elif unit_type == UnitType.BonusSpawner:
+            info.texture_name = GraphicUtils.SPAWNER_2
+            info.render_priority = GraphicUtils.SPAWNER_PRIORITY
+
+        elif unit_type == UnitType.HealBonus:
+            info.texture_name = GraphicUtils.BONUS_2
+            info.render_priority = 333
+
         elif unit_type == UnitType.Bullet:
             if direction == Direction.Up:
                 info.texture_rotate = 90 * 3

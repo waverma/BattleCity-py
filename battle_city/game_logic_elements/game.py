@@ -25,7 +25,7 @@ class Game:
         self.maps = list()
         self.current_map = 1
 
-        self.god_mode = False
+        self.god_mode = True
         self.set_maps()
 
     def is_game_completed(self):
@@ -158,7 +158,7 @@ class Game:
 
     def set_maps(self):
         self.maps = list()
-        self.current_map = 1
+        self.current_map = 0
         self.maps.append(test_map_1.get_map())
         self.maps.append(map_1.get_map())
         self.maps.append(map_2.get_map())
