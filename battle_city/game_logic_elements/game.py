@@ -172,26 +172,26 @@ class Game:
 
     def set_cheat(self, cheat_line: str):
         if not self.is_cheat_used:
-            if cheat_line[-len(HEAL_CHEAT) :] == HEAL_CHEAT:
+            if cheat_line[-len(HEAL_CHEAT):] == HEAL_CHEAT:
                 self.field.player.health_points += HEAL_VALUE
                 self.is_cheat_used = True
-            elif cheat_line[-len(BIG_SPEED) :] == BIG_SPEED:
+            elif cheat_line[-len(BIG_SPEED):] == BIG_SPEED:
                 self.field.player.max_speed = SPEED_VALUE
                 self.is_cheat_used = True
-            elif cheat_line[-len(GOD_MOD) :] == GOD_MOD:
+            elif cheat_line[-len(GOD_MOD):] == GOD_MOD:
                 self.field.player.health_points = GOD_HP
                 self.field.player.max_speed = GOD_SPEED
                 self.field.player.shot_await_tick_count = GOD_COOL_DOWN
                 self.is_cheat_used = True
-            elif cheat_line[-len(BIG_FIRE_RATE) :] == BIG_FIRE_RATE:
+            elif cheat_line[-len(BIG_FIRE_RATE):] == BIG_FIRE_RATE:
                 self.field.player.shot_await_tick_count = COOL_DOWN_VALUE
                 self.is_cheat_used = True
 
         if (
-            cheat_line[-len(HEAL_CHEAT) :] != HEAL_CHEAT
-            and cheat_line[-len(BIG_SPEED) :] != BIG_SPEED
-            and cheat_line[-len(GOD_MOD) :] != GOD_MOD
-            and cheat_line[-len(BIG_FIRE_RATE) :] != BIG_FIRE_RATE
+            cheat_line[-len(HEAL_CHEAT):] != HEAL_CHEAT
+            and cheat_line[-len(BIG_SPEED):] != BIG_SPEED
+            and cheat_line[-len(GOD_MOD):] != GOD_MOD
+            and cheat_line[-len(BIG_FIRE_RATE):] != BIG_FIRE_RATE
         ):
             self.is_cheat_used = False
 

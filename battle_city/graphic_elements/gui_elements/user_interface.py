@@ -11,9 +11,10 @@ from battle_city.graphic_elements.gui_elements.menus.main_menu import MainMenu
 from battle_city.graphic_elements.gui_elements.menus.pause_menu import (
     PauseMenu,
 )
-from battle_city.graphic_elements.gui_elements.menus.post_game_after_win_menu import (
-    PostGameAfterWinMenu,
-)
+from battle_city.graphic_elements.gui_elements.menus.post_game_after_win_menu \
+    import (
+        PostGameAfterWinMenu,
+    )
 from battle_city.graphic_elements.gui_elements.menus.post_game_element import (
     PostGameElement,
 )

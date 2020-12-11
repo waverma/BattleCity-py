@@ -8,7 +8,7 @@ with open("requirements.txt") as f:
 
 setuptools.setup(
     name="battle_city",
-    version="1.0",
+    version="1.1",
     author="Maxim Rusakov",
     description="just a Battle City game.",
     long_description=long_description,
