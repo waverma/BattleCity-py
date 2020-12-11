@@ -1,9 +1,10 @@
 from battle_city.game_logic_elements.game_constants import \
     PLAYER_TANK_HEALTH_POINTS, PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN, \
-    LITTLE_WALL_LENGTH
+    LITTLE_WALL_LENGTH, BIG_WALL_LENGTH
 from battle_city.game_logic_elements.game_field import GameField
 from battle_city.game_logic_elements.units.armored_bot import ArmoredBot
 from battle_city.game_logic_elements.units.asphalt import Asphalt
+from battle_city.game_logic_elements.units.bonus_box import BonusBox
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.game_logic_elements.units.tank_bot import TankBot
@@ -11,6 +12,12 @@ from battle_city.game_logic_elements.units.tank_bot_spawner import \
     TankBotSpawner
 from battle_city.game_logic_elements.units.unbreakable_wall import \
     UnbreakableWall
+from battle_city.game_logic_elements.upgrades.fire_rapid_bonus import \
+    FireRapidBonus
+from battle_city.game_logic_elements.upgrades.heal_bonus import HealBonus
+from battle_city.game_logic_elements.upgrades.speed_up_bonus import \
+    SpeedUpBonus
+from battle_city.game_logic_elements.upgrades.unit_upgrade import UnitUpgrade
 
 
 def get_map() -> GameField:
@@ -136,6 +143,12 @@ def get_map() -> GameField:
         LITTLE_WALL_LENGTH * 14
     )
 
+    field.try_place_unit(
+        UnbreakableWall(LITTLE_WALL_LENGTH * 2, LITTLE_WALL_LENGTH),
+        BIG_WALL_LENGTH * 12,
+        LITTLE_WALL_LENGTH * 14
+    )
+
     # асфальт
     field.try_place_unit(
         Asphalt(0, 0),
@@ -170,8 +183,13 @@ def get_map() -> GameField:
                          LITTLE_WALL_LENGTH * 18)
     field.spawners.append(spawner)
 
-    # field.units = field.units_buffer
-    # field.units_buffer = list()
+    bb = BonusBox()
+    bb.next_bonuses = FireRapidBonus
+    field.try_place_unit(
+        bb,
+        LITTLE_WALL_LENGTH * 12,
+        LITTLE_WALL_LENGTH * 4,
+    )
 
     field.units_for_step = field.units_for_step_buffer
     field.units_for_step_buffer = list()

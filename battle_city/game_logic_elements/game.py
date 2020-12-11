@@ -25,7 +25,7 @@ class Game:
         self.maps = list()
         self.current_map = 1
 
-        self.god_mode = True
+        self.god_mode = False
         self.set_maps()
 
     def is_game_completed(self):
@@ -146,6 +146,22 @@ class Game:
                 )
             )
 
+            if self.field.player.current_bonus is not None:
+                buffer.bonus_cool_dawn = (
+                    str((self.field.player.current_bonus.action_duration * 20) / 1000),
+                    str(
+                        round(
+                            ((self.field.player.current_bonus.action_duration * 20) / 1000)
+                            - ((self.field.player.current_bonus.tick_pointer * 20)
+                               / 1000),
+                            4
+                        )
+                    ),
+                    self.field.player.current_bonus.type
+                )
+            else:
+                buffer.bonus_cool_dawn = (0, 0, None)
+
             for unit in self.field.units:
                 if unit is not self.field.player:
                     buffer.units.append(unit.get_render_info())
@@ -158,7 +174,7 @@ class Game:
 
     def set_maps(self):
         self.maps = list()
-        self.current_map = 0
+        self.current_map = 1
         self.maps.append(test_map_1.get_map())
         self.maps.append(map_1.get_map())
         self.maps.append(map_2.get_map())

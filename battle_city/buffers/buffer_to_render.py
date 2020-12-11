@@ -10,10 +10,11 @@ class BufferToRender(Buffer):
         self.units = list()
         self.player = None
         self.points = ""
-        self.cool_dawn = ""
+        self.cool_dawn = (0, 0)
         self.health_points = (0, 0, 0, 0, 0)
         self.speed = ""
         self.battle_result = ""
+        self.bonus_cool_dawn = (0, 0, None)
         self.field_size = (0, 0)
         self.chat_text = list()
         self.is_chat_on = False
@@ -28,6 +29,7 @@ class BufferToRender(Buffer):
         self.units = other.units  # НЕ ПОТОКОБЕЗОПАСНО!!!
         self.points = other.points
         self.cool_dawn = other.cool_dawn
+        self.bonus_cool_dawn = other.bonus_cool_dawn
         self.health_points = other.health_points
         self.game_stage = other.game_stage
         self.field_size = other.field_size
@@ -50,6 +52,7 @@ class BufferToRender(Buffer):
         other.units = self.units  # НЕ ПОТОКОБЕЗОПАСНО!!!
         other.points = self.points
         other.cool_dawn = self.cool_dawn
+        other.bonus_cool_dawn = self.bonus_cool_dawn
         other.health_points = self.health_points
         other.game_stage = self.game_stage
         other.field_size = self.field_size

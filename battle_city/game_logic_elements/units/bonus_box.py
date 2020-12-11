@@ -1,5 +1,6 @@
 from battle_city.enums.unit_type import UnitType
-from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH
+from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH, \
+    BONUS_COOL_DOWN, ONLY_PLAYER_MODE
 from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -11,7 +12,7 @@ class BonusBox(Unit):
         self.bonuses = list()
         self.next_bonuses = None
         self.type = UnitType.BonusSpawner
-        self.cool_down = 150
+        self.cool_down = BONUS_COOL_DOWN
         self.tick_pointer = 0
         self.collision = Rect(-1, -1, LITTLE_WALL_LENGTH, LITTLE_WALL_LENGTH)
 
@@ -28,7 +29,11 @@ class BonusBox(Unit):
         self.tick_pointer += 1
         if self.tick_pointer >= self.cool_down:
             for unit in field.get_intersected_units(self.collision):
-                if issubclass(type(unit), Tank):
+                if ((ONLY_PLAYER_MODE
+                    and field.player is unit)
+                        or (not ONLY_PLAYER_MODE
+                            and issubclass(type(unit), Tank))) \
+                        and unit.current_bonus is None:
                     new_bonus = self.next_bonuses()
                     new_bonus.owner = unit
                     self.bonuses.append(new_bonus)

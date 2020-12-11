@@ -77,14 +77,14 @@ class PostGameAfterWinMenu(UserElement):
         else:
             end_battle_message = "Поражение"
 
-        kills = "Обычные: {}\nБроникованные: {}\nВосстанавливающиеся{}\nСкорострельные{}".format(
+        kills = "Обычные: {}  Броникованные: {}  Восстанавливающиеся: {}  Скорострельные: {}".format(
             buffer_to_render.points[1],
             buffer_to_render.points[2],
             buffer_to_render.points[3],
             buffer_to_render.points[4],
         )
 
-        self.text.draw_info.text = "{} Очки: {}".format(
+        self.text.draw_info.text = "{}      Очки: {}".format(
             end_battle_message,
             kills
         )

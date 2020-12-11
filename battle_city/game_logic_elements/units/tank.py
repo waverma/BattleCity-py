@@ -15,6 +15,7 @@ class Tank(Unit):
         self.collision = Rect(-1, -1, DEFAULT_TANK_SIZE[0], DEFAULT_TANK_SIZE[1])
         self.max_speed = DEFAULT_TANK_SPEED
         self.current_direction = Direction.Up
+        self.current_bonus = None
         self.type = UnitType.TankGreenOne
         self.location_to_bullet = None
 

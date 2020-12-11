@@ -67,7 +67,7 @@ class GameLoop:
             user_event.pressed_buttons = [0 for _ in range(513)]
         user_event.was_left_mouse_click = user_event.is_left_mouse_click
         user_event.was_right_mouse_click = user_event.is_right_mouse_click
-        user_event.non_released_buttons = user_event.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
+        user_event.non_released_buttons = user_event.pressed_buttons
         user_event.events = pygame.event.get()
         for e in user_event.events:
             if e.type == pygame.QUIT:
@@ -75,12 +75,12 @@ class GameLoop:
 
             if e.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
-                user_event.pressed_buttons = keys  # НЕ ПОТОКОБЕЗОПАСНО!!!
-                user_event.entered_keys.append(e.unicode)
+                user_event.pressed_buttons = keys
+                # user_event.entered_keys.append(e.unicode)
 
             if e.type == pygame.KEYUP:
                 keys = pygame.key.get_pressed()
-                user_event.pressed_buttons = keys  # НЕ ПОТОКОБЕЗОПАСНО!!!
+                user_event.pressed_buttons = keys
 
             if e.type == pygame.MOUSEMOTION:
                 self.mouse_pos = e.pos

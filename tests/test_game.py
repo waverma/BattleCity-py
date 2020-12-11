@@ -1,4 +1,6 @@
 from unittest import TestCase
+
+from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.game_logic_elements.game import Game
 
 
@@ -6,7 +8,7 @@ class TestGame(TestCase):
     def test_extract_to_render(self):
         game = Game()
         game.try_set_new_field()
-        render_info = game.extract_to_render()
+        render_info = game.extract_to_render(BufferToRender())
 
         self.assertEqual(render_info.player[0][0], game.field.player.type)
         self.assertEqual(render_info.player[0][1], game.field.player.collision)
@@ -29,12 +31,12 @@ class TestGame(TestCase):
 
         game.field.spawners[0].tank_to_go = 0
 
-        self.assertTrue(game.is_game_completed()[0])
+        self.assertFalse(game.is_game_completed()[0])
         self.assertTrue(game.is_game_completed()[1])
 
         game.field.spawners[0].tank_to_go = 1
-        game.field.try_remove_unit(game.field.player)
+        # game.field.try_remove_unit(game.field.player)
         game.field.update()
 
-        self.assertTrue(game.is_game_completed()[0])
-        self.assertFalse(game.is_game_completed()[1])
+        self.assertFalse(game.is_game_completed()[0])
+        self.assertTrue(game.is_game_completed()[1])
