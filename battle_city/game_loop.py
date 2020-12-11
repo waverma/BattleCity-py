@@ -1,7 +1,8 @@
-import copy
 import time
-from pygame.locals import *
+
 import pygame
+from pygame.constants import DOUBLEBUF
+
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.drawing_buffer import DrawingBuffer
@@ -9,7 +10,9 @@ from battle_city.buffers.user_event import UserEvent
 from battle_city.enums import InterfaceStage
 from battle_city.game_logic_elements.game import Game
 from battle_city.graphic_elements.graphic_utils import GraphicUtils
-from battle_city.graphic_elements.gui_elements.user_interface import UserInterface
+from battle_city.graphic_elements.gui_elements.user_interface import (
+    UserInterface,
+)
 from battle_city.graphic_elements.texture_provider import TextureProvider
 
 
@@ -17,9 +20,7 @@ class GameLoop:
     def __init__(self, width, height):
         # настройка PyGame
         pygame.init()
-        # flags = FULLSCREEN | DOUBLEBUF
-        flags = DOUBLEBUF
-        self.display = pygame.display.set_mode((width, height), flags)
+        self.display = pygame.display.set_mode((width, height), DOUBLEBUF)
         self.is_window_closed = False
         pygame.display.set_caption("Battle City")
 
@@ -100,39 +101,56 @@ class GameLoop:
     def draw(self, buffer: DrawingBuffer):
         for draw_element in buffer.store:
 
-            x = draw_element.draw_rect.x * draw_element.transform[2] + draw_element.transform[0]
-            y = draw_element.draw_rect.y * draw_element.transform[3] + draw_element.transform[1]
+            x = (
+                draw_element.draw_rect.x * draw_element.transform[2]
+                + draw_element.transform[0]
+            )
+            y = (
+                draw_element.draw_rect.y * draw_element.transform[3]
+                + draw_element.transform[1]
+            )
             width = draw_element.draw_rect.width * draw_element.transform[2]
             height = draw_element.draw_rect.height * draw_element.transform[3]
 
-            if draw_element.outline_size is not None and draw_element.outline_color is not None:
+            if (
+                draw_element.outline_size is not None
+                and draw_element.outline_color is not None
+            ):
                 outline_rect = [
                     x - draw_element.outline_size,
                     y - draw_element.outline_size,
                     width + draw_element.outline_size * 2,
                     height + draw_element.outline_size * 2,
                 ]
-                pygame.draw.rect(self.display, draw_element.outline_color, outline_rect)
+                pygame.draw.rect(
+                    self.display, draw_element.outline_color, outline_rect
+                )
 
             if draw_element.fill_color is not None:
                 pygame.draw.rect(
-                    self.display, draw_element.fill_color, [x, y, width, height]
+                    self.display,
+                    draw_element.fill_color,
+                    [x, y, width, height],
                 )
 
             if draw_element.texture_name is not None:
                 texture, texture_rect = TextureProvider.textures[
                     draw_element.texture_name[0]
-                ].get_texture(draw_element.texture_name[1], draw_element.image_transform)
+                ].get_texture(
+                    draw_element.texture_name[1], draw_element.image_transform
+                )
                 if draw_element.texture_rotate is not None:
-                    texture = pygame.transform.rotate(texture, draw_element.texture_rotate).convert_alpha()
+                    texture = pygame.transform.rotate(
+                        texture, draw_element.texture_rotate
+                    ).convert_alpha()
                 if texture_rect is not None:
                     self.display.blit(texture, (x, y), texture_rect)
                 else:
                     self.display.blit(texture, (x, y))
             if draw_element.text is not None:
                 self.display.blit(
-                    pygame.font.SysFont("arial", draw_element.text_size).render(
-                        draw_element.text, True, draw_element.text_color
-                    ),
+                    pygame.font.SysFont(
+                        "arial", draw_element.text_size
+                    ).render(draw_element.text, True, draw_element.text_color),
                     (x, y),
                 )

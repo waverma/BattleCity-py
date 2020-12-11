@@ -33,7 +33,7 @@ class UserEvent(Buffer):
         self.entered_keys = other.entered_keys
 
         self.pressed_buttons = other.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
-        self.non_released_buttons = other.non_released_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
+        self.non_released_buttons = other.non_released_buttons
 
         self.events = other.events
 
@@ -56,7 +56,7 @@ class UserEvent(Buffer):
         other.entered_keys = self.entered_keys
 
         other.pressed_buttons = self.pressed_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
-        other.non_released_buttons = self.non_released_buttons  # НЕ ПОТОКОБЕЗОПАСНО!!!
+        other.non_released_buttons = self.non_released_buttons
 
         self.unlock()
         return other

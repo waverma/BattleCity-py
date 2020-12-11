@@ -1,6 +1,4 @@
-from battle_city.enums import Direction
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
+from battle_city.enums import Direction, UnitType, UpdateMode
 from battle_city.rect import Rect
 
 
@@ -70,9 +68,7 @@ class Unit:
         return self.is_intersected_with_rect(other.collision)
 
     def is_intersected_with_rect(self, rect: Rect) -> bool:
-        return (
-            self.collision.colliderect(rect)
-        )
+        return self.collision.colliderect(rect)
 
     def get_render_info(self) -> list:
         return [(self.type, self.collision, self.current_direction)]

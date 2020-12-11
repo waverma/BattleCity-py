@@ -1,7 +1,9 @@
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import FIRE_HEALTH_POINTS, \
-    FIRE_DAMAGE_COOL_DOWN, BIG_WALL_LENGTH
+from battle_city.enums import UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    BIG_WALL_LENGTH,
+    FIRE_DAMAGE_COOL_DOWN,
+    FIRE_HEALTH_POINTS,
+)
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.game_logic_elements.units.unit import Unit

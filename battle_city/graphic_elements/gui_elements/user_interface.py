@@ -4,15 +4,22 @@ from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums import InterfaceStage
 from battle_city.graphic_elements.graphic_utils import GraphicUtils
-from battle_city.graphic_elements.gui_elements.game_field_element import GameFieldElement
+from battle_city.graphic_elements.gui_elements.game_field_element import (
+    GameFieldElement,
+)
 from battle_city.graphic_elements.gui_elements.menus.main_menu import MainMenu
-from battle_city.graphic_elements.gui_elements.menus.pause_menu import PauseMenu
-from battle_city.graphic_elements.gui_elements.menus.post_game_after_win_menu import \
-    PostGameAfterWinMenu
+from battle_city.graphic_elements.gui_elements.menus.pause_menu import (
+    PauseMenu,
+)
+from battle_city.graphic_elements.gui_elements.menus.post_game_after_win_menu import (
+    PostGameAfterWinMenu,
+)
 from battle_city.graphic_elements.gui_elements.menus.post_game_element import (
     PostGameElement,
 )
-from battle_city.graphic_elements.gui_elements.menus.single_play_menu import SinglePlayMenu
+from battle_city.graphic_elements.gui_elements.menus.single_play_menu import (
+    SinglePlayMenu,
+)
 
 
 def render_per_element(buffer_to_render, new_buffer_to_draw, element):
@@ -37,8 +44,9 @@ class UserInterface:
             GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
         )
         self.main_menu = MainMenu(GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0))
-        self.single_menu = SinglePlayMenu(GraphicUtils.DEFAULT_MENU_COLLISION,
-                                          (0, 0))
+        self.single_menu = SinglePlayMenu(
+            GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0)
+        )
         self.pause = PauseMenu(GraphicUtils.DEFAULT_MENU_COLLISION, (0, 0))
 
     def update(
@@ -82,11 +90,11 @@ class UserInterface:
             )
 
         elif self.stage == InterfaceStage.InGame:
-            render_info = self.game_field_element.get_render_info(
+            self.game_field_element.get_render_info(
                 (0, 0, 1, 1), buffer_to_render, new_buffer_to_draw
             )
-            # for render_info_parts in render_info:
-            #     new_buffer_to_draw.add(render_info_parts)
+        #     for render_info_parts in render_info:
+        #         new_buffer_to_draw.add(render_info_parts)
 
         elif self.stage == InterfaceStage.PostGame:
             render_per_element(
@@ -95,7 +103,9 @@ class UserInterface:
 
         elif self.stage == InterfaceStage.PostGameAfterWin:
             render_per_element(
-                buffer_to_render, new_buffer_to_draw, self.post_game_after_win_menu
+                buffer_to_render,
+                new_buffer_to_draw,
+                self.post_game_after_win_menu,
             )
 
         elif self.stage == InterfaceStage.SinglePlayMenu:

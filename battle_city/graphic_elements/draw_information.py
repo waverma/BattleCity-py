@@ -1,8 +1,6 @@
 from typing import Tuple
 
-from battle_city.enums import Direction
-from battle_city.enums import TankTextureKind
-from battle_city.enums import UnitType
+from battle_city.enums import Direction, TankTextureKind, UnitType
 from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.rect import Rect
 
@@ -36,7 +34,7 @@ class DrawInformation:
         text_color=(0, 0, 0),
         text_size=36,
         image_transform=(1, 1),
-        render_priority=0
+        render_priority=0,
     ):
         self.transform = transform
         self.texture_name = texture_name

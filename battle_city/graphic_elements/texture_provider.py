@@ -42,7 +42,8 @@ class TextureProvider:
         )
 
         TextureProvider.textures[GraphicUtils.GROUND].add_texture(
-            GraphicUtils.SEND_GROUND[1], [32, 32, 16, 16]
+            GraphicUtils.SEND_GROUND[1],
+            [32, 32, 16, 16]
             # GraphicUtils.SEND_GROUND[1], [16, 48, 16, 16]
         )
 
@@ -99,7 +100,7 @@ class TextureProvider:
             GraphicUtils.BONUS_7[1],
             GraphicUtils.BONUS_8[1],
         ]
-        
+
         for i in range(8):
             TextureProvider.textures[GraphicUtils.TANKS].add_texture(
                 bonus_names[i], [960, 33 + i * 32, 32, 32]
@@ -110,8 +111,7 @@ class TextureProvider:
     @staticmethod
     def add_texture(name: str):
         TextureProvider.textures[name] = TextureImageInfo(
-            name,
-            TextureProvider.texture_file
+            name, TextureProvider.texture_file
         )
 
     @staticmethod
@@ -130,8 +130,7 @@ class TextureProvider:
 
     @staticmethod
     def get_tank_image_rect(
-            tank_color: TankTextureKind,
-            animation_step: int
+        tank_color: TankTextureKind, animation_step: int
     ) -> tuple:
         tank_block = (32 * 4, 32)
         tank = (32, 32)

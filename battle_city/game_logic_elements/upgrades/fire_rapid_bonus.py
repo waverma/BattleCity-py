@@ -11,7 +11,9 @@ class FireRapidBonus(UnitUpgrade):
     def turn_on(self):
         super().turn_on()
         self.saved_cool_down = self.owner.shot_await_tick_count
-        self.owner.shot_await_tick_count = self.owner.shot_await_tick_count // 2
+        self.owner.shot_await_tick_count = (
+            self.owner.shot_await_tick_count // 2
+        )
 
     def turn_off(self):
         super().turn_off()

@@ -1,7 +1,9 @@
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH, \
-    BIG_WALL_LENGTH, BRICK_HEALTH_POINTS
+from battle_city.enums import UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    BIG_WALL_LENGTH,
+    BRICK_HEALTH_POINTS,
+    LITTLE_WALL_LENGTH,
+)
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
 
@@ -17,13 +19,10 @@ class BreakableWall(Unit):
     def get_render_info(self):
         result = list()
 
-        for x in range(
-            self.collision.width // LITTLE_WALL_LENGTH
-        ):
-            for y in range(
-                self.collision.height // LITTLE_WALL_LENGTH
-            ):
-                result.append((
+        for x in range(self.collision.width // LITTLE_WALL_LENGTH):
+            for y in range(self.collision.height // LITTLE_WALL_LENGTH):
+                result.append(
+                    (
                         self.type,
                         Rect(
                             self.collision.x + LITTLE_WALL_LENGTH * x,
@@ -31,8 +30,9 @@ class BreakableWall(Unit):
                             LITTLE_WALL_LENGTH,
                             LITTLE_WALL_LENGTH,
                         ),
-                        self.current_direction
-                ))
+                        self.current_direction,
+                    )
+                )
 
         return result
 
@@ -41,14 +41,14 @@ class BreakableWall(Unit):
         if self.health_points <= 0:
             field.try_remove_unit(self)
             for x in range(self.collision.width // LITTLE_WALL_LENGTH):
-                for y in range(
-                    self.collision.height // LITTLE_WALL_LENGTH
-                ):
+                for y in range(self.collision.height // LITTLE_WALL_LENGTH):
                     if not explosion_rect.colliderect(
-                        Rect(self.collision.x + x * LITTLE_WALL_LENGTH,
-                             self.collision.y + y * LITTLE_WALL_LENGTH,
-                             LITTLE_WALL_LENGTH,
-                             LITTLE_WALL_LENGTH)
+                        Rect(
+                            self.collision.x + x * LITTLE_WALL_LENGTH,
+                            self.collision.y + y * LITTLE_WALL_LENGTH,
+                            LITTLE_WALL_LENGTH,
+                            LITTLE_WALL_LENGTH,
+                        )
                     ):
                         field.try_place_unit(
                             BreakableWall(
@@ -56,5 +56,5 @@ class BreakableWall(Unit):
                                 LITTLE_WALL_LENGTH,
                             ),
                             self.collision.x + x * LITTLE_WALL_LENGTH,
-                            self.collision.y + y * LITTLE_WALL_LENGTH
+                            self.collision.y + y * LITTLE_WALL_LENGTH,
                         )

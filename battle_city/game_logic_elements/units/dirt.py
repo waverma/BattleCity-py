@@ -1,7 +1,9 @@
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import DIRT_HEALTH_POINTS, \
-    DIRT_SLOW_DAWN_COEFFICIENT, BIG_WALL_LENGTH
+from battle_city.enums import UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    BIG_WALL_LENGTH,
+    DIRT_HEALTH_POINTS,
+    DIRT_SLOW_DAWN_COEFFICIENT,
+)
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.game_logic_elements.units.unit import Unit
@@ -24,8 +26,9 @@ class Dirt(BreakableWall):
         for unit in field.get_intersected_units(self.collision):
             if issubclass(type(unit), Tank):
                 self.intersected_tanks.append((unit, unit.max_speed))
-                unit.max_speed = int(unit.max_speed
-                                     / DIRT_SLOW_DAWN_COEFFICIENT)
+                unit.max_speed = int(
+                    unit.max_speed / DIRT_SLOW_DAWN_COEFFICIENT
+                )
                 if unit.max_speed == 0:
                     unit.max_speed = 1
                 unit.set_velocity(unit.current_move_direction)

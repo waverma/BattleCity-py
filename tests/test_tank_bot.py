@@ -1,9 +1,9 @@
 from unittest import TestCase
+
 from battle_city.enums import Direction
 from battle_city.game_logic_elements.game_field import GameField
-from battle_city.rect import Rect
-
 from battle_city.game_logic_elements.units.tank_bot import TankBot
+from battle_city.rect import Rect
 
 
 class TestTankBot(TestCase):
@@ -17,11 +17,13 @@ class TestTankBot(TestCase):
 
         tank.move_step(field)
 
-        self.assertEqual(tank.collision,
-                         Rect(0, 0, tank.collision.w, tank.collision.h))
+        self.assertEqual(
+            tank.collision, Rect(0, 0, tank.collision.w, tank.collision.h)
+        )
 
         tank.set_velocity(Direction.Down)
         tank.move_step(field)
 
-        self.assertNotEqual(tank.collision,
-                            Rect(0, 0, tank.collision.w, tank.collision.h))
+        self.assertNotEqual(
+            tank.collision, Rect(0, 0, tank.collision.w, tank.collision.h)
+        )

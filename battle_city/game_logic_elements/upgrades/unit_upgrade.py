@@ -14,7 +14,7 @@ class UnitUpgrade:
     def update(self):
         if not self.is_active:
             return
-        
+
         self.on_update_action()
 
         self.tick_pointer += 1

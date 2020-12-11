@@ -19,13 +19,13 @@ class SinglePlayMenu(UserElement):
         self.new_game_button = Button(
             Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "Новая игра"
+            "Новая игра",
         )
 
         self.exit_button = Button(
             Rect(100, 300, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "Назад"
+            "Назад",
         )
 
         self.buttons.append(self.new_game_button)

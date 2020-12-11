@@ -1,7 +1,7 @@
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import \
-    DEFAULT_GAME_FIELD_SIZE
+from battle_city.enums import UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    DEFAULT_GAME_FIELD_SIZE,
+)
 from battle_city.game_logic_elements.units.bullet import Bullet
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -128,34 +128,34 @@ class GameField:
 
     def try_set_score(self, unit: Unit, owner: Unit):
         if (
-                unit.type == UnitType.TankWhite
-                and unit not in self.units
-                and owner is self.player
-                and self.game is not None
+            unit.type == UnitType.TankWhite
+            and unit not in self.units
+            and owner is self.player
+            and self.game is not None
         ):
             self.game.tank_bot_kills += 1
             self.game.kills += 1
         elif (
-                unit.type == UnitType.TankRed
-                and unit not in self.units
-                and owner is self.player
-                and self.game is not None
+            unit.type == UnitType.TankRed
+            and unit not in self.units
+            and owner is self.player
+            and self.game is not None
         ):
             self.game.armored_bot_kills += 1
             self.game.kills += 1
         elif (
-                unit.type == UnitType.TankOrange
-                and unit not in self.units
-                and owner is self.player
-                and self.game is not None
+            unit.type == UnitType.TankOrange
+            and unit not in self.units
+            and owner is self.player
+            and self.game is not None
         ):
             self.game.rapid_fire_kills += 1
             self.game.kills += 1
         elif (
-                unit.type == UnitType.TankGreenThree
-                and unit not in self.units
-                and owner is self.player
-                and self.game is not None
+            unit.type == UnitType.TankGreenThree
+            and unit not in self.units
+            and owner is self.player
+            and self.game is not None
         ):
             self.game.heal_bot_kills += 1
             self.game.kills += 1

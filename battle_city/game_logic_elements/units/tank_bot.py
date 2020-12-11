@@ -1,9 +1,11 @@
 import random
 
-from battle_city.enums import Direction
-from battle_city.enums import UnitType
-from battle_city.game_logic_elements.game_constants import \
-    DEFAULT_TANK_HEALTH_POINTS, DEFAULT_TANK_SPEED, DEFAULT_TANK_SIZE
+from battle_city.enums import Direction, UnitType
+from battle_city.game_logic_elements.game_constants import (
+    DEFAULT_TANK_HEALTH_POINTS,
+    DEFAULT_TANK_SIZE,
+    DEFAULT_TANK_SPEED,
+)
 from battle_city.game_logic_elements.units.tank import Tank
 from battle_city.rect import Rect
 
@@ -12,8 +14,9 @@ class TankBot(Tank):
     def __init__(self):
         super().__init__()
         self.type = UnitType.TankWhite
-        self.collision = Rect(-1, -1, DEFAULT_TANK_SIZE[0],
-                              DEFAULT_TANK_SIZE[1])
+        self.collision = Rect(
+            -1, -1, DEFAULT_TANK_SIZE[0], DEFAULT_TANK_SIZE[1]
+        )
         self.max_speed = DEFAULT_TANK_SPEED
         self.health_points = DEFAULT_TANK_HEALTH_POINTS
 

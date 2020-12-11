@@ -1,7 +1,9 @@
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import BIG_WALL_LENGTH, \
-    LITTLE_WALL_LENGTH, IRON_HEALTH_POINTS
+from battle_city.enums import UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    BIG_WALL_LENGTH,
+    IRON_HEALTH_POINTS,
+    LITTLE_WALL_LENGTH,
+)
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
 
@@ -20,7 +22,8 @@ class UnbreakableWall(Unit):
 
         for x in range(self.collision.width // LITTLE_WALL_LENGTH):
             for y in range(self.collision.height // LITTLE_WALL_LENGTH):
-                result.append((
+                result.append(
+                    (
                         self.type,
                         Rect(
                             self.collision.x + LITTLE_WALL_LENGTH * x,
@@ -28,7 +31,8 @@ class UnbreakableWall(Unit):
                             LITTLE_WALL_LENGTH,
                             LITTLE_WALL_LENGTH,
                         ),
-                        self.current_direction
-                    ))
+                        self.current_direction,
+                    )
+                )
 
         return result

@@ -18,19 +18,19 @@ class MainMenu(UserElement):
         self.single_play_button = Button(
             Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "Одиночная игра"
+            "Одиночная игра",
         )
 
         self.network_button = Button(
             Rect(100, 300, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "Сетевая игра"
+            "Сетевая игра",
         )
 
         self.exit_button = Button(
             Rect(100, 600, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "Выход"
+            "Выход",
         )
 
         self.buttons.append(self.single_play_button)

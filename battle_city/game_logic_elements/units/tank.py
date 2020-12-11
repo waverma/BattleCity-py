@@ -1,9 +1,11 @@
 from typing import Tuple
 
-from battle_city.enums import Direction
-from battle_city.enums import UnitType
-from battle_city.game_logic_elements.game_constants import DEFAULT_TANK_SIZE, \
-    DEFAULT_TANK_COOL_DOWN, DEFAULT_TANK_SPEED
+from battle_city.enums import Direction, UnitType
+from battle_city.game_logic_elements.game_constants import (
+    DEFAULT_TANK_COOL_DOWN,
+    DEFAULT_TANK_SIZE,
+    DEFAULT_TANK_SPEED,
+)
 from battle_city.game_logic_elements.units.bullet import Bullet
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -12,7 +14,9 @@ from battle_city.rect import Rect
 class Tank(Unit):
     def __init__(self):
         super().__init__()
-        self.collision = Rect(-1, -1, DEFAULT_TANK_SIZE[0], DEFAULT_TANK_SIZE[1])
+        self.collision = Rect(
+            -1, -1, DEFAULT_TANK_SIZE[0], DEFAULT_TANK_SIZE[1]
+        )
         self.max_speed = DEFAULT_TANK_SPEED
         self.current_direction = Direction.Up
         self.current_bonus = None
@@ -36,9 +40,7 @@ class Tank(Unit):
             field.try_remove_unit(self)
 
     def get_spawn_location(
-            self,
-            direction: Direction,
-            collision: Rect
+        self, direction: Direction, collision: Rect
     ) -> Tuple:
 
         spawn_shift = -collision.width / 2, -collision.height / 2

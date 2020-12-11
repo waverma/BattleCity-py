@@ -30,7 +30,7 @@ class BufferToGameLogic(Buffer):
         self.chat_open_key_pressed = False
         self.chat_close_key_pressed = False
         self.is_pause_request = False
-        self.cheat_text = ''
+        self.cheat_text = ""
         self.is_chat_open = False
 
         # Pause

@@ -9,13 +9,15 @@ from battle_city.rect import Rect
 
 def get_draw_info(transform: Tuple, text: str, shift: int) -> DrawInformation:
     return DrawInformation(
-        transform=(transform[0] + 10,
-                   transform[1] + shift,
-                   transform[2],
-                   transform[3]),
+        transform=(
+            transform[0] + 10,
+            transform[1] + shift,
+            transform[2],
+            transform[3],
+        ),
         text_size=20,
         text=text,
-        text_color=(255, 255, 255)
+        text_color=(255, 255, 255),
     )
 
 
@@ -37,20 +39,26 @@ class InsideGameBoard(UserElement):
         self.hp = "HP: " + str(buffer_to_render.health_points)
         self.kills = "Kills: " + str(buffer_to_render.points[0])
         self.speed = "Speed: " + str(buffer_to_render.speed)
-        self.cool_dawn = "CD: {} | {}".format(buffer_to_render.cool_dawn[0],
-                                              buffer_to_render.cool_dawn[1])
+        self.cool_dawn = "CD: {} | {}".format(
+            buffer_to_render.cool_dawn[0], buffer_to_render.cool_dawn[1]
+        )
 
         if buffer_to_render.bonus_cool_dawn[2] is not None:
             self.bonus_cool_dawn = "{} | {}".format(
                 buffer_to_render.bonus_cool_dawn[0],
-                buffer_to_render.bonus_cool_dawn[1]
+                buffer_to_render.bonus_cool_dawn[1],
             )
 
             result.append(
                 DrawInformation.get_info_by(
                     buffer_to_render.bonus_cool_dawn[2],
-                    Rect(transform[0] + 10, transform[1] + 100, transform[2], transform[3]),
-                    Direction.Null
+                    Rect(
+                        transform[0] + 10,
+                        transform[1] + 100,
+                        transform[2],
+                        transform[3],
+                    ),
+                    Direction.Null,
                 )
             )
             result.append(get_draw_info(transform, self.bonus_cool_dawn, 160))

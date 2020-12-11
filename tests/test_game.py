@@ -4,8 +4,12 @@ from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums import InterfaceStage
 from battle_city.game_logic_elements.game import Game
-from battle_city.game_logic_elements.game_constants import HEAL_CHEAT, \
-    BIG_FIRE_RATE, GOD_MOD, BIG_SPEED
+from battle_city.game_logic_elements.game_constants import (
+    BIG_FIRE_RATE,
+    BIG_SPEED,
+    GOD_MOD,
+    HEAL_CHEAT,
+)
 
 
 class TestGame(TestCase):
@@ -33,7 +37,7 @@ class TestGame(TestCase):
         self.assertTrue(game.is_cheat_used)
         game.set_cheat(line)
         self.assertTrue(game.is_cheat_used)
-        game.set_cheat('{}d'.format(line))
+        game.set_cheat("{}d".format(line))
         self.assertFalse(game.is_cheat_used)
 
         line = "djkgf{}".format(BIG_SPEED)
@@ -41,7 +45,7 @@ class TestGame(TestCase):
         self.assertTrue(game.is_cheat_used)
         game.set_cheat(line)
         self.assertTrue(game.is_cheat_used)
-        game.set_cheat('{}d'.format(line))
+        game.set_cheat("{}d".format(line))
         self.assertFalse(game.is_cheat_used)
 
         line = "djkgf{}".format(GOD_MOD)
@@ -49,7 +53,7 @@ class TestGame(TestCase):
         self.assertTrue(game.is_cheat_used)
         game.set_cheat(line)
         self.assertTrue(game.is_cheat_used)
-        game.set_cheat('{}d'.format(line))
+        game.set_cheat("{}d".format(line))
         self.assertFalse(game.is_cheat_used)
 
         line = "djkgf{}".format(BIG_FIRE_RATE)
@@ -57,7 +61,7 @@ class TestGame(TestCase):
         self.assertTrue(game.is_cheat_used)
         game.set_cheat(line)
         self.assertTrue(game.is_cheat_used)
-        game.set_cheat('{}d'.format(line))
+        game.set_cheat("{}d".format(line))
         self.assertFalse(game.is_cheat_used)
 
     def test_update(self):

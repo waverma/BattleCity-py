@@ -10,13 +10,13 @@ from battle_city.rect import Rect
 
 class Button(UserElement):
     def __init__(
-            self,
-            rect: Rect,
-            absolute_position: Tuple,
-            text: str = "",
-            fill_color: Tuple = GraphicUtils.RED_GREEN_COLOR,
-            focused_outline_color: Tuple = GraphicUtils.RED_COLOR,
-            outline_size: int = 3
+        self,
+        rect: Rect,
+        absolute_position: Tuple,
+        text: str = "",
+        fill_color: Tuple = GraphicUtils.RED_GREEN_COLOR,
+        focused_outline_color: Tuple = GraphicUtils.RED_COLOR,
+        outline_size: int = 3,
     ):
         super().__init__(rect, absolute_position)
         self.draw_info.text = text

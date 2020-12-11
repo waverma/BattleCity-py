@@ -1,7 +1,8 @@
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import BUSH_HEALTH_POINTS, \
-    BIG_WALL_LENGTH
+from battle_city.enums import UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    BIG_WALL_LENGTH,
+    BUSH_HEALTH_POINTS,
+)
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect

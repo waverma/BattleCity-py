@@ -1,11 +1,11 @@
 import random
 
-from battle_city.enums import Direction
-from battle_city.enums import UnitType
-from battle_city.enums import UpdateMode
-from battle_city.game_logic_elements.game_constants import \
-    DEFAULT_TANK_SPAWNER_SIZE, DEFAULT_TANK_SPAWNER_COOL_DOWN, \
-    DEFAULT_TANK_SPAWNER_TANK_TO_GO
+from battle_city.enums import Direction, UnitType, UpdateMode
+from battle_city.game_logic_elements.game_constants import (
+    DEFAULT_TANK_SPAWNER_COOL_DOWN,
+    DEFAULT_TANK_SPAWNER_SIZE,
+    DEFAULT_TANK_SPAWNER_TANK_TO_GO,
+)
 from battle_city.game_logic_elements.units.tank_bot import TankBot
 from battle_city.game_logic_elements.units.unit import Unit
 from battle_city.rect import Rect
@@ -13,14 +13,15 @@ from battle_city.rect import Rect
 
 class TankBotSpawner(Unit):
     def __init__(
-            self,
-            tank_to_go=DEFAULT_TANK_SPAWNER_TANK_TO_GO,
-            next_tank_pointer=None,
-            priority_direction=None
+        self,
+        tank_to_go=DEFAULT_TANK_SPAWNER_TANK_TO_GO,
+        next_tank_pointer=None,
+        priority_direction=None,
     ):
         super().__init__()
-        self.collision = Rect(-1, -1, DEFAULT_TANK_SPAWNER_SIZE[0],
-                              DEFAULT_TANK_SPAWNER_SIZE[1])
+        self.collision = Rect(
+            -1, -1, DEFAULT_TANK_SPAWNER_SIZE[0], DEFAULT_TANK_SPAWNER_SIZE[1]
+        )
         self.type = UnitType.BotSpawner
 
         self.is_tank_alive = False
@@ -43,10 +44,14 @@ class TankBotSpawner(Unit):
         ]
 
     def is_completed(self) -> bool:
-        return (self.tank_to_go <= 0
-                or len(self.tanks_to_go) <= 0
-                or (self.next_tank_pointer is not None and self.next_tank_pointer >= len(self.tanks_to_go))) \
-               and self.is_tank_alive
+        return (
+            self.tank_to_go <= 0
+            or len(self.tanks_to_go) <= 0
+            or (
+                self.next_tank_pointer is not None
+                and self.next_tank_pointer >= len(self.tanks_to_go)
+            )
+        ) and self.is_tank_alive
 
     def get_next_tank(self) -> TankBot:
         if self.next_tank_pointer is None:

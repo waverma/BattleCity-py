@@ -1,6 +1,7 @@
 from typing import Tuple
 
 import pygame
+
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.user_event import UserEvent
@@ -20,13 +21,13 @@ class PauseMenu(UserElement):
         self.continue_button = Button(
             Rect(100, 100, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "Продолжить"
+            "Продолжить",
         )
 
         self.exit_button = Button(
             Rect(100, 600, 750, 100),
             (absolute_position[0], absolute_position[1]),
-            "В главное меню"
+            "В главное меню",
         )
 
         self.buttons.append(self.continue_button)
