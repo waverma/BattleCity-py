@@ -1,8 +1,8 @@
 import random
 
-from battle_city.enums.direction import Direction
-from battle_city.enums.unit_type import UnitType
-from battle_city.enums.update_mode import UpdateMode
+from battle_city.enums import Direction
+from battle_city.enums import UnitType
+from battle_city.enums import UpdateMode
 from battle_city.game_logic_elements.game_constants import \
     DEFAULT_TANK_SPAWNER_SIZE, DEFAULT_TANK_SPAWNER_COOL_DOWN, \
     DEFAULT_TANK_SPAWNER_TANK_TO_GO

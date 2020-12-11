@@ -1,4 +1,4 @@
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH, \
     BONUS_COOL_DOWN, ONLY_PLAYER_MODE
 from battle_city.game_logic_elements.units.tank import Tank

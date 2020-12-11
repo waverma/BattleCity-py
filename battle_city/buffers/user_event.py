@@ -1,5 +1,3 @@
-import copy
-
 from battle_city.buffers.buffer import Buffer
 
 

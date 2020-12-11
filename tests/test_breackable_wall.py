@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from battle_city.enums.direction import Direction
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import Direction
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH
 from battle_city.game_logic_elements.game_field import GameField
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall

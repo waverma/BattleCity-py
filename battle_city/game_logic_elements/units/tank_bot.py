@@ -1,7 +1,7 @@
 import random
 
-from battle_city.enums.direction import Direction
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import Direction
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import \
     DEFAULT_TANK_HEALTH_POINTS, DEFAULT_TANK_SPEED, DEFAULT_TANK_SIZE
 from battle_city.game_logic_elements.units.tank import Tank

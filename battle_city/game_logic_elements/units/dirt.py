@@ -1,6 +1,5 @@
-from battle_city.enums.direction import Direction
-from battle_city.enums.unit_type import UnitType
-from battle_city.enums.update_mode import UpdateMode
+from battle_city.enums import UnitType
+from battle_city.enums import UpdateMode
 from battle_city.game_logic_elements.game_constants import DIRT_HEALTH_POINTS, \
     DIRT_SLOW_DAWN_COEFFICIENT, BIG_WALL_LENGTH
 from battle_city.game_logic_elements.units.breakable_wall import BreakableWall

@@ -14,10 +14,6 @@ from battle_city.game_logic_elements.units.unbreakable_wall import \
     UnbreakableWall
 from battle_city.game_logic_elements.upgrades.fire_rapid_bonus import \
     FireRapidBonus
-from battle_city.game_logic_elements.upgrades.heal_bonus import HealBonus
-from battle_city.game_logic_elements.upgrades.speed_up_bonus import \
-    SpeedUpBonus
-from battle_city.game_logic_elements.upgrades.unit_upgrade import UnitUpgrade
 
 
 def get_map() -> GameField:

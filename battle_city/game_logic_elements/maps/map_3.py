@@ -8,7 +8,6 @@ from battle_city.game_logic_elements.units.asphalt import Asphalt
 from battle_city.game_logic_elements.units.bonus_box import BonusBox
 from battle_city.game_logic_elements.units.breakable_wall import \
     BreakableWall
-from battle_city.game_logic_elements.units.bush import Bush
 from battle_city.game_logic_elements.units.dirt import Dirt
 from battle_city.game_logic_elements.units.heal_bot import HealBot
 from battle_city.game_logic_elements.units.rapid_fire_bot import \

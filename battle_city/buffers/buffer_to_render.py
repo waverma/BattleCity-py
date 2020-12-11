@@ -1,5 +1,5 @@
 from battle_city.buffers.buffer import Buffer
-from battle_city.enums.interface_stage import InterfaceStage
+from battle_city.enums import InterfaceStage
 
 
 class BufferToRender(Buffer):

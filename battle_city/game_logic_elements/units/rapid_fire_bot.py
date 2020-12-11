@@ -1,4 +1,4 @@
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import \
     RAPID_FIRE_TANK_HEALTH_POINTS, \
     RAPID_FIRE_BOT_SPEED, RAPID_FIRE_TANK_SIZE, RAPID_FIRE_TANK_COOL_DOWN

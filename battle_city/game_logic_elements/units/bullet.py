@@ -1,6 +1,6 @@
-from battle_city.enums.direction import Direction
-from battle_city.enums.unit_type import UnitType
-from battle_city.enums.update_mode import UpdateMode
+from battle_city.enums import Direction
+from battle_city.enums import UnitType
+from battle_city.enums import UpdateMode
 from battle_city.game_logic_elements.game_constants import DEFAULT_BULLET_SIZE, \
     DEFAULT_EXPLOSION_LENGTH, DEFAULT_BULLET_SPEED
 from battle_city.game_logic_elements.units.unit import Unit

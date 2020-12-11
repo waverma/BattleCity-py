@@ -2,17 +2,13 @@ from battle_city.game_logic_elements.game_constants import LITTLE_WALL_LENGTH, \
     PLAYER_TANK_HEALTH_POINTS, PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN, \
     BIG_WALL_LENGTH
 from battle_city.game_logic_elements.game_field import GameField
-from battle_city.game_logic_elements.units.armored_bot import ArmoredBot
-from battle_city.game_logic_elements.units.asphalt import Asphalt
 from battle_city.game_logic_elements.units.bonus_box import BonusBox
-from battle_city.game_logic_elements.units.breakable_wall import BreakableWall
 from battle_city.game_logic_elements.units.bush import Bush
 from battle_city.game_logic_elements.units.dirt import Dirt
 from battle_city.game_logic_elements.units.fire import Fire
 from battle_city.game_logic_elements.units.heal_bot import HealBot
 from battle_city.game_logic_elements.units.rapid_fire_bot import RapidFireBot
 from battle_city.game_logic_elements.units.tank import Tank
-from battle_city.game_logic_elements.units.tank_bot import TankBot
 from battle_city.game_logic_elements.units.tank_bot_spawner import \
     TankBotSpawner
 from battle_city.game_logic_elements.units.unbreakable_wall import \

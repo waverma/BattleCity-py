@@ -1,6 +1,6 @@
-from battle_city.enums.direction import Direction
-from battle_city.enums.unit_type import UnitType
-from battle_city.enums.update_mode import UpdateMode
+from battle_city.enums import Direction
+from battle_city.enums import UnitType
+from battle_city.enums import UpdateMode
 from battle_city.rect import Rect
 
 

@@ -2,7 +2,7 @@ from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
-from battle_city.enums.interface_stage import InterfaceStage
+from battle_city.enums import InterfaceStage
 from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.gui_elements.game_field_element import GameFieldElement
 from battle_city.graphic_elements.gui_elements.menus.main_menu import MainMenu

@@ -1,7 +1,7 @@
 from typing import Tuple
 
 from battle_city.buffers.buffer_to_render import BufferToRender
-from battle_city.enums.direction import Direction
+from battle_city.enums import Direction
 from battle_city.graphic_elements.draw_information import DrawInformation
 from battle_city.graphic_elements.gui_elements.user_element import UserElement
 from battle_city.rect import Rect

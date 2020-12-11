@@ -1,4 +1,4 @@
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import ARMORED_BOT_SPEED, \
     ARMORED_TANK_SIZE, ARMORED_TANK_COOL_DOWN, ARMORED_TANK_HEALTH_POINTS
 from battle_city.game_logic_elements.units.tank_bot import TankBot

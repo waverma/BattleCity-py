@@ -92,12 +92,6 @@ def get_map() -> GameField:
         LITTLE_WALL_LENGTH * 17,
     )
 
-    # field.try_place_unit(
-    #     TankBot(),
-    #     LITTLE_WALL_LENGTH * 8,
-    #     LITTLE_WALL_LENGTH * 17,
-    # )
-
     bb = BonusBox()
     bb.next_bonuses = UnitUpgrade
     field.try_place_unit(

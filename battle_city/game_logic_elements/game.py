@@ -1,12 +1,24 @@
+from typing import Tuple
+
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
-from battle_city.enums.interface_stage import InterfaceStage
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import InterfaceStage
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import HEAL_CHEAT, \
     BIG_SPEED, BIG_FIRE_RATE, GOD_MOD, HEAL_VALUE, SPEED_VALUE, GOD_HP, \
     GOD_SPEED, GOD_COOL_DOWN, COOL_DOWN_VALUE
 from battle_city.game_logic_elements.maps import test_map_1, map_1, map_2, \
     map_3, map_4
+
+
+def get_cool_down(tick_count, tick_pointer) -> Tuple:
+    return (
+        str((tick_count * 20) / 1000),
+        str(round(
+            ((tick_count * 20) / 1000) - ((tick_pointer * 20) / 1000),
+            4
+        ))
+    )
 
 
 class Game:
@@ -47,7 +59,7 @@ class Game:
                     self.stage = InterfaceStage.PostGameAfterWin
                 else:
                     self.stage = InterfaceStage.PostGame
-            if buffer.is_pause_request:
+            elif buffer.is_pause_request:
                 self.stage = InterfaceStage.Pause
 
         if buffer.interface_stage == InterfaceStage.MainMenu:
@@ -82,31 +94,10 @@ class Game:
             if buffer.is_return_button_pressed:
                 self.stage = InterfaceStage.InGame
 
-        # output_buffer.update(self.extract_to_render())
         self.extract_to_render(output_buffer)
 
     def user_impact(self, buffer: BufferToGameLogic):
-        if not self.is_cheat_used and buffer.cheat_text[-len(HEAL_CHEAT):] == HEAL_CHEAT:
-            self.field.player.health_points += HEAL_VALUE
-            self.is_cheat_used = True
-        elif not self.is_cheat_used and buffer.cheat_text[-len(BIG_SPEED):] == BIG_SPEED:
-            self.field.player.max_speed = SPEED_VALUE
-            self.is_cheat_used = True
-        elif not self.is_cheat_used and buffer.cheat_text[-len(GOD_MOD):] == GOD_MOD:
-            self.field.player.health_points = GOD_HP
-            self.field.player.max_speed = GOD_SPEED
-            self.field.player.shot_await_tick_count = GOD_COOL_DOWN
-            self.is_cheat_used = True
-        elif not self.is_cheat_used and buffer.cheat_text[-len(BIG_FIRE_RATE):] == BIG_FIRE_RATE:
-            self.field.player.shot_await_tick_count = COOL_DOWN_VALUE
-            self.is_cheat_used = True
-
-        if (buffer.cheat_text[-len(HEAL_CHEAT):] != HEAL_CHEAT
-                and buffer.cheat_text[-len(BIG_SPEED):] != BIG_SPEED
-                and buffer.cheat_text[-len(GOD_MOD):] != GOD_MOD
-                and buffer.cheat_text[-len(BIG_FIRE_RATE):] != BIG_FIRE_RATE):
-            self.is_cheat_used = False
-
+        self.set_cheat(buffer.cheat_text)
         self.field.player.set_velocity(buffer.user_prepare_direction)
         if buffer.shot_request:
             self.field.player.actions.append(
@@ -122,40 +113,25 @@ class Game:
             self.heal_bot_kills,
             self.rapid_fire_kills
         )
-        buffer.speed = "0"
 
         if self.field is not None:
             buffer.field_size = self.field.width, self.field.height
-            if (self.field.player.velocity[0] != 0
-                    or self.field.player.velocity[1] != 0):
-                buffer.speed = str(abs(self.field.player.velocity[0])
-                                   + abs(self.field.player.velocity[1]))
+            buffer.speed = str(abs(self.field.player.velocity[0])
+                               + abs(self.field.player.velocity[1]))
             buffer.battle_result = (self.is_game_completed()[0],
                                     self.is_game_completed()[1])
-
             buffer.health_points = self.field.player.health_points
-            buffer.cool_dawn = (
-                str((self.field.player.shot_await_tick_count * 20) / 1000),
-                str(
-                    round(
-                        ((self.field.player.shot_await_tick_count * 20) / 1000)
-                        - ((self.field.player.shot_await_tick_pointer * 20)
-                           / 1000),
-                        4
-                    )
-                )
+
+            buffer.cool_dawn = get_cool_down(
+                self.field.player.shot_await_tick_count,
+                self.field.player.shot_await_tick_pointer
             )
 
             if self.field.player.current_bonus is not None:
                 buffer.bonus_cool_dawn = (
-                    str((self.field.player.current_bonus.action_duration * 20) / 1000),
-                    str(
-                        round(
-                            ((self.field.player.current_bonus.action_duration * 20) / 1000)
-                            - ((self.field.player.current_bonus.tick_pointer * 20)
-                               / 1000),
-                            4
-                        )
+                    *get_cool_down(
+                        self.field.player.current_bonus.action_duration,
+                        self.field.player.current_bonus.tick_pointer
                     ),
                     self.field.player.current_bonus.type
                 )
@@ -171,6 +147,29 @@ class Game:
         buffer.game_stage = self.stage
 
         return buffer
+
+    def set_cheat(self, cheat_line: str):
+        if not self.is_cheat_used:
+            if cheat_line[-len(HEAL_CHEAT):] == HEAL_CHEAT:
+                self.field.player.health_points += HEAL_VALUE
+                self.is_cheat_used = True
+            elif cheat_line[-len(BIG_SPEED):] == BIG_SPEED:
+                self.field.player.max_speed = SPEED_VALUE
+                self.is_cheat_used = True
+            elif cheat_line[-len(GOD_MOD):] == GOD_MOD:
+                self.field.player.health_points = GOD_HP
+                self.field.player.max_speed = GOD_SPEED
+                self.field.player.shot_await_tick_count = GOD_COOL_DOWN
+                self.is_cheat_used = True
+            elif cheat_line[-len(BIG_FIRE_RATE):] == BIG_FIRE_RATE:
+                self.field.player.shot_await_tick_count = COOL_DOWN_VALUE
+                self.is_cheat_used = True
+
+        if (cheat_line[-len(HEAL_CHEAT):] != HEAL_CHEAT
+                and cheat_line[-len(BIG_SPEED):] != BIG_SPEED
+                and cheat_line[-len(GOD_MOD):] != GOD_MOD
+                and cheat_line[-len(BIG_FIRE_RATE):] != BIG_FIRE_RATE):
+            self.is_cheat_used = False
 
     def set_maps(self):
         self.maps = list()

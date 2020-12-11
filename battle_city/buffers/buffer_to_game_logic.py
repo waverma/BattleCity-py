@@ -1,5 +1,5 @@
 from battle_city.buffers.buffer import Buffer
-from battle_city.enums.direction import Direction
+from battle_city.enums import Direction
 
 
 class BufferToGameLogic(Buffer):

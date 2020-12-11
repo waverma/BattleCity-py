@@ -1,5 +1,5 @@
-from battle_city.enums.unit_type import UnitType
-from battle_city.enums.update_mode import UpdateMode
+from battle_city.enums import UnitType
+from battle_city.enums import UpdateMode
 from battle_city.game_logic_elements.game_constants import BIG_WALL_LENGTH, \
     LITTLE_WALL_LENGTH, IRON_HEALTH_POINTS
 from battle_city.game_logic_elements.units.unit import Unit

@@ -1,4 +1,4 @@
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.upgrades.unit_upgrade import UnitUpgrade
 
 

@@ -1,8 +1,8 @@
 from typing import Tuple
 
-from battle_city.enums.direction import Direction
-from battle_city.enums.tank_texture_kind import TankTextureKind
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import Direction
+from battle_city.enums import TankTextureKind
+from battle_city.enums import UnitType
 from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.rect import Rect
 

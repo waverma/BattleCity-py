@@ -1,4 +1,4 @@
-from battle_city.enums.unit_type import UnitType
+from battle_city.enums import UnitType
 from battle_city.game_logic_elements.game_constants import HEAL_BOT_SPEED, \
     HEAL_TANK_SIZE, HEAL_TANK_COOL_DOWN, HEAL_TANK_HEALTH_POINTS, \
     HEAL_TANK_HEAL_COOL_DOWN

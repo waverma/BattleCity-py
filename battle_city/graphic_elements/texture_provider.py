@@ -2,7 +2,7 @@ import os
 import sys
 from typing import Tuple
 
-from battle_city.enums.tank_texture_kind import TankTextureKind
+from battle_city.enums import TankTextureKind
 from battle_city.graphic_elements.graphic_utils import GraphicUtils
 from battle_city.graphic_elements.texture_image_info import TextureImageInfo
 
