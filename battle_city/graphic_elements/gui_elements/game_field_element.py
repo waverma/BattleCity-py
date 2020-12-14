@@ -7,7 +7,6 @@ from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums import Direction
-from battle_city.game_logic_elements.game_constants import WAIT_TICK_COUNT
 from battle_city.graphic_elements.draw_information import DrawInformation
 from battle_city.graphic_elements.gui_elements.inside_game_board import (
     InsideGameBoard,
@@ -19,9 +18,6 @@ from battle_city.rect import Rect
 class GameFieldElement(UserElement):
     def __init__(self, rect, absolute_position):
         super().__init__(rect, absolute_position)
-        self.entered_characters = ""
-        self.entered_characters_await_pointer = 0
-        self.entered_characters_await_count = WAIT_TICK_COUNT
 
         self.inside_game_board = InsideGameBoard(
             Rect(self.collision.w, 0, 150, self.collision.h),
@@ -30,12 +26,7 @@ class GameFieldElement(UserElement):
 
     def update(self, e: UserEvent, output_buffer: BufferToGameLogic):
         output_buffer.user_prepare_direction = Direction.Null
-        output_buffer.cheat_text = ""
-        if len(e.entered_keys) > 0:
-            for key in e.entered_keys:
-                self.entered_characters_await_pointer = 0
-                self.entered_characters += key
-        output_buffer.cheat_text = self.entered_characters
+        output_buffer.cheat_text = ''.join(e.entered_keys)
 
         if len(e.pressed_buttons) > 0:
             if e.pressed_buttons[pygame.K_w]:

@@ -3,6 +3,7 @@ from typing import Tuple
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums import InterfaceStage, UnitType
+from battle_city.field_provider import get_all_maps
 from battle_city.game_logic_elements.game_constants import (
     BIG_FIRE_RATE,
     BIG_SPEED,
@@ -14,13 +15,6 @@ from battle_city.game_logic_elements.game_constants import (
     HEAL_CHEAT,
     HEAL_VALUE,
     SPEED_VALUE,
-)
-from battle_city.game_logic_elements.maps import (
-    map_1,
-    map_2,
-    map_3,
-    map_4,
-    test_map_1,
 )
 
 
@@ -197,12 +191,8 @@ class Game:
 
     def set_maps(self):
         self.maps = list()
-        self.current_map = 1
-        self.maps.append(test_map_1.get_map())
-        self.maps.append(map_1.get_map())
-        self.maps.append(map_2.get_map())
-        self.maps.append(map_3.get_map())
-        self.maps.append(map_4.get_map())
+        self.current_map = 0
+        self.maps = get_all_maps()
 
     def try_set_new_field(self) -> bool:
         if self.current_map >= len(self.maps):

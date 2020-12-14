@@ -69,6 +69,9 @@ class GameLoop:
         self.events.was_right_mouse_click = self.events.is_right_mouse_click
         self.events.non_released_buttons = self.events.pressed_buttons
         self.events.events = pygame.event.get()
+
+        self.events.entered_keys = self.events.entered_keys[-20:]
+
         for e in self.events.events:
             if e.type == pygame.QUIT:
                 self.is_window_closed = True

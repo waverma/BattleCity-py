@@ -19,7 +19,9 @@ class TextureProvider:
 
     @staticmethod
     def set_textures(directory: str):
-        TextureProvider.texture_file = os.path.join(directory, "textures")
+        TextureProvider.texture_file = os.path.join(
+            directory, "resources", "textures"
+        )
         TextureProvider.add_texture(GraphicUtils.GROUND)
         TextureProvider.textures[GraphicUtils.GROUND].add_texture(
             GraphicUtils.BRICK_WALL[1], [0, 0, 16, 16]

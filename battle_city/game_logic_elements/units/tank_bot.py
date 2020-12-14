@@ -14,9 +14,7 @@ class TankBot(Tank):
     def __init__(self):
         super().__init__()
         self.type = UnitType.TankWhite
-        self.collision = Rect(
-            -1, -1, DEFAULT_TANK_SIZE[0], DEFAULT_TANK_SIZE[1]
-        )
+        self.collision = Rect(w=DEFAULT_TANK_SIZE[0], h=DEFAULT_TANK_SIZE[1])
         self.max_speed = DEFAULT_TANK_SPEED
         self.health_points = DEFAULT_TANK_HEALTH_POINTS
 

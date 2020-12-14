@@ -17,7 +17,7 @@ class BonusBox(Unit):
         self.type = UnitType.BonusSpawner
         self.cool_down = BONUS_COOL_DOWN
         self.tick_pointer = 0
-        self.collision = Rect(-1, -1, LITTLE_WALL_LENGTH, LITTLE_WALL_LENGTH)
+        self.collision = Rect(w=LITTLE_WALL_LENGTH, h=LITTLE_WALL_LENGTH)
 
     def step(self, field):
         super().step(field)

@@ -1,0 +1,29 @@
+# MAP_FILE HEAD << 26 26 << 0 0 2 2 << MAP 1
+ADD UNIT << Asphalt << 0 0 26 26
+ADD UNIT << BreakableWall << 2 2 2 9
+ADD UNIT << BreakableWall << 6 2 2 9
+ADD UNIT << BreakableWall << 18 2 2 9
+ADD UNIT << BreakableWall << 22 2 2 9
+ADD UNIT << BreakableWall << 10 2 2 7
+ADD UNIT << BreakableWall << 14 2 2 7
+ADD UNIT << BreakableWall << 2 17 2 7
+ADD UNIT << BreakableWall << 6 17 2 7
+ADD UNIT << BreakableWall << 18 17 2 7
+ADD UNIT << BreakableWall << 22 17 2 7
+ADD UNIT << BreakableWall << 10 15 2 6
+ADD UNIT << BreakableWall << 14 15 2 6
+ADD UNIT << BreakableWall << 4 13 4 2
+ADD UNIT << BreakableWall << 18 13 4 2
+ADD UNIT << BreakableWall << 0 13 2 1
+ADD UNIT << BreakableWall << 24 13 2 1
+ADD UNIT << BreakableWall << 10 11 2 2
+ADD UNIT << BreakableWall << 14 11 2 2
+ADD UNIT << UnbreakableWall << 12 6 2 2
+ADD UNIT << BreakableWall << 12 16 2 2
+ADD UNIT << UnbreakableWall << 0 14 2 1
+ADD UNIT << UnbreakableWall << 24 14 2 1
+ADD SPAWNER << 24 0 2 2 << 3 << TankBot TankBot TankBot
+ADD SPAWNER << 8 11 2 2 << 3 << TankBot TankBot TankBot
+ADD SPAWNER << 12 18 2 2 << 3 << TankBot TankBot ArmoredBot
+ADD BONUS << 12 4 1 1 << FireRapidBonus
+# MAP_FILE TAIL << AND

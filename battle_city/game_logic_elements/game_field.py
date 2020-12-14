@@ -50,7 +50,9 @@ class GameField:
                     self.units_for_step.remove(unit)
         self.ban_unit_list = list()
 
-    def try_place_unit(self, unit: Unit, x: int, y: int):
+    def try_place_unit(
+            self, unit: Unit, x: int, y: int, non_intersect_mode: bool = False
+    ):
         unit_rect = Rect(x, y, unit.collision.width, unit.collision.height)
         map_rect = Rect(0, 0, self.width, self.height)
         if (
@@ -59,11 +61,10 @@ class GameField:
                 x + unit.collision.width - 1, y + unit.collision.height - 1
             )
             or len(self.get_intersected_units(unit_rect)) > 0
-        ):
+        ) and not non_intersect_mode:
             return False
 
-        unit.collision.x = x
-        unit.collision.y = y
+        unit.collision.set_x(x).set_y(y)
         self.units.append(unit)
         if unit.update_mode == UpdateMode.IntersectOnly:
             self.units_for_intersect_buffer.append(unit)

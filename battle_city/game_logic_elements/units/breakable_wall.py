@@ -13,7 +13,7 @@ class BreakableWall(Unit):
         super().__init__()
         self.type = UnitType.BrickWall
         self.health_points = BRICK_HEALTH_POINTS
-        self.collision = Rect(-1, -1, width, height)
+        self.collision = Rect(w=width, h=height)
         self.update_mode = UpdateMode.IntersectOnly
 
     def get_render_info(self):

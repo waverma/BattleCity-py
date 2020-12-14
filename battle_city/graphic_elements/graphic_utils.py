@@ -6,7 +6,7 @@ from battle_city.rect import Rect
 
 class GraphicUtils:
     texture_file = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "Textures"
+        os.path.dirname(os.path.abspath(__file__)), "resources",  "textures"
     )
 
     DEFAULT_CLIENT_SIZE = (32 * 26 + 150, 32 * 26)

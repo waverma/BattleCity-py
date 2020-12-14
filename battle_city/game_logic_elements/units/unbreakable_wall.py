@@ -11,7 +11,7 @@ from battle_city.rect import Rect
 class UnbreakableWall(Unit):
     def __init__(self, width=BIG_WALL_LENGTH, height=BIG_WALL_LENGTH):
         super().__init__()
-        self.collision = Rect(-1, -1, width, height)
+        self.collision = Rect(w=width, h=height)
         self.type = UnitType.IronWall
         self.health_points = IRON_HEALTH_POINTS
 

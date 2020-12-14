@@ -14,8 +14,6 @@ class ArmoredBot(TankBot):
         super().__init__()
         self.type = UnitType.TankRed
         self.max_speed = ARMORED_BOT_SPEED
-        self.collision = Rect(
-            -1, -1, ARMORED_TANK_SIZE[0], ARMORED_TANK_SIZE[1]
-        )
+        self.collision = Rect(w=ARMORED_TANK_SIZE[0], h=ARMORED_TANK_SIZE[1])
         self.shot_await_tick_count = ARMORED_TANK_COOL_DOWN
         self.health_points = ARMORED_TANK_HEALTH_POINTS

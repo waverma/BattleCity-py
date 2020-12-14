@@ -15,7 +15,7 @@ class RapidFireBot(TankBot):
         self.type = UnitType.TankOrange
         self.max_speed = RAPID_FIRE_BOT_SPEED
         self.collision = Rect(
-            -1, -1, RAPID_FIRE_TANK_SIZE[0], RAPID_FIRE_TANK_SIZE[1]
+            w=RAPID_FIRE_TANK_SIZE[0], h=RAPID_FIRE_TANK_SIZE[1]
         )
         self.shot_await_tick_count = RAPID_FIRE_TANK_COOL_DOWN
         self.health_points = RAPID_FIRE_TANK_HEALTH_POINTS

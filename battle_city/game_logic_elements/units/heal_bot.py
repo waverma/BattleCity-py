@@ -15,7 +15,7 @@ class HealBot(TankBot):
         super().__init__()
         self.type = UnitType.TankGreenThree
         self.max_speed = HEAL_BOT_SPEED
-        self.collision = Rect(-1, -1, HEAL_TANK_SIZE[0], HEAL_TANK_SIZE[1])
+        self.collision = Rect(w=HEAL_TANK_SIZE[0], h=HEAL_TANK_SIZE[1])
         self.shot_await_tick_count = HEAL_TANK_COOL_DOWN
         self.max_health_points = self.health_points = HEAL_TANK_HEALTH_POINTS
         self.heal_cool_dawn = HEAL_TANK_HEAL_COOL_DOWN

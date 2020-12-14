@@ -12,7 +12,7 @@ class Bullet(Unit):
     def __init__(self, owner: Unit):
         super().__init__()
         self.collision = Rect(
-            -1, -1, DEFAULT_BULLET_SIZE[0], DEFAULT_BULLET_SIZE[1]
+            w=DEFAULT_BULLET_SIZE[0], h=DEFAULT_BULLET_SIZE[1]
         )
         self.max_speed = DEFAULT_BULLET_SPEED
         self.current_direction = Direction.Up

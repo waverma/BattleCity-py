@@ -4,7 +4,7 @@ from battle_city.rect import Rect
 
 class Unit:
     def __init__(self):
-        self.collision = Rect(-1, -1, -1, -1)
+        self.collision = Rect()
         self.max_speed = 0
         self.health_points = 1
         self.current_direction = Direction.Up

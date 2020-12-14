@@ -1,0 +1,42 @@
+# MAP_FILE HEAD << 26 26 << 12 24 2 2 << MAP 1
+ADD UNIT << Asphalt << 0 0 26 26
+ADD UNIT << BreakableWall << 2 2 10 2
+ADD UNIT << BreakableWall << 14 2 10 2
+ADD UNIT << BreakableWall << 2 6 22 2
+ADD UNIT << BreakableWall << 2 12 8 2
+ADD UNIT << BreakableWall << 16 12 8 2
+ADD UNIT << UnbreakableWall << 4 20 6 2
+ADD UNIT << UnbreakableWall << 16 20 6 2
+ADD UNIT << BreakableWall << 2 15 2 4
+ADD UNIT << BreakableWall << 22 15 2 4
+ADD UNIT << BreakableWall << 0 24 2 2
+ADD UNIT << BreakableWall << 6 24 2 2
+ADD UNIT << BreakableWall << 18 24 2 2
+ADD UNIT << BreakableWall << 24 24 2 2
+ADD UNIT << BreakableWall << 12 10 2 6
+ADD UNIT << UnbreakableWall << 10 9 2 2
+ADD UNIT << UnbreakableWall << 14 9 2 2
+ADD UNIT << UnbreakableWall << 10 15 2 2
+ADD UNIT << UnbreakableWall << 14 15 2 2
+ADD UNIT << UnbreakableWall << 24 6 2 1
+ADD UNIT << UnbreakableWall << 0 6 2 1
+ADD UNIT << UnbreakableWall << 24 15 2 1
+ADD UNIT << UnbreakableWall << 0 15 2 1
+ADD UNIT << Bush << 11 0 4 2
+ADD UNIT << Bush << 10 4 6 2
+ADD UNIT << Bush << 2 8 6 4
+ADD UNIT << Bush << 18 8 6 4
+ADD UNIT << Bush << 4 16 4 2
+ADD UNIT << Bush << 18 16 4 2
+ADD UNIT << Bush << 2 19 2 7
+ADD UNIT << Bush << 22 19 2 7
+ADD UNIT << Bush << 4 22 2 4
+ADD UNIT << Bush << 20 22 2 4
+ADD UNIT << Bush << 10 20 6 2
+ADD SPAWNER << 0 0 2 2 << 5 << TankBot ArmoredBot ArmoredBot ArmoredBot ArmoredBot
+ADD SPAWNER << 24 0 2 2 << 5 << TankBot ArmoredBot ArmoredBot ArmoredBot RapidFireBot
+ADD SPAWNER << 0 16 2 2 << 5 << TankBot ArmoredBot ArmoredBot ArmoredBot ArmoredBot HealBot
+ADD SPAWNER << 24 16 2 2 << 5 << TankBot ArmoredBot ArmoredBot ArmoredBot RapidFireBot
+ADD BONUS << 12 2 1 1 << HealBonus
+ADD BONUS << 12 8 1 1 << FireRapidBonus
+# MAP_FILE TAIL << AND
