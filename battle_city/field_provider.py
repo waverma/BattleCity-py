@@ -1,16 +1,16 @@
 import os
 
-from battle_city.game_logic_elements.game_constants \
+from battle_city.engene.game_constants \
     import LITTLE_WALL_LENGTH, \
     PLAYER_TANK_HEALTH_POINTS, PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN
-from battle_city.game_logic_elements.game_field import GameField
+from battle_city.engene.game_field import GameField
 
-from battle_city.game_logic_elements.units.bonus_box import BonusBox
+from battle_city.engene.units.bonus_box import BonusBox
 
 import glob
 
-from battle_city.game_logic_elements.units.tank import Tank
-from battle_city.game_logic_elements.units.tank_bot_spawner import \
+from battle_city.engene.units.tank import Tank
+from battle_city.engene.units.tank_bot_spawner import \
     TankBotSpawner
 
 modules = [
@@ -19,7 +19,7 @@ modules = [
             os.path.normpath(
                 os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir
             ),
-            "battle_city", "game_logic_elements", "units", "*.py"
+            "battle_city", "engene", "units", "*.py"
         )
     ),
     *glob.glob(
@@ -27,7 +27,7 @@ modules = [
             os.path.normpath(
                 os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir
             ),
-            "battle_city", "game_logic_elements", "upgrades", "*.py"
+            "battle_city", "engene", "upgrades", "*.py"
         )
     )
 ]

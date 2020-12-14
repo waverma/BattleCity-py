@@ -1,8 +1,8 @@
 from unittest import TestCase
 
 from battle_city.enums import Direction
-from battle_city.game_logic_elements.game_field import GameField
-from battle_city.game_logic_elements.units.tank_bot import TankBot
+from battle_city.engene.game_field import GameField
+from battle_city.engene.units.tank_bot import TankBot
 from battle_city.rect import Rect
 
 

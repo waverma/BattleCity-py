@@ -3,8 +3,8 @@ from unittest import TestCase
 from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums import InterfaceStage
-from battle_city.game_logic_elements.game import Game
-from battle_city.game_logic_elements.game_constants import (
+from battle_city.engene.game import Game
+from battle_city.engene.game_constants import (
     BIG_FIRE_RATE,
     BIG_SPEED,
     GOD_MOD,

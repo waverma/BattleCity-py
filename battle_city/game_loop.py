@@ -8,12 +8,12 @@ from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.buffers.drawing_buffer import DrawingBuffer
 from battle_city.buffers.user_event import UserEvent
 from battle_city.enums import InterfaceStage
-from battle_city.game_logic_elements.game import Game
-from battle_city.graphic_elements.graphic_utils import GraphicUtils
-from battle_city.graphic_elements.gui_elements.user_interface import (
+from battle_city.engene.game import Game
+from battle_city.view.graphic_utils import GraphicUtils
+from battle_city.view.gui_elements.user_interface import (
     UserInterface,
 )
-from battle_city.graphic_elements.texture_provider import TextureProvider
+from battle_city.view.texture_provider import TextureProvider
 
 
 class GameLoop:

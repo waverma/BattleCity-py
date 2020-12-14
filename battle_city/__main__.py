@@ -1,8 +1,8 @@
 import os
 
 from battle_city.game_loop import GameLoop
-from battle_city.graphic_elements.graphic_utils import GraphicUtils
-from battle_city.graphic_elements.texture_provider import TextureProvider
+from battle_city.view.graphic_utils import GraphicUtils
+from battle_city.view.texture_provider import TextureProvider
 
 
 if __name__ == "__main__":
