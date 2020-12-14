@@ -45,7 +45,7 @@ class GameLoop:
             self.buffer_to_render = BufferToRender()
             self.buffer_to_game_logic = BufferToGameLogic()
 
-            self.get_event(self.events)
+            self.get_event()
             self.user_interface.update(
                 self.events, self.game.stage, self.buffer_to_game_logic
             )
@@ -62,41 +62,40 @@ class GameLoop:
 
             pygame.display.set_caption(str(1.0 / (time.time() - start_time)))
 
-    def get_event(self, events):
-        user_event = events
-        if user_event.pressed_buttons is None:
-            user_event.pressed_buttons = [0 for _ in range(513)]
-        user_event.was_left_mouse_click = user_event.is_left_mouse_click
-        user_event.was_right_mouse_click = user_event.is_right_mouse_click
-        user_event.non_released_buttons = user_event.pressed_buttons
-        user_event.events = pygame.event.get()
-        for e in user_event.events:
+    def get_event(self):
+        if self.events.pressed_buttons is None:
+            self.events.pressed_buttons = [0 for _ in range(513)]
+        self.events.was_left_mouse_click = self.events.is_left_mouse_click
+        self.events.was_right_mouse_click = self.events.is_right_mouse_click
+        self.events.non_released_buttons = self.events.pressed_buttons
+        self.events.events = pygame.event.get()
+        for e in self.events.events:
             if e.type == pygame.QUIT:
                 self.is_window_closed = True
 
             if e.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
-                user_event.pressed_buttons = keys
-                # user_event.entered_keys.append(e.unicode)
+                self.events.pressed_buttons = keys
+                self.events.entered_keys.append(e.unicode)
 
             if e.type == pygame.KEYUP:
                 keys = pygame.key.get_pressed()
-                user_event.pressed_buttons = keys
+                self.events.pressed_buttons = keys
 
             if e.type == pygame.MOUSEMOTION:
                 self.mouse_pos = e.pos
 
             if e.type == pygame.MOUSEBUTTONDOWN:
-                user_event.is_left_mouse_click = e.button == 1
-                user_event.is_right_mouse_click = e.button == 3
+                self.events.is_left_mouse_click = e.button == 1
+                self.events.is_right_mouse_click = e.button == 3
 
             if e.type == pygame.MOUSEBUTTONUP:
-                user_event.is_left_mouse_click = e.button != 1
-                user_event.is_right_mouse_click = e.button != 3
+                self.events.is_left_mouse_click = e.button != 1
+                self.events.is_right_mouse_click = e.button != 3
 
-        user_event.absolute_mouse_location = self.mouse_pos
+        self.events.absolute_mouse_location = self.mouse_pos
 
-        self.events = user_event
+        self.events = self.events
 
     def draw(self, buffer: DrawingBuffer):
         for draw_element in buffer.store:
