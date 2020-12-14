@@ -1,10 +1,10 @@
-# battle_city-py - Копия(почти) классической игры Battle City
+# battle_city - Копия(почти) классической игры Battle City
 # Установка
-git clone https://github.com/waverma/battle_city-py
+git clone https://github.com/waverma/battle_city
 # Установка зависимостей
 pip install -r requirements.txt
 # Запуск
-python3 \__main__.py либо py \__main__.py в директории battle_city-py
+python3 \__main__.py либо py \__main__.py в директории battle_city
 # Правила
 На карте есть три точки спавна противников, каждый спавн может создавать до пяти танков. 
 Уничтожил всех - победил, уничтожили тебя - проиграл.
