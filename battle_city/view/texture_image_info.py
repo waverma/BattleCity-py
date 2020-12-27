@@ -9,7 +9,10 @@ class TextureImageInfo:
         self.file_name = file_name
         self.images = dict()
         self.textures = dict()
-
+        print(os.path.join(
+                directory,
+                file_name,
+            ))
         self.images[(1, 1)] = pygame.image.load(
             os.path.join(
                 directory,

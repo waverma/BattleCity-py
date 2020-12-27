@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from battle_city.engene.game_field import GameField
-from battle_city.engene.units.breakable_wall import BreakableWall
-from battle_city.engene.units.bullet import Bullet
-from battle_city.engene.units.tank import Tank
-from battle_city.engene.units.unit import Unit
+from battle_city.engine.game_field import GameField
+from battle_city.engine.units.breakable_wall import BreakableWall
+from battle_city.engine.units.bullet import Bullet
+from battle_city.engine.units.tank import Tank
+from battle_city.engine.units.unit import Unit
 from battle_city.rect import Rect
 
 

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from battle_city.enums import Direction
-from battle_city.engene.units.unit import Unit
+from battle_city.engine.units.unit import Unit
 from battle_city.rect import Rect
 
 

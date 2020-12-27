@@ -1,45 +1,18 @@
 import os
 
-from battle_city.engene.game_constants \
+from battle_city.engine.game_constants \
     import LITTLE_WALL_LENGTH, \
     PLAYER_TANK_HEALTH_POINTS, PLAYER_TANK_SPEED, PLAYER_TANK_COOL_DOWN
-from battle_city.engene.game_field import GameField
+from battle_city.engine.game_field import GameField
+from battle_city.engine.game_entities_provider import get_unit_by, get_bonus_by
 
-from battle_city.engene.units.bonus_box import BonusBox
+from battle_city.engine.units.bonus_box import BonusBox
 
 import glob
 
-from battle_city.engene.units.tank import Tank
-from battle_city.engene.units.tank_bot_spawner import \
+from battle_city.engine.units.tank import Tank
+from battle_city.engine.units.tank_bot_spawner import \
     TankBotSpawner
-
-modules = [
-    *glob.glob(
-        os.path.join(
-            os.path.normpath(
-                os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir
-            ),
-            "battle_city", "engene", "units", "*.py"
-        )
-    ),
-    *glob.glob(
-        os.path.join(
-            os.path.normpath(
-                os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir
-            ),
-            "battle_city", "engene", "upgrades", "*.py"
-        )
-    )
-]
-for i in modules:
-    exec("from " +
-         '.'.join([
-             i[:-3].split('\\')[-4],
-             i[:-3].split('\\')[-3],
-             i[:-3].split('\\')[-2],
-             i[:-3].split('\\')[-1]
-         ]) +
-         " import *")
 
 
 def load_from_file(full_file_name: str) -> GameField:
@@ -76,7 +49,7 @@ def load_from_file(full_file_name: str) -> GameField:
 
         if line_arguments[0] == "ADD UNIT":
             collision = line_arguments[2].split(" ")
-            unit = globals()[line_arguments[1]]()
+            unit = get_unit_by(line_arguments[1])
             unit.collision.set_width(int(collision[2]) * LITTLE_WALL_LENGTH)
             unit.collision.set_height(int(collision[3]) * LITTLE_WALL_LENGTH)
             field.try_place_unit(
@@ -89,7 +62,7 @@ def load_from_file(full_file_name: str) -> GameField:
             collision = line_arguments[1].split(" ")
             spawner = TankBotSpawner(tank_to_go=int(line_arguments[2]))
             for tank in line_arguments[3].split(" "):
-                spawner.tanks_to_go.append(globals()[tank]())
+                spawner.tanks_to_go.append(get_unit_by(tank))
             field.spawners.append(spawner)
             field.try_place_unit(
                 spawner,
@@ -100,7 +73,7 @@ def load_from_file(full_file_name: str) -> GameField:
         elif line_arguments[0] == "ADD BONUS":
             collision = line_arguments[1].split(" ")
             bonus_box = BonusBox()
-            bonus_box.next_bonuses = globals()[line_arguments[2]]
+            bonus_box.next_bonuses = get_bonus_by(line_arguments[2])
             field.try_place_unit(
                 bonus_box,
                 LITTLE_WALL_LENGTH * int(collision[0]),

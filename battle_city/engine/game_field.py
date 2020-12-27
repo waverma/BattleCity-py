@@ -1,9 +1,9 @@
 from battle_city.enums import UnitType, UpdateMode
-from battle_city.engene.game_constants import (
+from battle_city.engine.game_constants import (
     DEFAULT_GAME_FIELD_SIZE,
 )
-from battle_city.engene.units.bullet import Bullet
-from battle_city.engene.units.unit import Unit
+from battle_city.engine.units.bullet import Bullet
+from battle_city.engine.units.unit import Unit
 from battle_city.rect import Rect
 
 

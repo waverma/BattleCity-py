@@ -1,8 +1,8 @@
 from unittest import TestCase
 
 from battle_city.enums import Direction
-from battle_city.engene.game_field import GameField
-from battle_city.engene.units.tank import Tank
+from battle_city.engine.game_field import GameField
+from battle_city.engine.units.tank import Tank
 
 
 class TestTank(TestCase):

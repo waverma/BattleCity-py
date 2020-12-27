@@ -4,7 +4,7 @@ from battle_city.buffers.buffer_to_game_logic import BufferToGameLogic
 from battle_city.buffers.buffer_to_render import BufferToRender
 from battle_city.enums import InterfaceStage, UnitType
 from battle_city.field_provider import get_all_maps
-from battle_city.engene.game_constants import (
+from battle_city.engine.game_constants import (
     BIG_FIRE_RATE,
     BIG_SPEED,
     COOL_DOWN_VALUE,

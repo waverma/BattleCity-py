@@ -1,9 +1,9 @@
 from battle_city.enums import UnitType
-from battle_city.engene.game_constants import BONUS_DURATION
-from battle_city.engene.units.tank import Tank
+from battle_city.engine.game_constants import BONUS_DURATION
+from battle_city.engine.units.tank import Tank
 
 
-class UnitUpgrade:
+class UnitBonus:
     def __init__(self):
         self.owner: Tank = None
         self.type = UnitType.HealBonus

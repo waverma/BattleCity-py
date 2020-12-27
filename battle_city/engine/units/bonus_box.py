@@ -1,11 +1,11 @@
 from battle_city.enums import UnitType
-from battle_city.engene.game_constants import (
+from battle_city.engine.game_constants import (
     BONUS_COOL_DOWN,
     LITTLE_WALL_LENGTH,
     ONLY_PLAYER_MODE,
 )
-from battle_city.engene.units.tank import Tank
-from battle_city.engene.units.unit import Unit
+from battle_city.engine.units.tank import Tank
+from battle_city.engine.units.unit import Unit
 from battle_city.rect import Rect
 
 

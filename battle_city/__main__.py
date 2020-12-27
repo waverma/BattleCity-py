@@ -18,4 +18,15 @@ if __name__ == "__main__":
         )
     )
 
+    #
+    # Для собирания в ехе
+    # print(os.path.normpath(
+    #         os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir + os.sep + os.pardir + os.sep + os.pardir
+    #     ))
+    # TextureProvider.set_textures(
+    #     os.path.normpath(
+    #         os.path.dirname(os.path.abspath(__file__)) + os.sep + os.pardir + os.sep + os.pardir + os.sep + os.pardir
+    #     )
+    # )
+
     game_loop.run()

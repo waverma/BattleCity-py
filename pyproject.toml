@@ -3,8 +3,8 @@ source = ["battle_city"]
 omit = [
     "battle_city/enums.py",
     "battle_city/buffers/*",
-    "battle_city/graphic_elements/*",
-    "battle_city/game_logic_elements/game_constants.py",
+    "battle_city/view/*",
+    "battle_city/engine/game_constants.py",
     "battle_city/__main__.py",
     "battle_city/game_loop.py",
     "setup.py"

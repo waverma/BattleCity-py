@@ -1,10 +1,10 @@
 from battle_city.enums import Direction, UnitType, UpdateMode
-from battle_city.engene.game_constants import (
+from battle_city.engine.game_constants import (
     DEFAULT_BULLET_SIZE,
     DEFAULT_BULLET_SPEED,
     DEFAULT_EXPLOSION_LENGTH,
 )
-from battle_city.engene.units.unit import Unit
+from battle_city.engine.units.unit import Unit
 from battle_city.rect import Rect
 
 

@@ -1,11 +1,11 @@
 from battle_city.enums import UnitType
-from battle_city.engene.game_constants import (
+from battle_city.engine.game_constants import (
     ARMORED_BOT_SPEED,
     ARMORED_TANK_COOL_DOWN,
     ARMORED_TANK_HEALTH_POINTS,
     ARMORED_TANK_SIZE,
 )
-from battle_city.engene.units.tank_bot import TankBot
+from battle_city.engine.units.tank_bot import TankBot
 from battle_city.rect import Rect
 
 

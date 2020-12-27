@@ -1,8 +1,8 @@
 from battle_city.enums import UnitType
-from battle_city.engene.upgrades.unit_upgrade import UnitUpgrade
+from battle_city.engine.bonuses.unit_upgrade import UnitBonus
 
 
-class FireRapidBonus(UnitUpgrade):
+class FireRapidBonus(UnitBonus):
     def __init__(self):
         super().__init__()
         self.type = UnitType.CoolDownBonus

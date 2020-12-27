@@ -1,12 +1,13 @@
 import random
 
+from battle_city.engine.units.unit import Unit
 from battle_city.enums import Direction, UnitType
-from battle_city.engene.game_constants import (
+from battle_city.engine.game_constants import (
     DEFAULT_TANK_HEALTH_POINTS,
     DEFAULT_TANK_SIZE,
     DEFAULT_TANK_SPEED,
 )
-from battle_city.engene.units.tank import Tank
+from battle_city.engine.units.tank import Tank
 from battle_city.rect import Rect
 
 
